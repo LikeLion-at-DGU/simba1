@@ -1,31 +1,8 @@
-<!DOCTYPE html>
-<html lang="ko">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intro</title>
-
-    <link rel="stylesheet" href="./global.css">
-    <link rel="stylesheet" href="./intro.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-</head>
-
-<body>
-    <!-- nav바 -->
-    <nav class="navbar">
-        <div class="navbar__logo">
-            <img src="./image/logo.png">
-        </div>
-
-        <ul class="navbar__menu">
-            <li><a href="#">제휴혜택</a></li>
-            <li><a href="#">학생복지</a></li>
-            <li><a href="#"><i class="fas fa-user-circle" style="color: #814e01;"></i></a></li>
-        </ul>
-    </nav>
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/intro.css' %}">
     <div class="root">
         <!--웹 사이트 설명-->
         <div class="intro">
@@ -46,7 +23,7 @@
         <!--로고 설명-->
         <div class="logo">
             <div class="logo__img">
-                <img src="./image/logo2.png">
+                <img src="{% static 'images/logo2.png' %}">
             </div>
             <div class="logo__describe">
                 <p>
@@ -56,7 +33,7 @@
             </div>
         </div>
 
-        <a href="./main.html" class="move-mainpage-button">
+        <a href="{% url 'main:mainpage' %}" class="move-mainpage-button">
             메인페이지로 이동
         </a>
 
@@ -65,7 +42,7 @@
                 심바톤 1조 team '동혜물과'
             </div>
             <div class="team__member">
-                <img src="./image/member.png">
+                <img src="{% static 'images/member.png' %}">
             </div>
         </div>
 
@@ -76,6 +53,5 @@
         </footer>
 
     </div>
-</body>
 
-</html>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+로그인한 유저만 좋아요 기능을 사용하실 수 있습니다.
+<button type=button onclick="location.href='{% url 'accounts:login' %}'">로그인</button>
+
+{% endblock %}

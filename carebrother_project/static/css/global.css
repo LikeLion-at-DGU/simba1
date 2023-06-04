@@ -1,22 +1,22 @@
 @font-face {
     font-family: HancomMalangMalang; 
-    src: url("./font/HancomMalangMalang-Regular.woff");
+    src: url("../fonts/HancomMalangMalang-Regular.woff");
 }
 
 @font-face {
     font-family: HancomMalangMalang; 
-    src: url("./font/HancomMalangMalang-Bold.woff");
+    src: url("../fonts/HancomMalangMalang-Bold.woff");
     font-weight: bold;
 }
 
 @font-face {
     font-family: NotoSansKR; 
-    src: url("./font/NotoSansKR-Regular.woff");
+    src: url("../fonts/NotoSansKR-Regular.woff");
 }
 
 @font-face {
     font-family: NotoSansKR; 
-    src: url("./font/NotoSansKR-Bold.woff");
+    src: url("../fonts/NotoSansKR-Bold.woff");
     font-weight: bold;
 }
 
@@ -24,41 +24,32 @@
 
 @font-face {
     font-family: NanumSquareNeo-light; 
-    src: url("./font/NanumSquareNeoTTF-aLt.woff");
+    src: url("../fonts/NanumSquareNeoTTF-aLt.woff");
 }
 
 @font-face {
     font-family: NanumSquareNeo-regular; 
-    src: url("./font/NanumSquareNeoTTF-bRg.woff");
+    src: url("../fonts/NanumSquareNeoTTF-bRg.woff");
 }
 
 @font-face {
     font-family: NanumSquareNeo-bold; 
-    src: url("./font/NanumSquareNeoTTF-cBd.woff");
+    src: url("../fonts/NanumSquareNeoTTF-cBd.woff");
 }
 
 @font-face {
     font-family: NanumSquareNeo-Extra-bold; 
-    src: url("./font/NanumSquareNeoTTF-dEb.woff");
+    src: url("../fonts/NanumSquareNeoTTF-dEb.woff");
 }
 
 @font-face {
     font-family: NanumSquareNeo-900; 
-    src: url("./font/NanumSquareNeoTTF-eHv.woff");
+    src: url("../fonts/NanumSquareNeoTTF-eHv.woff");
 }
 
 body {
     background: #fcfaf7;
     margin: 0;
-}
-
-.root {
-    display: flex;
-    width: 390px;
-    min-height: 100%;
-    position: relative;
-    padding-bottom: 150px;
-    flex-direction: column;
 }
 
 /* navbar */
@@ -105,7 +96,6 @@ body {
     font-size: 20px;
 }
 
-/* footer */
 footer {
     display: flex;
     justify-content: center;

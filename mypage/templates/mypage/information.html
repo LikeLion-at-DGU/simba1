@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>{{user.profile.nickname}}님 안녕하세요!!</h1>
+<p>전공: {{user.profile.department}}</p>
+<h3>좋아요한 글 목록</h3>
+<div>
+    {% for blog in blogs %}
+    <div>
+        <p><a href="{% url 'main:detail' blog.id %}">{{blog.title}}</a></p>
+        <p>{{blog.summary}}</p>
+    </div>
+    {% empty %}
+    <p>좋아요한 게시물이 없습니다.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

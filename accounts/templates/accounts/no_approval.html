@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+아직 회원가입이 승인되지 않았습니다. 회원가입 승인까지 1~2일 정도 소요됩니다.
+<button type=button onclick="location.href='{% url 'accounts:login' %}'">확인</button>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="signup_page">
+    <div class="signup_table">
+        <form action="{% url 'accounts:signup' %}" method="POST">
+            {% csrf_token %}
+            <p>id: <input type="text" name="username"></p>
+            <p>password: <input type="password" name="password"></p>
+            <p>confirm: <input type="password" name="confirm"></p>
+            <p>nickname: <input type="text" name="nickname"></p>
+            <p>department: <input type="text" name="department"></p>
+            <button type="submit">Signup</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
