@@ -8,6 +8,7 @@ class Blog(models.Model):
     writer = models.ForeignKey(CustomUser, on_delete = models.CASCADE )
     pub_date = models.DateTimeField()
     body = models.TextField()
+    image = models.ImageField(upload_to='blog/')
     like = models.ManyToManyField(CustomUser, related_name='likes', blank = True)
     like_count = models.PositiveIntegerField(default = 0)
     

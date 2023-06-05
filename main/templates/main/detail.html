@@ -8,6 +8,7 @@
 날짜 : {{blog.pub_date}}
 <hr>
 <p>{{blog.body}}</p>
+<a href="{% url 'main:delete' blog.id %}">삭제하기</a>
 <a href="{% url 'main:likes' blog.id %}">
     {% if user in blog.like.all %}
     취소

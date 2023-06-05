@@ -17,13 +17,15 @@ def welfare(request):
     return render(request, 'main/welfare.html', {'blogs':blogs})
 
 def benefits(request):
-    return render(request, 'main/benefits.html')
+    blogs = Blog.objects.all()
+    return render(request, 'main/benefits.html', {'blogs':blogs})
 
 def create(request):
     new_blog = Blog()
     new_blog.title = request.POST['title']
     new_blog.writer = request.user
     new_blog.pub_date = timezone.now()
+    new_blog.image = request.FILES.get('image')
     new_blog.body = request.POST['body']
 
     new_blog.save()
@@ -32,6 +34,12 @@ def create(request):
 
 def new(request):
     return render(request, 'main/new.html')
+
+def delete(request, id):
+    delete_blog = Blog.objects.get(id = id)
+    delete_blog.delete()
+    return redirect('main:benefits')
+
 
 def likes(request, blog_id):
     if request.user.is_authenticated:
