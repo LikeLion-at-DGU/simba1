@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <div class="root">
         <div class="login">
+
             <div class="login__title">로그인</div>
             <div class="login__logo">
                 <img src="{% static 'images/logo2.png' %}">
@@ -27,12 +28,8 @@
                         <div class="login__no__id">계정이 없으신가요?</div>
                         <div class="login__no__sign"><a href="{% url 'accounts:signup' %}">가입하기</a></div>
                     </div>
-
                 </form>
             </div>
-
-            
-
         </div>
     </div>
 {% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/benefits.css' %}">
+
+<h3>스크랩한 글 목록</h3>
+{% for benefit in benefits %}
+<div class="card">
+    <div class="card__item">
+        {% if benefit.image %}
+        <img class="card__item__img" src={{benefit.image.url}}>
+        {% endif %}
+        <div class="card__content">
+            <div class="name"><a href="{% url 'benefits:detail' benefit.id %}">{{benefit.title}}</a></div>
+            <div class="star">
+                <i class="far fa-star" style="color: #ffd66b;"></i>
+            </div>
+            <div class="star-count">5.0</div>
+        </div>
+        <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
+        {% if user in benefit.benefit_like.all %}
+        <div class="heart">
+            <a href="{% url 'mypage:mypage_benefits_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+        </div>
+        {% else %}
+        <div class="heart">
+            <a href="{% url 'mypage:mypage_benefits_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+        </div>
+        {% endif %}
+        <div class="time">08:00-21:00</div>
+        <div class="benefit">동국대학교 학생 인증 시 10% 할인</div>
+    </div>
+</div>
+{% empty %}
+    <p>스크랩한 게시물이 없습니다.</p>
+{% endfor %}
+
+{% endblock %}

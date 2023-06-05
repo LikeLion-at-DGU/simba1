@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import CustomUser
 
+# 찐 관리자 페이지에서 유저 승인
 class CustomUserAdmin(UserAdmin):
     list_display = ['username', 'is_active', 'is_approved']
     list_filter = ['is_active', 'is_approved']

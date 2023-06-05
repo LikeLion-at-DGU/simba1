@@ -2,6 +2,7 @@ from django.shortcuts import render
 from accounts.models import CustomUser
 
 # Create your views here.
+# 커스텀 어드민 페이지 유저 목록
 def user_admin(request):
     waiting_users = CustomUser.objects.filter(is_approved=False)
     approved_users = CustomUser.objects.filter(is_approved=True)

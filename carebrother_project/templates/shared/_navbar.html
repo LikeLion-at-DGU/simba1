@@ -1,43 +1,21 @@
 {% load static %}
 <nav class="navbar">
+
     <div class="navbar__logo">
         <a href="{% url 'main:mainpage' %}"><img src="{% static 'images/logo.png' %}"></a>
     </div>
 
     <ul class="navbar__menu">
-        <li><a href="{% url 'main:benefits' %}">제휴혜택</a></li>
-        <li><a href="{% url 'main:welfare' %}">학생복지</a></li>
+        <li><a href="{% url 'benefits:mainpage' %}">제휴혜택</a></li>
+        <li><a href="{% url 'welfare:mainpage' %}">학생복지</a></li>
         {% if user.is_authenticated %}
-            {% if user.is_superuser %}
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
-                {{user.username}}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
-                <li><a class="dropdown-item" href="{% url 'adminpage:user_admin' %}">관리자</a></li>
-                <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">로그아웃</a></li>
-                <li><a class="dropdown-item" href="{% url 'mypage:information' %}">Mypage</a></li>
-            </ul>
-            {% else %}
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
-            {{user.username}}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
-                <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">로그아웃</a></li>
-                <li><a class="dropdown-item" href="{% url 'mypage:information' %}">Mypage</a></li>
-            </ul>
-            {% endif %}
-            
+            <li><a href="{% url 'mypage:information' %}"><i class="fas fa-user-circle" style="color: #814e01;"></i></a></li>
         {% else %}
-
-        <!--로그아웃시 보이는 화면-->
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"  style="background-color: rgba(255, 218, 175, 0.7);">
-        LOGIN
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{% url 'accounts:login' %}">login</a></li>  
-            <li><a class="dropdown-item" href="{% url 'accounts:signup' %}">signup</a></li>
-        </ul>
-
+            <li>
+                <span><a href="{% url 'accounts:login' %}">로그인/</a></span>
+                <span><a href="{% url 'accounts:signup' %}">회원가입</a></span>
+            </li>
         {% endif %}
     </ul>
+
 </nav>

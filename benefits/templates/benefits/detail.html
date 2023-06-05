@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>{{benefit.title}}</h1>
+작성자 : {{benefit.writer}}
+날짜 : {{benefit.pub_date}}
+<hr>
+<p>{{benefit.body}}</p>
+<a href="{% url 'benefits:delete' benefit.id %}">삭제하기</a>
+<a href="{% url 'benefits:detail_likes' benefit.id %}">
+    {% if user in benefit.benefit_like.all %}
+    취소
+    {% else %}
+    좋아요
+    {% endif %}
+</a>
+{{benefit.benefit_like_count}}개
+
+{% endblock %}
+

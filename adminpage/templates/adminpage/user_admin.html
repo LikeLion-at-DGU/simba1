@@ -3,7 +3,9 @@
 
 {% block content %}
   <p>Custom Admin Page</p>
+
   <table>
+
     <thead>
       <tr>
         <th>Username</th>
@@ -11,7 +13,9 @@
         <th>Action</th>
       </tr>
     </thead>
+
     <tbody>
+
       <td>승인x유저</td>
       <td>
       {% for user in waiting_users %}
@@ -38,7 +42,8 @@
           <td colspan="4">대기 유저가 없습니다.</td>
         </tr>
       {% endfor %}
-          </td>
+      </td>
+
     <td>승인o유저</td>
     <td>
       {% for user in approved_users %}
@@ -65,8 +70,8 @@
         </tr>
       {% endfor %}
     </td>
+
     <td>스태프유저</td>
-      <td>
       {% for user in staff_users %}
         <tr>
           <td>{{ user.username }}</td>
@@ -82,6 +87,8 @@
           <td colspan="4">스태프 유저가 없습니다.</td>
         </tr>
       {% endfor %}
+
     </tbody>
+    
   </table>
 {% endblock %}

@@ -6,11 +6,11 @@
     <div class="signup_table">
         <form action="{% url 'accounts:signup' %}" method="POST">
             {% csrf_token %}
-            <p>id: <input type="text" name="username"></p>
-            <p>password: <input type="password" name="password"></p>
-            <p>confirm: <input type="password" name="confirm"></p>
-            <p>nickname: <input type="text" name="nickname"></p>
-            <p>department: <input type="text" name="department"></p>
+            <p>학번: <input type="text" name="username"></p>
+            <p>비밀번호: <input type="password" name="password"></p>
+            <p>비밀번호 확인: <input type="password" name="confirm"></p>
+            <p>이름: <input type="text" name="nickname"></p>
+            <p>학과: <input type="text" name="department"></p>
             <button type="submit">Signup</button>
         </form>
     </div>

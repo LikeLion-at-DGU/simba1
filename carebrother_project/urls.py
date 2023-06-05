@@ -25,4 +25,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('mypage/', include('mypage.urls')),
     path('adminpage/', include('adminpage.urls')),
+    path('benefits/', include('benefits.urls')),
+    path('welfare/', include('welfare.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

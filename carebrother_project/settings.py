@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'accounts',
     'mypage',
     'adminpage',
+    'benefits',
+    'welfare',
 ]
 
 MIDDLEWARE = [
