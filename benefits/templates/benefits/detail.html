@@ -4,11 +4,17 @@
 {% block content %}
 
 <h1>{{benefit.title}}</h1>
-작성자 : {{benefit.writer}}
-날짜 : {{benefit.pub_date}}
+기간: {{benefit.start_date.date}}~{{benefit.due_date.date}}
 <hr>
 <p>{{benefit.body}}</p>
+{% if user == benefit.writer %}
 <a href="{% url 'benefits:delete' benefit.id %}">삭제하기</a>
+<a href="{% url 'benefits:edit' benefit.id %}">수정하기</a>
+{% elif user.is_superuser %}
+<a href="{% url 'benefits:delete' benefit.id %}">삭제하기</a>
+<a href="{% url 'benefits:edit' benefit.id %}">수정하기</a>
+{% endif %}
+
 <a href="{% url 'benefits:detail_likes' benefit.id %}">
     {% if user in benefit.benefit_like.all %}
     취소
