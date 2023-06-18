@@ -10,7 +10,7 @@ class Benefit(models.Model):
     due_date = models.DateTimeField(null = True, blank = True)
     body = models.TextField()
     image = models.ImageField(upload_to='benefits/', null = True, blank = True)
-    benefit_like = models.ManyToManyField(CustomUser, related_name='benefit_likes', blank = True)
+    benefit_like = models.ManyToManyField(CustomUser, related_name = 'benefit_likes', blank = True)
     benefit_like_count = models.PositiveIntegerField(default = 0)
     
     def __str__(self):
@@ -19,3 +19,4 @@ class Benefit(models.Model):
     def summary(self):
         return self.body[:20]
     
+

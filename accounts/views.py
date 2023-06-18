@@ -12,17 +12,17 @@ from welfare.models import Welfare
 # 유저 로그인
 def login(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = auth.authenticate(request, username=username, password=password)
+        username = request.POST['username'] #로그인 창에서 쓴 id값 담아담아
+        password = request.POST['password'] #로그인 창에서 쓴 pw값 담아담아
+        user = auth.authenticate(request, username=username, password=password) #User 모델 안에 있는 username 하고 password 값하고 비교해서 같지 않으면 None 값 반환
 
-        if user is not None:
-            if user.is_approved == True:
-                if user.is_approved is not None:
+        if user is not None: # None 값이 반환이 안된다면
+            if user.is_approved == True: #승인된 유저라면
+                if user.is_approved is not None: # 이건 내가 왜 써놓은거지... 나중에 한 번 봐야할듯
                     auth.login(request, user)
                     return redirect('main:mainpage')
             else:
-                return render(request, 'accounts/no_approval.html')
+                return render(request, 'accounts/no_approval.html') #승인 안되있으면 오류 메세지 띄움
         else:
             return render(request, 'accounts/login.html')
     
@@ -39,8 +39,8 @@ def signup(request):
     if request.method == 'POST':
         if request.POST['password'] == request.POST['confirm']:
 
-            user = CustomUser.objects.create_user(username=request.POST['username'], password=request.POST['password'],)
-            user.save()
+            user = CustomUser.objects.create_user(username=request.POST['username'], password=request.POST['password'],) #CustomUser 모델에 user 생성
+            user.save() #저장
             nickname = request.POST['nickname']
             department = request.POST['department']
             
@@ -78,10 +78,10 @@ def approve_user(request, user_id):
 # 유저 삭제
 def delete_user(request, user_id):
     user = CustomUser.objects.get(id=user_id)
-    blogs = Benefit.objects.filter(like=user)
+    blogs = Benefit.objects.filter(benefit_like=user)
     for blog in blogs:
-        blog.like.remove(user)
-        blog.like_count -=1
+        blog.benefit_like.remove(user)
+        blog.benefit_like_count -=1
     user.image.delete()
     user.delete()
     return redirect('adminpage:user_admin')

@@ -94,34 +94,30 @@
             </div>
             <div class="card">
                 {% for benefit in post_second_line %} <!--기간내에 있는 게시물들 중 두번째 줄 루프문 돌림-->
-                    {% if benefit.title == '' %} <!--빈 객체 판별, 빈 객체는 그냥 아무것도 안뜨도록 해놨음-->
-                    <div class="card__item__empty"></div>
+                <div class="card__item">
+                    {% if benefit.image %}
+                    <a href="{% url 'benefits:detail' benefit.id %}"><img class="card__item__img" src={{benefit.image.url}}></a>
+                    {% endif %}
+                    <div class="card__content">
+                        <div class="name"><a href="{% url 'benefits:detail' benefit.id %}">{{benefit.title}}</a></div>
+                        <div class="star">
+                            <i class="far fa-star" style="color: #ffd66b;"></i>
+                        </div>
+                        <div class="star-count">5.0</div>
+                    </div>
+                    <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
+                    {% if user in benefit.benefit_like.all %}
+                    <div class="heart">
+                        <a href="{% url 'benefits:mainpage_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                    </div>
                     {% else %}
-                    <div class="card__item">
-                        {% if benefit.image %}
-                        <a href="{% url 'benefits:detail' benefit.id %}"><img class="card__item__img" src={{benefit.image.url}}></a>
-                        {% endif %}
-                        <div class="card__content">
-                            <div class="name"><a href="{% url 'benefits:detail' benefit.id %}">{{benefit.title}}</a></div>
-                            <div class="star">
-                                <i class="far fa-star" style="color: #ffd66b;"></i>
-                            </div>
-                            <div class="star-count">5.0</div>
-                        </div>
-                        <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
-                        {% if user in benefit.benefit_like.all %}
-                        <div class="heart">
-                            <a href="{% url 'benefits:mainpage_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
-                        </div>
-                        {% else %}
-                        <div class="heart">
-                            <a href="{% url 'benefits:mainpage_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
-                        </div>
-                        {% endif %}
-                        <div class="time">08:00-21:00</div>
-                        <div class="benefit">동국대학교 학생 인증 시 10% 할인</div>
+                    <div class="heart">
+                        <a href="{% url 'benefits:mainpage_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
                     </div>
                     {% endif %}
+                    <div class="time">08:00-21:00</div>
+                    <div class="benefit">동국대학교 학생 인증 시 10% 할인</div>
+                </div>
                 {% endfor %}
                 
                 {% for benefit in end_second_line %} <!--기간이 지난 게시물들 중 두번째 줄 루프문 돌림-->

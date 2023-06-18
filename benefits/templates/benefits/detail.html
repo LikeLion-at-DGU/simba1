@@ -6,6 +6,7 @@
 <h1>{{benefit.title}}</h1>
 기간: {{benefit.start_date.date}}~{{benefit.due_date.date}}
 <hr>
+<p>{{rate_average}}</p>
 <p>{{benefit.body}}</p>
 {% if user == benefit.writer %}
 <a href="{% url 'benefits:delete' benefit.id %}">삭제하기</a>
@@ -23,6 +24,7 @@
     {% endif %}
 </a>
 {{benefit.benefit_like_count}}개
+
 
 {% endblock %}
 

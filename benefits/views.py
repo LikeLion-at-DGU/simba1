@@ -5,8 +5,8 @@ from django.utils import timezone
 
 
 def mainpage(request):
-    empty_post = Benefit.objects.filter(title='')
-    empty_post.delete()
+    empty_post = Benefit.objects.filter(title='') # 빈 객체 있는 건 삭제하기 위해서
+    empty_post.delete() # 빈 객체 삭제
     now = timezone.now() #현재 시간 받아옴
     posts = Benefit.objects.filter(start_date__lt = now, due_date__gt = now).order_by('due_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
     end_posts = Benefit.objects.filter(due_date__lt = now) #기간이 지난 게시물들을 받아옴
@@ -21,24 +21,31 @@ def mainpage(request):
         elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
             post_second_line.append(post) #담아담아
 
-    if len(post_second_line) < len(post_first_line): #두번 째 쭐에 있는 게시물들이 첫번 째 줄에 있는 게시물보다 적으면 빈 객체를 넣어서 수를 맞춰줌. 이거 안하면 제휴 끝난 게시물 위치가 이상해짐
-        empty_object = Benefit() #빈 객체를 생성함
-        empty_object.title = ''
-        empty_object.writer = CustomUser.objects.get(username='sam') #ForeignKey로 writer과 User을 연결했다보니 이건 무조건 필요하다하여 그냥 관리자 계정 넣어놓은거임
-        empty_object.start_date = None
-        empty_object.due_date = None
-        empty_object.image = None
-        empty_object.body = ''
-        
-        empty_object.save()
+    if len(post_second_line) < len(post_first_line): #두번 째 쭐에 있는 게시물들이 첫번 째 줄에 있는 게시물보다 적으면 두번 째 줄부터 채움. 이거 안하면 제휴 끝난 게시물 위치가 이상해짐
+        for i, end_post in enumerate(end_posts):
+            if (i+1) % 2 == 1: #짝수 번째에 있는 게시물들
+                end_second_line.append(end_post)
+            elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
+                end_first_line.append(end_post) #담아담아
+    else:
+        for i, end_post in enumerate(end_posts):
+            if (i+1) % 2 == 1: #짝수 번째에 있는 게시물들
+                end_first_line.append(end_post)
+            elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
+                end_second_line.append(end_post) #담아담아
 
-        post_second_line.append(empty_object) #빈 객체도 이제 두번 째 줄 게시물에 추가시킴
+        # empty_object = Benefit() #빈 객체를 생성함 (그냥 생성만 하면 id값이 없어서 메인페이지에서 오류가 떠서 save까지 해줘야함)
+        # empty_object.title = ''
+        # empty_object.writer = CustomUser.objects.get(username='sam') #ForeignKey로 writer과 User을 연결했다보니 이건 무조건 필요하다하여 그냥 관리자 계정 넣어놓은거임
+        # empty_object.start_date = None
+        # empty_object.due_date = None
+        # empty_object.image = None
+        # empty_object.body = ''
+        
+        # empty_object.save()
+
+        # post_second_line.append(empty_object) #빈 객체도 이제 두번 째 줄 게시물에 추가시킴
     
-    for i, end_post in enumerate(end_posts):
-        if (i+1) % 2 == 1: #짝수 번째에 있는 게시물들
-            end_first_line.append(end_post)
-        elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
-            end_second_line.append(end_post) #담아담아
 
     return render(request, 'benefits/mainpage.html', {
         'post_first_line':post_first_line,
@@ -94,24 +101,24 @@ def delete(request, id):
     delete_benefits.delete()
     return redirect('benefits:mainpage')
 
-def mainpage_likes(request, benefit_id):
-    if request.user.is_authenticated:
-        benefit = get_object_or_404(Benefit, id=benefit_id)
-        if request.user in benefit.benefit_like.all():
-            benefit.benefit_like.remove(request.user)
-            benefit.benefit_like_count -=1
-            benefit.save()
+def mainpage_likes(request, benefit_id): #메인 페이지에서 좋아요 누를 때
+    if request.user.is_authenticated: #유저가 로그인했으면
+        benefit = get_object_or_404(Benefit, id=benefit_id) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
+        if request.user in benefit.benefit_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
+            benefit.benefit_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
+            benefit.benefit_like_count -=1 # 좋아요 개수 1개 줄음
+            benefit.save() #저장
         else:
-            benefit.benefit_like.add(request.user)
-            benefit.benefit_like_count +=1
+            benefit.benefit_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
+            benefit.benefit_like_count +=1 #좋아요 1개 추가
             benefit.save()
         return redirect('benefits:mainpage')
     else:
         return render(request, 'accounts/no_auth.html')
 
 
-def detail_likes(request, benefit_id):
-    if request.user.is_authenticated:
+def detail_likes(request, benefit_id): # 게시물 안에서 좋아요 누를 때
+    if request.user.is_authenticated: #위와 동일
         benefit = get_object_or_404(Benefit, id=benefit_id)
         if request.user in benefit.benefit_like.all():
             benefit.benefit_like.remove(request.user)
