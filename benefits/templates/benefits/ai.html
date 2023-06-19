@@ -15,12 +15,12 @@
 
         <!--oo대학 제휴혜택-->
         <div class="title">
-            경영대학 제휴혜택
+            AI융합대학 제휴혜택
         </div>
 
         <!--oo대학 제휴혜택 페이지 소개-->
         <div class="introduce">
-            경영대학 제휴혜택 페이지입니다.
+            AI융합대학 제휴혜택 페이지입니다.
         </div>
 
         <div class="line"></div>
@@ -45,20 +45,20 @@
                             <div class="star">
                                 <i class="far fa-star" style="color: #ffd66b;"></i>
                             </div>
-                            <div class="star-count">5.0</div>
+                            <div class="star-count">{{benefit.benefit_rate_average}}</div>
                         </div>
                         <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
                         {% if user in benefit.benefit_like.all %}
                         <div class="heart">
-                            <a href="{% url 'benefits:mainpage_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                            <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
                         </div>
                         {% else %}
                         <div class="heart">
-                            <a href="{% url 'benefits:mainpage_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                            <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
                         </div>
                         {% endif %}
-                        <div class="time">08:00-21:00</div>
-                        <div class="benefit">동국대학교 학생 인증 시 10% 할인</div>
+                        <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
+                        <div class="benefit">{{benefit.body}}</div>
                     </div>
                 {% endfor %}
                 
@@ -75,20 +75,20 @@
                             <div class="star">
                                 <i class="far fa-star" style="color: #ffd66b;"></i>
                             </div>
-                            <div class="star-count">5.0</div>
+                            <div class="star-count">{{benefit.benefit_rate_average}}</div>
                         </div>
                         <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
                         {% if user in benefit.benefit_like.all %}
                         <div class="heart">
-                            <a href="{% url 'benefits:mainpage_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                            <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
                         </div>
                         {% else %}
                         <div class="heart">
-                            <a href="{% url 'benefits:mainpage_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                            <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
                         </div>
                         {% endif %}
-                        <div class="time">08:00-21:00</div>
-                        <div class="benefit">동국대학교 학생 인증 시 10% 할인</div>
+                        <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
+                        <div class="benefit">{{benefit.body}}</div>
                     </div>
                 {% endfor %}
             </div>
@@ -103,20 +103,20 @@
                         <div class="star">
                             <i class="far fa-star" style="color: #ffd66b;"></i>
                         </div>
-                        <div class="star-count">5.0</div>
+                        <div class="star-count">{{benefit.benefit_rate_average}}</div>
                     </div>
                     <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
                     {% if user in benefit.benefit_like.all %}
                     <div class="heart">
-                        <a href="{% url 'benefits:mainpage_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                        <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
                     </div>
                     {% else %}
                     <div class="heart">
-                        <a href="{% url 'benefits:mainpage_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                        <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
                     </div>
                     {% endif %}
-                    <div class="time">08:00-21:00</div>
-                    <div class="benefit">동국대학교 학생 인증 시 10% 할인</div>
+                    <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
+                    <div class="benefit">{{benefit.body}}</div>
                 </div>
                 {% endfor %}
                 
@@ -133,20 +133,20 @@
                             <div class="star">
                                 <i class="far fa-star" style="color: #ffd66b;"></i>
                             </div>
-                            <div class="star-count">5.0</div>
+                            <div class="star-count">{{benefit.benefit_rate_average}}</div>
                         </div>
                         <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
                         {% if user in benefit.benefit_like.all %}
                         <div class="heart">
-                            <a href="{% url 'benefits:mainpage_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                            <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
                         </div>
                         {% else %}
                         <div class="heart">
-                            <a href="{% url 'benefits:mainpage_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                            <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
                         </div>
                         {% endif %}
-                        <div class="time">08:00-21:00</div>
-                        <div class="benefit">동국대학교 학생 인증 시 10% 할인</div>
+                        <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
+                        <div class="benefit">{{benefit.body}}</div>
                     </div>
                 {% endfor %}
             </div>

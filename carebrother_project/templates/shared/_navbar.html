@@ -6,7 +6,7 @@
     </div>
 
     <ul class="navbar__menu">
-        <li><a href="{% url 'benefits:mainpage' %}">제휴혜택</a></li>
+        <li><a href="{% url 'benefits:choose' %}">제휴혜택</a></li>
         <li><a href="{% url 'welfare:mainpage' %}">학생복지</a></li>
         {% if user.is_authenticated %}
             <li><a href="{% url 'mypage:information' %}"><i class="fas fa-user-circle" style="color: #814e01;"></i></a></li>

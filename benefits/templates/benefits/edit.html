@@ -7,7 +7,7 @@
     {%csrf_token%}
     <p>제목 : <input type="text" name="title" value="{{benefit.title}}"></p>
     <p>시작 날짜: <input type="datetime-local" name="start_date" value="{{benefit.start_date|date:'Y-m-d\TH:i'}}"></p>
-    <p>끝나는 날짜: <input type="datetime-local" name="due_date" value="{{benefit.due_date|date:'Y-m-d\TH:i'}}"></p>
+    <p>끝나는 날짜: <input type="datetime-local" name="due_date" value="{{benefit.end_date|date:'Y-m-d\TH:i'}}"></p>
     <p>이미지: <input type="file" name="image"></p>
     <p>내용 : <textarea type="text" name="body" id="" cols="30" rows="10">{{benefit.body}}</textarea></p>
     <button type="submit">제출</button>

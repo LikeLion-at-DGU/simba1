@@ -1,6 +1,3 @@
-
-
-# Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 from .models import CustomUser
@@ -48,7 +45,7 @@ def signup(request):
             profile.save()
 
 
-            return redirect('accounts:image_verification', user.id)
+            return redirect('accounts:image_verification', user.id) #유저 이미지 인증 페이지로 넘어감.
     return render(request, 'accounts/signup.html')
 
 # 유저 회원가입 완료
@@ -64,7 +61,7 @@ def image_verification(request, id):
             user.save()
             return redirect('accounts:signup_completed')
         else:
-            return redirect('accounts:image_verification', user.id)
+            return redirect('accounts:image_verification', user.id) #이미지 없으면 다시 이미지 인증 페이지로 넘어감.
     return render(request, 'accounts/verification.html', {'user':user})
 
 # 어드민 페이지
@@ -79,11 +76,11 @@ def approve_user(request, user_id):
 def delete_user(request, user_id):
     user = CustomUser.objects.get(id=user_id)
     blogs = Benefit.objects.filter(benefit_like=user)
-    for blog in blogs:
+    for blog in blogs: #이게 유저 삭제 시 좋아요 개수도 줄어들게 하는 건데 왜 안되는 지 모르겠뜸.
         blog.benefit_like.remove(user)
         blog.benefit_like_count -=1
-    user.image.delete()
-    user.delete()
+    user.image.delete() #유저 삭제시 인증할 때 받은 사진도 같이 삭제
+    user.delete() #유저 삭제
     return redirect('adminpage:user_admin')
 
 # 유저 승인 취소

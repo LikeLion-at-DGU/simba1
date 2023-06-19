@@ -21,11 +21,11 @@
         <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
         {% if user in benefit.benefit_like.all %}
         <div class="heart">
-            <a href="{% url 'mypage:mypage_benefits_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+            <a href="{% url 'mypage:scrap_benefits_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
         </div>
         {% else %}
         <div class="heart">
-            <a href="{% url 'mypage:mypage_benefits_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+            <a href="{% url 'mypage:scrap_benefits_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
         </div>
         {% endif %}
         <div class="time">08:00-21:00</div>

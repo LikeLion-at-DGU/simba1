@@ -2,8 +2,26 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/sign-up-completed.css' %}">
+<body>
+    <div class="root">
+        <div class="sign-up">
+            <div class="ckeck">
+                <i class="fas fa-check-circle" style="color: #ff8f0b;"></i>
+            </div>
+            <div class="sign-up-completed">
+                <span>
+                    아직 <b>회원가입</b>이 <br>승인되지 않았습니다.
+                </span>
+            </div>
+            <div class="text">
+                관리자의 승인 까지(1~2일 소요)
+            </div>
+            
+            <a href="{% url 'accounts:login' %}" class="sign-up-completed-button">
+                확인
+            </a>
 
-아직 회원가입이 승인되지 않았습니다. 회원가입 승인까지 1~2일 정도 소요됩니다.
-<button type=button onclick="location.href='{% url 'accounts:login' %}'">확인</button>
-
+        </div>
+    </div>
 {% endblock %}
