@@ -12,6 +12,8 @@
         <p>{{comment.comment_like_count}}</p>
         <p>{{comment.content}}</p>
         <p>{{comment.benefit.category_univ}}>{{comment.benefit.category_type}}</p>
+        <a href="{% url 'benefits:delete_comment' comment.id %}" style="font-size : 10px">삭제하기</a>
+        <a href="{% url 'benefits:edit_comment' comment.id %}" style="font-size : 10px">수정하기</a>
         </div>
     {% endfor %}
 </div>

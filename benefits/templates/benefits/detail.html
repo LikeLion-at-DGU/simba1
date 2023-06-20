@@ -69,7 +69,7 @@
                 </div>
             </div>
             <div class="content">{{comment.content}}</div>
-            <div class="comment-date">{{comment.pub_date|date:'Y/m/d H:i'}} {% if user == comment.writer %}<a href="{% url 'benefits:delete_comment' comment.id %}" style="font-size : 10px">삭제하기</a></div>{% endif %}
+            <div class="comment-date">{{comment.pub_date|date:'Y/m/d H:i'}} {% if user == comment.writer %}<a href="{% url 'benefits:delete_comment' comment.id %}" style="font-size : 10px">삭제하기</a> <a href="{% url 'benefits:edit_comment' comment.id %}" style="font-size : 10px">수정하기</a></div>{% endif %}
             {% endfor %}
         </div>
     </div>

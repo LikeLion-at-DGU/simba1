@@ -38,4 +38,5 @@ urlpatterns = [
     path('comment_likes/<int:comment_id>', comment_likes, name="comment_likes"),
     path('review/<int:benefit_id>', review, name="review"),
     path('delete_comment/<int:comment_id>', delete_comment, name="delete_comment"),
+    path('edit_comment/<int:comment_id>', edit_comment, name="edit_comment"),
 ]

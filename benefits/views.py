@@ -441,22 +441,25 @@ def law(request):
         })
 
 def create(request):
-    new_benefit = Benefit()
-    new_benefit.title = request.POST['title']
-    new_benefit.writer = request.user
-    new_benefit.category_univ = request.POST['category_univ']
-    new_benefit.category_type = request.POST['category_type']
-    new_benefit.start_time = request.POST['start_time']
-    new_benefit.end_time = request.POST['end_time']
-    new_benefit.address = request.POST['address']
-    new_benefit.start_date = request.POST['start_date']
-    new_benefit.end_date = request.POST['end_date']
-    new_benefit.image = request.FILES.get('image')
-    new_benefit.body = request.POST['body']
+    if request.user.is_authenticated:
+        new_benefit = Benefit()
+        new_benefit.title = request.POST['title']
+        new_benefit.writer = request.user
+        new_benefit.category_univ = request.POST['category_univ']
+        new_benefit.category_type = request.POST['category_type']
+        new_benefit.start_time = request.POST['start_time']
+        new_benefit.end_time = request.POST['end_time']
+        new_benefit.address = request.POST['address']
+        new_benefit.start_date = request.POST['start_date']
+        new_benefit.end_date = request.POST['end_date']
+        new_benefit.image = request.FILES.get('image')
+        new_benefit.body = request.POST['body']
 
-    new_benefit.save()
-    
-    return redirect('benefits:detail', new_benefit.id)
+        new_benefit.save()
+        
+        return redirect('benefits:detail', new_benefit.id)
+    else:
+        return redirect('accounts:login')
 
 def new(request):
     return render(request, 'benefits/new.html')
@@ -472,18 +475,21 @@ def detail(request, id):
         })
 
 def review(request, benefit_id):#댓글 작성하는 칸
-    benefit = Benefit.objects.get(id = benefit_id) #게시물 id에 맞는 게시물을 담음
-    if request.method == 'POST':
-        new_comment = BComment() #댓글 빈 객체 생성
-        new_comment.benefit = benefit #게시물 비교하기 위한 공간에 이 게시물 담음
-        new_comment.writer = request.user
-        new_comment.content = request.POST['content'] #댓글 내용 담아담아
-        new_comment.benefit_rate = request.POST['benefit_rate'] #평점 담아담아
-        new_comment.pub_date = timezone.now() #댓글 작성한 시간 담아담아
+    if request.user.is_authenticated:
+        benefit = Benefit.objects.get(id = benefit_id) #게시물 id에 맞는 게시물을 담음
+        if request.method == 'POST':
+            new_comment = BComment() #댓글 빈 객체 생성
+            new_comment.benefit = benefit #게시물 비교하기 위한 공간에 이 게시물 담음
+            new_comment.writer = request.user
+            new_comment.content = request.POST['content'] #댓글 내용 담아담아
+            new_comment.benefit_rate = request.POST['benefit_rate'] #평점 담아담아
+            new_comment.pub_date = timezone.now() #댓글 작성한 시간 담아담아
 
-        new_comment.save() #댓글 저장, id 생성
-    
-        return redirect('benefits:detail', benefit.id)
+            new_comment.save() #댓글 저장, id 생성
+        
+            return redirect('benefits:detail', benefit.id)
+    else:
+        return redirect('accounts:login')
     
     if request.method == 'GET':
         benefit = Benefit.objects.get(id = benefit_id)
@@ -515,7 +521,44 @@ def delete_comment(request, comment_id):
     delete_comment = BComment.objects.get(id = comment_id)
     delete_comment.delete()
     return redirect('benefits:detail', delete_comment.benefit.id)
+    
+def edit_comment(request, comment_id):
+    edit_comment = BComment.objects.get(id = comment_id)
+    benefit = Benefit.objects.get(id = edit_comment.benefit.id)
+    comments = BComment.objects.filter(benefit = benefit)
+    comments_count = len(comments)
+    return render(request, 'benefits/edit_comment.html',{
+        'edit_comment':edit_comment,
+        'benefit':benefit,
+        'comments' : comments,
+        'comments_count' : comments_count,
+        })
 
+def edit_comment(request, comment_id):
+    if request.user.is_authenticated:
+        edit_comment = get_object_or_404(BComment, pk=comment_id)
+        if request.method == 'POST':
+            edit_comment.benefit = edit_comment.benefit #게시물 비교하기 위한 공간에 이 게시물 담음
+            edit_comment.writer = request.user
+            edit_comment.content = request.POST['content'] #댓글 내용 담아담아
+            edit_comment.benefit_rate = request.POST['benefit_rate'] #평점 담아담아
+            edit_comment.pub_date = timezone.now() #댓글 작성한 시간 담아담아
+
+            edit_comment.save() #댓글 저장, id 생성
+        
+            return redirect('benefits:detail', edit_comment.benefit.id)
+        if request.method == 'GET':
+            benefit = Benefit.objects.get(id = edit_comment.benefit.id)
+            comments = BComment.objects.filter(benefit = benefit)
+            comments_count = len(comments)
+            return render(request, 'benefits/edit_comment.html',{
+                'comment':edit_comment,
+                'benefit':benefit,
+                'comments' : comments,
+                'comments_count' : comments_count,
+                })
+    else:
+        return redirect('accounts:login')
 
 def edit(request, id):
     edit_benefit = Benefit.objects.get(id = id)
@@ -524,17 +567,21 @@ def edit(request, id):
     })
 
 def update(request, id):
-    update_benefit = Benefit.objects.get(id = id)
-    update_benefit.title = request.POST['title']
-    update_benefit.writer = request.user
-    update_benefit.start_date = request.POST['start_date']
-    update_benefit.due_date = request.POST['due_date']
-    update_benefit.image = request.FILES.get('image', update_benefit.image)
-    update_benefit.body = request.POST['body']
+    if request.user.is_authenticated:
+        update_benefit = Benefit.objects.get(id = id)
+        if request.user == update_benefit.writer:
+            update_benefit.title = request.POST['title']
+            update_benefit.writer = request.user
+            update_benefit.start_date = request.POST['start_date']
+            update_benefit.due_date = request.POST['due_date']
+            update_benefit.image = request.FILES.get('image', update_benefit.image)
+            update_benefit.body = request.POST['body']
 
-    update_benefit.save()
+            update_benefit.save()
 
-    return redirect('benefits:detail', update_benefit.id)
+            return redirect('benefits:detail', update_benefit.id)
+    else:
+        return redirect('accounts:login')
 
 def delete(request, id):
     delete_benefits = Benefit.objects.get(id = id)
