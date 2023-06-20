@@ -21,9 +21,7 @@
       {% for user in waiting_users %} <!-- 승인 안된 유저 루프문 돌림 -->
         <tr>
           <td>{{ user.username }}</td>
-          {% if user.image %}
-          <td><img src="{{user.image.url}}" alt="인증사진" style="width:200px; height:200px"></td>
-          {% endif %}
+          <td><a href="{% url 'adminpage:user_image' user.id %}">인증 사진</a></td>
           <td>
             <form method="POST" action="{% url 'accounts:approve_user' user.id %}">
               {% csrf_token %}

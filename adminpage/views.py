@@ -12,3 +12,9 @@ def user_admin(request):
         'approved_users':approved_users,
         'staff_users':staff_users,
         })
+
+def user_image(request, id):
+    user = CustomUser.objects.get(id = id)
+    return render(request, 'adminpage/user_image.html', {
+        'user':user,
+    })

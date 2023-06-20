@@ -11,8 +11,8 @@ def choose(request):
 # 경영대학
 def business(request):
     now = timezone.now() #현재 시간 받아옴
-    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = 'business').order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
-    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = 'business') #기간이 지난 게시물들을 받아옴
+    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "경영대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "경영대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
     post_second_line = [] #기간 내에 있는 게시물들 중 둘째 줄에 들어갈 게시물들이 들어갈 공간 마련
     end_first_line = [] #기간 지난 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -47,8 +47,8 @@ def business(request):
 #예술 대학
 def art(request):
     now = timezone.now() #현재 시간 받아옴
-    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = 'art').order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
-    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = 'art') #기간이 지난 게시물들을 받아옴
+    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "예술대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "예술대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
     post_second_line = [] #기간 내에 있는 게시물들 중 둘째 줄에 들어갈 게시물들이 들어갈 공간 마련
     end_first_line = [] #기간 지난 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -83,8 +83,8 @@ def art(request):
 #사회과학대학
 def social(request):
     now = timezone.now() #현재 시간 받아옴
-    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = 'social').order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
-    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = 'social') #기간이 지난 게시물들을 받아옴
+    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "사회과학대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "사회과학대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
     post_second_line = [] #기간 내에 있는 게시물들 중 둘째 줄에 들어갈 게시물들이 들어갈 공간 마련
     end_first_line = [] #기간 지난 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -119,8 +119,8 @@ def social(request):
 #AI융합대학
 def ai(request):
     now = timezone.now() #현재 시간 받아옴
-    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = 'ai').order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
-    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = 'ai') #기간이 지난 게시물들을 받아옴
+    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "AI융합대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "AI융합대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
     post_second_line = [] #기간 내에 있는 게시물들 중 둘째 줄에 들어갈 게시물들이 들어갈 공간 마련
     end_first_line = [] #기간 지난 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -155,8 +155,8 @@ def ai(request):
 #공과대학
 def engineering(request):
     now = timezone.now() #현재 시간 받아옴
-    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = 'engineering').order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
-    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = 'engineering') #기간이 지난 게시물들을 받아옴
+    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "공과대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "공과대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
     post_second_line = [] #기간 내에 있는 게시물들 중 둘째 줄에 들어갈 게시물들이 들어갈 공간 마련
     end_first_line = [] #기간 지난 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -191,8 +191,8 @@ def engineering(request):
 #불교대학
 def buddhism(request):
     now = timezone.now() #현재 시간 받아옴
-    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = 'buddhism').order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
-    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = 'buddhism') #기간이 지난 게시물들을 받아옴
+    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "불교대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "불교대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
     post_second_line = [] #기간 내에 있는 게시물들 중 둘째 줄에 들어갈 게시물들이 들어갈 공간 마련
     end_first_line = [] #기간 지난 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -227,8 +227,8 @@ def buddhism(request):
 #미래융합대학
 def future(request):
     now = timezone.now() #현재 시간 받아옴
-    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = 'future').order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
-    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = 'future') #기간이 지난 게시물들을 받아옴
+    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "미래융합대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "미래융합대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
     post_second_line = [] #기간 내에 있는 게시물들 중 둘째 줄에 들어갈 게시물들이 들어갈 공간 마련
     end_first_line = [] #기간 지난 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -263,8 +263,8 @@ def future(request):
 #이과대학
 def science(request):
     now = timezone.now() #현재 시간 받아옴
-    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = 'science').order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
-    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = 'science') #기간이 지난 게시물들을 받아옴
+    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "이과대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "이과대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
     post_second_line = [] #기간 내에 있는 게시물들 중 둘째 줄에 들어갈 게시물들이 들어갈 공간 마련
     end_first_line = [] #기간 지난 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -299,8 +299,8 @@ def science(request):
 #문과대학
 def liberal(request):
     now = timezone.now() #현재 시간 받아옴
-    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = 'liberal').order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
-    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = 'liberal') #기간이 지난 게시물들을 받아옴
+    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "문과대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "문과대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
     post_second_line = [] #기간 내에 있는 게시물들 중 둘째 줄에 들어갈 게시물들이 들어갈 공간 마련
     end_first_line = [] #기간 지난 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -335,8 +335,8 @@ def liberal(request):
 #경찰사법대학
 def police(request):
     now = timezone.now() #현재 시간 받아옴
-    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = 'police').order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
-    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = 'police') #기간이 지난 게시물들을 받아옴
+    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "경찰사법대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "경찰사법대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
     post_second_line = [] #기간 내에 있는 게시물들 중 둘째 줄에 들어갈 게시물들이 들어갈 공간 마련
     end_first_line = [] #기간 지난 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -371,8 +371,8 @@ def police(request):
 #사범대학
 def education(request):
     now = timezone.now() #현재 시간 받아옴
-    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = 'education').order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
-    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = 'education') #기간이 지난 게시물들을 받아옴
+    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "사범대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "사범대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
     post_second_line = [] #기간 내에 있는 게시물들 중 둘째 줄에 들어갈 게시물들이 들어갈 공간 마련
     end_first_line = [] #기간 지난 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -407,8 +407,8 @@ def education(request):
 #법과대학
 def law(request):
     now = timezone.now() #현재 시간 받아옴
-    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = 'law').order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
-    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = 'law') #기간이 지난 게시물들을 받아옴
+    posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "법과대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "법과대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
     post_second_line = [] #기간 내에 있는 게시물들 중 둘째 줄에 들어갈 게시물들이 들어갈 공간 마련
     end_first_line = [] #기간 지난 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -445,7 +445,7 @@ def create(request):
     new_benefit.title = request.POST['title']
     new_benefit.writer = request.user
     new_benefit.category_univ = request.POST['category_univ']
-    new_benefit.categpry_type = request.POST['category_type']
+    new_benefit.category_type = request.POST['category_type']
     new_benefit.start_time = request.POST['start_time']
     new_benefit.end_time = request.POST['end_time']
     new_benefit.address = request.POST['address']

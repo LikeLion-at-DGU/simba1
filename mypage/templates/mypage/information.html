@@ -9,8 +9,9 @@
 {% endif %}
 <a href="{% url 'accounts:logout' %}">로그아웃</a>
 <h1>{{user.profile.nickname}}님 안녕하세요!!</h1>
-<p>전공: {{user.profile.department}}</p>
+<p>단과대: {{user.profile.univ}}</p>
 <a href="{% url 'mypage:scrap' %}">스크랩</a>
+<a href="{% url 'mypage:my_comment' %}">내가 남긴 코멘트</a>
 {% if user.is_staff %}
     <p>내가 쓴 글</p>
         

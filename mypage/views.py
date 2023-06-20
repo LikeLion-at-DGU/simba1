@@ -1,6 +1,6 @@
 # Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
-from benefits.models import Benefit
+from benefits.models import Benefit, BComment
 from welfare.models import Welfare
 
 # Create your views here.
@@ -30,6 +30,13 @@ def scrap(request): #스크랩 기능
         'benefits':benefits,
         'welfares':welfares,
         })
+
+def my_comment(request):
+    user = request.user
+    comments = BComment.objects.filter(writer = user)
+    return render(request, 'mypage/my_comment.html',{
+        'comments':comments,
+    })
 
 def scrap_benefits_likes(request, benefit_id): #스크랩 안에서 좋아요 누를 때
     if request.user.is_authenticated:

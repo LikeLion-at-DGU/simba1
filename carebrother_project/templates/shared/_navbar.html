@@ -9,7 +9,37 @@
         <li><a href="{% url 'benefits:choose' %}">제휴혜택</a></li>
         <li><a href="{% url 'welfare:mainpage' %}">학생복지</a></li>
         {% if user.is_authenticated %}
-            <li><a href="{% url 'mypage:information' %}"><i class="fas fa-user-circle" style="color: #814e01;"></i></a></li>
+            {% if user.is_staff %}
+                {% if user.profile.univ == "경영대학" %}
+                    <li><a href="{% url 'mypage:information' %}"><img src="{% static 'images/choose/practiceLogo.png' %}" style="height:20px ; width:20px;"></a></li>
+                {% elif user.profile.univ == "예술대학" %}
+                    <li><a href="{% url 'mypage:information' %}"><img src="{% static 'images/choose/친칠라 뚠뚠.jpg' %}" style="height:20px ; width:20px;"></a></li>
+                {% elif user.profile.univ == "사회과학대학" %}
+                    <li><a href="{% url 'mypage:information' %}"><img src="{% static 'images/choose/practiceLogo.png' %}" style="height:20px ; width:20px;"></a></li>
+                {% elif user.profile.univ == "AI융합대학" %}
+                    <li><a href="{% url 'mypage:information' %}"><img src="{% static 'images/choose/practiceLogo.png' %}" style="height:20px ; width:20px;"></a></li>
+                {% elif user.profile.univ == "공과대학" %}
+                    <li><a href="{% url 'mypage:information' %}"><img src="{% static 'images/choose/햄스터 이모티콘짤.jpg' %}" style="height:20px ; width:20px;"></a></li>
+                {% elif user.profile.univ == "불교대학" %}
+                    <li><a href="{% url 'mypage:information' %}"><img src="{% static 'images/choose/practiceLogo.png' %}" style="height:20px ; width:20px;"></a></li>
+                {% elif user.profile.univ == "미래융합대학" %}
+                    <li><a href="{% url 'mypage:information' %}"><img src="{% static 'images/choose/practiceLogo.png' %}" style="height:20px ; width:20px;"></a></li>
+                {% elif user.profile.univ == "이과대학" %}
+                    <li><a href="{% url 'mypage:information' %}"><img src="{% static 'images/choose/practiceLogo.png' %}" style="height:20px ; width:20px;"></a></li>
+                {% elif user.profile.univ == "문과대학" %}
+                    <li><a href="{% url 'mypage:information' %}"><img src="{% static 'images/choose/practiceLogo.png' %}" style="height:20px ; width:20px;"></a></li>
+                {% elif user.profile.univ == "경찰사법대학" %}
+                    <li><a href="{% url 'mypage:information' %}"><img src="{% static 'images/choose/practiceLogo.png' %}" style="height:20px ; width:20px;"></a></li>
+                {% elif user.profile.univ == "사범대학" %}
+                    <li><a href="{% url 'mypage:information' %}"><img src="{% static 'images/choose/practiceLogo.png' %}" style="height:20px ; width:20px;"></a></li>
+                {% elif user.profile.univ == "법과대학" %}
+                    <li><a href="{% url 'mypage:information' %}"><img src="{% static 'images/choose/햄스터브이짤.png' %}" style="height:20px ; width:20px;"></a></li>
+                {% else %}
+                    <li><a href="{% url 'mypage:information' %}"><img src="{% static 'images/choose/practiceLogo.png' %}" style="height:20px ; width:20px;"></a></li>
+                {% endif %}
+            {% else %}
+                <li><a href="{% url 'mypage:information' %}"><i class="fas fa-user-circle" style="color: #814e01;"></i></a></li>
+            {% endif %}
         {% else %}
             <li>
                 <span><a href="{% url 'accounts:login' %}">로그인/</a></span>

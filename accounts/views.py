@@ -39,9 +39,9 @@ def signup(request):
             user = CustomUser.objects.create_user(username=request.POST['username'], password=request.POST['password'],) #CustomUser 모델에 user 생성
             user.save() #저장
             nickname = request.POST['nickname']
-            department = request.POST['department']
+            univ = request.POST['univ']
             
-            profile = Profile(user = user, nickname = nickname, department = department)
+            profile = Profile(user = user, nickname = nickname, univ = univ)
             profile.save()
 
 
