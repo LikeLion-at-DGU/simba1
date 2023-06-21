@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>{{welfare.title}}</h1>
+작성자 : {{welfare.writer}}
+날짜 : {{welfare.pub_date}}
+<hr>
+<p>{{welfare.body}}</p>
+<a href="{% url 'welfare:delete' welfare.id %}">삭제하기</a>
+<a href="{% url 'welfare:detail_likes' welfare.id %}">
+    {% if user in welfare.welfare_like.all %}
+    취소
+    {% else %}
+    좋아요
+    {% endif %}
+</a>
+{{welfare.welfare_like_count}}개
+
+{% endblock %}
+

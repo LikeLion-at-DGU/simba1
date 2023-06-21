@@ -1,0 +1,78 @@
+.navbar__menu li:nth-child(1) {
+    padding: 0;
+}
+
+.navbar__menu li:nth-child(1) a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 74px;
+    height: 30px;
+    background: rgba(255, 143, 11, 0.5);
+    border-radius: 50px;
+}
+
+* {
+    font-family: 'HancomMalangMalang';
+    font-weight: normal;
+}
+
+/* benefits */
+.intro {
+    padding-top: 86px;
+    align-items: center;
+}
+
+.benefits_banner {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.vector {
+    padding-left: 20px;
+}
+
+.hr {
+    height: 20px;
+    width: 1px;
+    /* margin: 0px 0px 0px 0px; */
+}
+
+.benefits_title {
+    color: #EC6130;
+    font-weight: bold;
+    padding: 12px 0px 0px 47px;
+    font-size: 20px;
+}
+
+.benefits_contents {
+    font-family: 'NotoSans';
+    color: #404040;
+    font-size: 8px;
+    padding: 5px 0px 75px 5px;
+}
+
+
+/* choose */
+.cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.card:not(:last-child) {
+    margin-right: 25px;
+}
+
+.business {
+    font-size: 10px;
+}
+
+.choose {
+    padding-bottom: 100px;
+}

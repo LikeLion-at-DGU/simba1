@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/benefits.css' %}">
+{% if user.is_staff %}
+<a href="{% url 'benefits:new' %}">글쓰기</a>
+{% endif %}
+    
+    <div class="root">
+        <!--단과대학 선택 페이지 이동 버튼-->
+        <div class="move-selectpage-button">
+            <i class="fas fa-chevron-left" style="color: #404040;"></i>
+        </div>
+
+        <!--oo대학 제휴혜택-->
+        <div class="title">
+            불교대학 제휴혜택
+        </div>
+
+        <!--oo대학 제휴혜택 페이지 소개-->
+        <div class="introduce">
+            불교대학 제휴혜택 페이지입니다.
+        </div>
+
+        <div class="line"></div>
+
+        <div class="menu">
+            <li><a href="">식당</a></li>
+            <li><a href="">주점</a></li>
+            <li><a href="">카페</a></li>
+            <li><a href="">교육</a></li>
+            <li><a href="">의료</a></li>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                {% for benefit in post_first_line %} <!--기간내에 있는 게시물들 중 첫번째 줄 루프문 돌림-->
+                    <div class="card__item">
+                        {% if benefit.image %}
+                        <a href="{% url 'benefits:detail' benefit.id %}"><img class="card__item__img" src={{benefit.image.url}}></a>
+                        {% endif %}
+                        <div class="card__content">
+                            <div class="name"><a href="{% url 'benefits:detail' benefit.id %}">{{benefit.title}}</a></div>
+                            <div class="star">
+                                <i class="far fa-star" style="color: #ffd66b;"></i>
+                            </div>
+                            <div class="star-count">{{benefit.benefit_rate_average}}</div>
+                        </div>
+                        <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
+                        {% if user in benefit.benefit_like.all %}
+                        <div class="heart">
+                            <a href="{% url 'benefits:buddhism_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                        </div>
+                        {% else %}
+                        <div class="heart">
+                            <a href="{% url 'benefits:buddhism_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                        </div>
+                        {% endif %}
+                        <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
+                        <div class="benefit">{{benefit.body}}</div>
+                    </div>
+                {% endfor %}
+                
+                {% for benefit in end_first_line %} <!--기간이 지난 게시물들 중 첫번째 줄 루프문 돌림-->
+                    <div class="card__item">
+                        <div class="card__item__end">
+                            <p>혜택 기간이 지난<br> 게시물입니다</p>
+                        </div>
+                        {% if benefit.image %}
+                        <a href="{% url 'benefits:detail' benefit.id %}"><img class="card__item__img" src={{benefit.image.url}}></a>
+                        {% endif %}
+                        <div class="card__content">
+                            <div class="name"><a href="{% url 'benefits:detail' benefit.id %}">{{benefit.title}}</a></div>
+                            <div class="star">
+                                <i class="far fa-star" style="color: #ffd66b;"></i>
+                            </div>
+                            <div class="star-count">{{benefit.benefit_rate_average}}</div>
+                        </div>
+                        <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
+                        {% if user in benefit.benefit_like.all %}
+                        <div class="heart">
+                            <a href="{% url 'benefits:buddhism_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                        </div>
+                        {% else %}
+                        <div class="heart">
+                            <a href="{% url 'benefits:buddhism_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                        </div>
+                        {% endif %}
+                        <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
+                        <div class="benefit">{{benefit.body}}</div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="card">
+                {% for benefit in post_second_line %} <!--기간내에 있는 게시물들 중 두번째 줄 루프문 돌림-->
+                <div class="card__item">
+                    {% if benefit.image %}
+                    <a href="{% url 'benefits:detail' benefit.id %}"><img class="card__item__img" src={{benefit.image.url}}></a>
+                    {% endif %}
+                    <div class="card__content">
+                        <div class="name"><a href="{% url 'benefits:detail' benefit.id %}">{{benefit.title}}</a></div>
+                        <div class="star">
+                            <i class="far fa-star" style="color: #ffd66b;"></i>
+                        </div>
+                        <div class="star-count">{{benefit.benefit_rate_average}}</div>
+                    </div>
+                    <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
+                    {% if user in benefit.benefit_like.all %}
+                    <div class="heart">
+                        <a href="{% url 'benefits:buddhism_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                    </div>
+                    {% else %}
+                    <div class="heart">
+                        <a href="{% url 'benefits:buddhism_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                    </div>
+                    {% endif %}
+                    <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
+                    <div class="benefit">{{benefit.body}}</div>
+                </div>
+                {% endfor %}
+                
+                {% for benefit in end_second_line %} <!--기간이 지난 게시물들 중 두번째 줄 루프문 돌림-->
+                    <div class="card__item">
+                        <div class="card__item__end">
+                            <p>혜택 기간이 지난<br> 게시물입니다</p>
+                        </div>
+                        {% if benefit.image %}
+                        <a href="{% url 'benefits:detail' benefit.id %}"><img class="card__item__img" src={{benefit.image.url}}></a>
+                        {% endif %}
+                        <div class="card__content">
+                            <div class="name"><a href="{% url 'benefits:detail' benefit.id %}">{{benefit.title}}</a></div>
+                            <div class="star">
+                                <i class="far fa-star" style="color: #ffd66b;"></i>
+                            </div>
+                            <div class="star-count">{{benefit.benefit_rate_average}}</div>
+                        </div>
+                        <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
+                        {% if user in benefit.benefit_like.all %}
+                        <div class="heart">
+                            <a href="{% url 'benefits:buddhism_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                        </div>
+                        {% else %}
+                        <div class="heart">
+                            <a href="{% url 'benefits:buddhism_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                        </div>
+                        {% endif %}
+                        <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
+                        <div class="benefit">{{benefit.body}}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <footer>
+            동국대학교 멋쟁이사자처럼 심바톤 1조<br>
+            @ likelion_dongguk<br>
+            ⓒ DGU Likelion. All rights reserved.
+        </footer>
+
+    </div>
+{% endblock %}

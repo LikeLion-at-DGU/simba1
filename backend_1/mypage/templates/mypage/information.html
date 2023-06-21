@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/benefits.css' %}">
+
+{% if user.is_superuser %}
+    <a href="{% url 'adminpage:user_admin' %}">유저 승인</a>
+    <a href="{% url 'adminpage:staff_admin' %}">스태프 승인</a>
+{% endif %}
+<a href="{% url 'accounts:logout' %}">로그아웃</a>
+<h1>{{user.profile.nickname}}님 안녕하세요!!</h1>
+<p>단과대: {{user.profile.univ}}</p>
+<a href="{% url 'mypage:scrap' %}">스크랩</a>
+<a href="{% url 'mypage:my_comment' %}">내가 남긴 코멘트</a>
+{% if user.is_staff %}
+    <p>내가 쓴 글</p>
+        
+    <div class="content">
+        <div class="card">
+            {% for benefit in post_first_line %}
+                <div class="card__item">
+                    {% if benefit.image %}
+                    <a href="{% url 'benefits:detail' benefit.id %}"><img class="card__item__img" src={{benefit.image.url}}></a>
+                    {% endif %}
+                    <div class="card__content">
+                        <div class="name"><a href="{% url 'benefits:detail' benefit.id %}">{{benefit.title}}</a></div>
+                        <div class="star">
+                            <i class="far fa-star" style="color: #ffd66b;"></i>
+                        </div>
+                        <div class="star-count">{{benefit.benefit_rate_average}}</div>
+                    </div>
+                    <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
+                    {% if user in benefit.benefit_like.all %}
+                    <div class="heart">
+                        <a href="{% url 'mypage:mypage_benefits_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                    </div>
+                    {% else %}
+                    <div class="heart">
+                        <a href="{% url 'mypage:mypage_benefits_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                    </div>
+                    {% endif %}
+                    <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
+                    <div class="benefit">{{benefit.body}}</div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="card">
+            {% for benefit in post_second_line %}
+            <div class="card__item">
+                {% if benefit.image %}
+                <a href="{% url 'benefits:detail' benefit.id %}"><img class="card__item__img" src={{benefit.image.url}}></a>
+                {% endif %}
+                <div class="card__content">
+                    <div class="name"><a href="{% url 'benefits:detail' benefit.id %}">{{benefit.title}}</a></div>
+                    <div class="star">
+                        <i class="far fa-star" style="color: #ffd66b;"></i>
+                    </div>
+                    <div class="star-count">{{benefit.benefit_rate_average}}</div>
+                </div>
+                <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
+                {% if user in benefit.benefit_like.all %}
+                <div class="heart">
+                    <a href="{% url 'mypage:mypage_benefits_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                </div>
+                {% else %}
+                <div class="heart">
+                    <a href="{% url 'mypage:mypage_benefits_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                </div>
+                {% endif %}
+                <div class="time">{{benefit.start_time}}-{{benefit.end_time}}</div>
+                <div class="benefit">{{benefit.body}}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}

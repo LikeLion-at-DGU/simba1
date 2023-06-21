@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/sign-up-completed.css' %}">
+<body>
+    <div class="root">
+        <div class="sign-up">
+            <div class="ckeck">
+                <i class="fas fa-check-circle" style="color: #ff8f0b;"></i>
+            </div>
+            <div class="sign-up-completed">
+                <span>
+                    <b>로그인</b>한 유저만
+                </span>
+            </div>
+            <div class="text">
+                좋아요 기능을<br>사용하실 수 있습니다.
+            </div>
+            
+            <a href="{% url 'accounts:login' %}" class="sign-up-completed-button">
+                로그인
+            </a>
+
+        </div>
+    </div>
+{% endblock %}
