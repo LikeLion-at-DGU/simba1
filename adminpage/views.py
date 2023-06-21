@@ -13,6 +13,14 @@ def user_admin(request):
         'staff_users':staff_users,
         })
 
+def staff_admin(request):
+    approved_users = CustomUser.objects.filter(is_approved = True)
+    staff_users = CustomUser.objects.filter(is_staff = True)
+    return render(request, 'adminpage/staff_admin.html',{
+        'approved_users' : approved_users,
+        'staff_users' : staff_users,
+    })
+
 def user_image(request, id):
     user = CustomUser.objects.get(id = id)
     return render(request, 'adminpage/user_image.html', {

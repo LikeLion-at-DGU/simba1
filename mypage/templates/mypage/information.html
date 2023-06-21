@@ -5,7 +5,8 @@
 <link rel="stylesheet" href="{% static 'css/benefits.css' %}">
 
 {% if user.is_superuser %}
-    <a href="{% url 'adminpage:user_admin' %}">관리자</a>
+    <a href="{% url 'adminpage:user_admin' %}">유저 승인</a>
+    <a href="{% url 'adminpage:staff_admin' %}">스태프 승인</a>
 {% endif %}
 <a href="{% url 'accounts:logout' %}">로그아웃</a>
 <h1>{{user.profile.nickname}}님 안녕하세요!!</h1>

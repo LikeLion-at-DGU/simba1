@@ -53,38 +53,12 @@
               <input type="submit" value="취소">
             </form>
           </td>
-          {% if user.is_staff is False %}
-          <td>
-            <form method="POST" action="{% url 'accounts:approve_staff' user.id %}">
-              {% csrf_token %}
-              <input type="submit" value="스태프 부여">
-            </form>
-          </td>
-          {% endif %}
-        </tr>
       {% empty %}
         <tr>
           <td colspan="4">승인된 유저가 없습니다.</td>
         </tr>
       {% endfor %}
     </td>
-
-    <td>스태프유저</td>
-      {% for user in staff_users %}
-        <tr>
-          <td>{{ user.username }}</td>
-          <td>
-            <form method="POST" action="{% url 'accounts:cancel_staff' user.id %}">
-              {% csrf_token %}
-              <input type="submit" value="스태프 권한 취소">
-            </form>
-          </td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="4">스태프 유저가 없습니다.</td>
-        </tr>
-      {% endfor %}
 
     </tbody>
     

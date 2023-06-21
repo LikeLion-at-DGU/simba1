@@ -96,12 +96,12 @@ def approve_staff(request, user_id):
     user = CustomUser.objects.get(id=user_id)
     user.is_staff = True
     user.save()
-    return redirect('adminpage:user_admin')
+    return redirect('adminpage:staff_admin')
 
 # 유저 스태프 권한 취소
 def cancel_staff(request, user_id):
     user = CustomUser.objects.get(id=user_id)
     user.is_staff = False
     user.save()
-    return redirect('adminpage:user_admin')
+    return redirect('adminpage:staff_admin')
 
