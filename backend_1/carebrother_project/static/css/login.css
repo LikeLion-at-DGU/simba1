@@ -1,0 +1,110 @@
+body {
+    background: rgba(255, 218, 175, 0.7);
+}
+
+.root {
+    display: flex;
+    height: 100vh; 
+    justify-content: center;
+    align-items: center;
+}
+
+/* 로그인 박스 */
+.login {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 310px;
+    height: 490px;
+    background: #FCFAF7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+}
+
+/* 로그인 */
+.login__title {
+    display: flex;
+    width: 41px;
+    height: 21px;
+    margin-top: 44px;
+    font-family: 'HancomMalangMalang';
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: #FF8F0B;
+}
+
+/* 로고 */
+.login__logo {
+    margin-top: 29px;
+}
+
+.login__logo img{
+    width: 82px;
+    height: 92px;
+}
+
+/* 로그인 input */
+.login__wrapper {
+    margin-top: 32px;
+    font-family: 'NotoSansKR';
+    font-weight: 400;
+    font-size: 14px;
+    color: #C6C4C4;
+}
+
+.login__wrapper input{
+    background: none;
+    border: none;
+    width: 215px;
+    height: 30px;
+    border-bottom: 1px solid black;
+}
+
+.login__wrapper input:nth-child(2) {
+    margin-bottom: 13px;
+}
+
+/* 로그인 버튼 */
+.login__button input{
+    margin-top: 20px;
+    border: none;
+    width: 218px;
+    height: 37px;
+    background: #FF8F0B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    font-family: 'HancomMalangMalang';
+    font-weight: 400;
+    font-size: 12px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+/* 계정이 없는 경우 */
+.login__no {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    font-family: 'NotoSansKR';
+    font-weight: 400;
+    font-size: 12px;
+    text-align: center;
+    color: #C6C4C4;
+}
+
+/* 가입하기 버튼 */
+.login__no__sign {
+    color: #FFA337;
+}
+
+/* 비밀번호 보이게/안보이게 하기 */
+.login__pwd {
+    position: relative;
+}
+
+.login__pwd i{
+    position: absolute;
+    right: 5%;
+    top: 30px;
+}

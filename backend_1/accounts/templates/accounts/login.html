@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <div class="root">
+        <div class="login">
+
+            <div class="login__title">로그인</div>
+            <div class="login__logo">
+                <img src="{% static 'images/logo2.png' %}">
+            </div>
+
+            <div class="login__wrapper">
+                <form action="{% url 'accounts:login' %}" id="login-form" method="POST">
+                    {% csrf_token %}
+                    <div class="login__id">학번<br>
+                        <input type="text" name="username" placeholder="학번을 입력해주세요" required>
+                    </div>
+                    <div class="login__pwd">비밀번호<br>
+                        <input type="password" name="password" placeholder="비밀번호를 입력해주세요" required>
+                        <i class="far fa-eye" style="color: #c6c4c4;"></i>
+                    </div>
+                    <div class="login__button">
+                        <input type="submit" value="로그인">
+                    </div>
+                    <div class="login__no">
+                        <div class="login__no__id">계정이 없으신가요?</div>
+                        <div class="login__no__sign"><a href="{% url 'accounts:signup' %}">가입하기</a></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
