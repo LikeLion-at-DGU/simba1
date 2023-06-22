@@ -6,10 +6,10 @@
 <div class="root">
 {% if user == benefit.writer %}
 <a href="{% url 'benefits:delete' benefit.id %}">삭제하기</a>
-<a href="{% url 'benefits:edit' benefit.id %}">수정하기</a>
+<a href="{% url 'benefits:update' benefit.id %}">수정하기</a>
 {% elif user.is_superuser %}
 <a href="{% url 'benefits:delete' benefit.id %}">삭제하기</a>
-<a href="{% url 'benefits:edit' benefit.id %}">수정하기</a>
+<a href="{% url 'benefits:update' benefit.id %}">수정하기</a>
 {% endif %}
 
 <div class="item">
@@ -48,7 +48,7 @@
             <div class="benefit">{{benefit.body}}</div>
             <div class="dates">
                 <img src="{% static 'images/card/date.png' %}" height="10px" width="11px">
-                <div class="date">{{benefit.start_date.date}}~{{benefit.end_date.date}}</div>
+                <div class="date">{{benefit.start_date}}~{{benefit.end_date}}</div>
             </div>
         </div>
         <hr class="comment-hr">

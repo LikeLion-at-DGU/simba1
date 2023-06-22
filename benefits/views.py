@@ -11,6 +11,7 @@ def choose(request):
 # 경영대학
 def business(request):
     now = timezone.now() #현재 시간 받아옴
+    category_univ = "경영대학"
     posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "경영대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
     end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "경영대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -37,7 +38,8 @@ def business(request):
             elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
                 end_second_line.append(end_post) #담아담아
 
-    return render(request, 'benefits/business.html', {
+    return render(request, 'benefits/mainpage.html', {
+        'category_univ':category_univ,
         'post_first_line':post_first_line,
         'post_second_line':post_second_line,
         'end_first_line':end_first_line,
@@ -47,6 +49,7 @@ def business(request):
 #예술 대학
 def art(request):
     now = timezone.now() #현재 시간 받아옴
+    category_univ = "예술대학"
     posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "예술대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
     end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "예술대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -73,7 +76,8 @@ def art(request):
             elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
                 end_second_line.append(end_post) #담아담아
 
-    return render(request, 'benefits/art.html', {
+    return render(request, 'benefits/mainpage.html', {
+        'category_univ':category_univ,
         'post_first_line':post_first_line,
         'post_second_line':post_second_line,
         'end_first_line':end_first_line,
@@ -83,6 +87,7 @@ def art(request):
 #사회과학대학
 def social(request):
     now = timezone.now() #현재 시간 받아옴
+    category_univ = "사회과학대학"
     posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "사회과학대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
     end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "사회과학대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -109,7 +114,8 @@ def social(request):
             elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
                 end_second_line.append(end_post) #담아담아
 
-    return render(request, 'benefits/social.html', {
+    return render(request, 'benefits/mainpage.html', {
+        'category_univ':category_univ,
         'post_first_line':post_first_line,
         'post_second_line':post_second_line,
         'end_first_line':end_first_line,
@@ -119,6 +125,7 @@ def social(request):
 #AI융합대학
 def ai(request):
     now = timezone.now() #현재 시간 받아옴
+    category_univ = "AI융합대학"
     posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "AI융합대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
     end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "AI융합대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -145,7 +152,8 @@ def ai(request):
             elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
                 end_second_line.append(end_post) #담아담아
 
-    return render(request, 'benefits/ai.html', {
+    return render(request, 'benefits/mainpage.html', {
+        'category_univ':category_univ,
         'post_first_line':post_first_line,
         'post_second_line':post_second_line,
         'end_first_line':end_first_line,
@@ -155,6 +163,7 @@ def ai(request):
 #공과대학
 def engineering(request):
     now = timezone.now() #현재 시간 받아옴
+    category_univ = "공과대학"
     posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "공과대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
     end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "공과대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -181,7 +190,8 @@ def engineering(request):
             elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
                 end_second_line.append(end_post) #담아담아
 
-    return render(request, 'benefits/engineering.html', {
+    return render(request, 'benefits/mainpage.html', {
+        'category_univ':category_univ,
         'post_first_line':post_first_line,
         'post_second_line':post_second_line,
         'end_first_line':end_first_line,
@@ -191,6 +201,7 @@ def engineering(request):
 #불교대학
 def buddhism(request):
     now = timezone.now() #현재 시간 받아옴
+    category_univ = "불교대학"
     posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "불교대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
     end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "불교대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -217,7 +228,8 @@ def buddhism(request):
             elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
                 end_second_line.append(end_post) #담아담아
 
-    return render(request, 'benefits/buddhism.html', {
+    return render(request, 'benefits/mainpage.html', {
+        'category_univ':category_univ,
         'post_first_line':post_first_line,
         'post_second_line':post_second_line,
         'end_first_line':end_first_line,
@@ -227,6 +239,7 @@ def buddhism(request):
 #미래융합대학
 def future(request):
     now = timezone.now() #현재 시간 받아옴
+    category_univ = "미래융합대학"
     posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "미래융합대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
     end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "미래융합대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -253,7 +266,8 @@ def future(request):
             elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
                 end_second_line.append(end_post) #담아담아
 
-    return render(request, 'benefits/future.html', {
+    return render(request, 'benefits/mainpage.html', {
+        'category_univ':category_univ,
         'post_first_line':post_first_line,
         'post_second_line':post_second_line,
         'end_first_line':end_first_line,
@@ -263,6 +277,7 @@ def future(request):
 #이과대학
 def science(request):
     now = timezone.now() #현재 시간 받아옴
+    category_univ = "이과대학"
     posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "이과대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
     end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "이과대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -289,7 +304,8 @@ def science(request):
             elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
                 end_second_line.append(end_post) #담아담아
 
-    return render(request, 'benefits/science.html', {
+    return render(request, 'benefits/mainpage.html', {
+        'category_univ':category_univ,
         'post_first_line':post_first_line,
         'post_second_line':post_second_line,
         'end_first_line':end_first_line,
@@ -299,6 +315,7 @@ def science(request):
 #문과대학
 def liberal(request):
     now = timezone.now() #현재 시간 받아옴
+    category_univ = "문과대학"
     posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "문과대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
     end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "문과대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -325,7 +342,8 @@ def liberal(request):
             elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
                 end_second_line.append(end_post) #담아담아
 
-    return render(request, 'benefits/liberal.html', {
+    return render(request, 'benefits/mainpage.html', {
+        'category_univ':category_univ,
         'post_first_line':post_first_line,
         'post_second_line':post_second_line,
         'end_first_line':end_first_line,
@@ -335,6 +353,7 @@ def liberal(request):
 #경찰사법대학
 def police(request):
     now = timezone.now() #현재 시간 받아옴
+    category_univ = "경찰사법대학"
     posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "경찰사법대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
     end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "경찰사법대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -361,7 +380,8 @@ def police(request):
             elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
                 end_second_line.append(end_post) #담아담아
 
-    return render(request, 'benefits/police.html', {
+    return render(request, 'benefits/mainpage.html', {
+        'category_univ':category_univ,
         'post_first_line':post_first_line,
         'post_second_line':post_second_line,
         'end_first_line':end_first_line,
@@ -371,6 +391,7 @@ def police(request):
 #사범대학
 def education(request):
     now = timezone.now() #현재 시간 받아옴
+    category_univ = "사범대학"
     posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "사범대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
     end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "사범대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -397,7 +418,8 @@ def education(request):
             elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
                 end_second_line.append(end_post) #담아담아
 
-    return render(request, 'benefits/education.html', {
+    return render(request, 'benefits/mainpage.html', {
+        'category_univ':category_univ,
         'post_first_line':post_first_line,
         'post_second_line':post_second_line,
         'end_first_line':end_first_line,
@@ -407,6 +429,7 @@ def education(request):
 #법과대학
 def law(request):
     now = timezone.now() #현재 시간 받아옴
+    category_univ = "사법대학"
     posts = Benefit.objects.filter(start_date__lt = now, end_date__gt = now, category_univ = "법과대학").order_by('end_date') #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
     end_posts = Benefit.objects.filter(end_date__lt = now, category_univ = "법과대학") #기간이 지난 게시물들을 받아옴
     post_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
@@ -433,7 +456,8 @@ def law(request):
             elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
                 end_second_line.append(end_post) #담아담아
 
-    return render(request, 'benefits/law.html', {
+    return render(request, 'benefits/mainpage.html', {
+        'category_univ':category_univ,
         'post_first_line':post_first_line,
         'post_second_line':post_second_line,
         'end_first_line':end_first_line,
@@ -442,27 +466,33 @@ def law(request):
 
 def create(request):
     if request.user.is_authenticated:
-        new_benefit = Benefit()
-        new_benefit.title = request.POST['title']
-        new_benefit.writer = request.user
-        new_benefit.category_univ = request.POST['category_univ']
-        new_benefit.category_type = request.POST['category_type']
-        new_benefit.start_time = request.POST['start_time']
-        new_benefit.end_time = request.POST['end_time']
-        new_benefit.address = request.POST['address']
-        new_benefit.start_date = request.POST['start_date']
-        new_benefit.end_date = request.POST['end_date']
-        new_benefit.image = request.FILES.get('image')
-        new_benefit.body = request.POST['body']
+        if request.user.is_staff:
+            if request.method == 'POST':
+                new_benefit = Benefit()
 
-        new_benefit.save()
-        
-        return redirect('benefits:detail', new_benefit.id)
+                new_benefit.title = request.POST['title']
+                new_benefit.writer = request.user
+                new_benefit.category_univ = request.POST['category_univ']
+                new_benefit.category_type = request.POST['category_type']
+                new_benefit.start_time = request.POST['start_time']
+                new_benefit.end_time = request.POST['end_time']
+                new_benefit.address = request.POST['address']
+                new_benefit.start_date = request.POST['start_date']
+                new_benefit.end_date = request.POST['end_date']
+                new_benefit.image = request.FILES.get('image')
+                new_benefit.body = request.POST['body']
+
+                new_benefit.save()
+                
+                return redirect('benefits:detail', new_benefit.id)
+            
+            elif request.method == 'GET':
+                return render(request, 'benefits/new.html')
+            
+        else:
+            return render(request, 'accounts/no_auth.html')
     else:
         return redirect('accounts:login')
-
-def new(request):
-    return render(request, 'benefits/new.html')
 
 def detail(request, id):
     benefit = get_object_or_404(Benefit, pk = id)
@@ -488,18 +518,18 @@ def review(request, benefit_id):#댓글 작성하는 칸
             new_comment.save() #댓글 저장, id 생성
         
             return redirect('benefits:detail', benefit.id)
+    
+        elif request.method == 'GET':
+            benefit = Benefit.objects.get(id = benefit_id)
+            comments = BComment.objects.filter(benefit = benefit)
+            comments_count = len(comments)
+            return render(request, 'benefits/review.html',{
+                'benefit':benefit,
+                'comments' : comments,
+                'comments_count' : comments_count,
+                })
     else:
         return redirect('accounts:login')
-    
-    if request.method == 'GET':
-        benefit = Benefit.objects.get(id = benefit_id)
-        comments = BComment.objects.filter(benefit = benefit)
-        comments_count = len(comments)
-        return render(request, 'benefits/review.html',{
-            'benefit':benefit,
-            'comments' : comments,
-            'comments_count' : comments_count,
-            })
     
 def comment_likes(request, comment_id):
     if request.user.is_authenticated: 
@@ -519,74 +549,122 @@ def comment_likes(request, comment_id):
 
 def delete_comment(request, comment_id):
     delete_comment = BComment.objects.get(id = comment_id)
-    delete_comment.delete()
-    return redirect('benefits:detail', delete_comment.benefit.id)
-    
-def edit_comment(request, comment_id):
-    edit_comment = BComment.objects.get(id = comment_id)
-    benefit = Benefit.objects.get(id = edit_comment.benefit.id)
-    comments = BComment.objects.filter(benefit = benefit)
-    comments_count = len(comments)
-    return render(request, 'benefits/edit_comment.html',{
-        'edit_comment':edit_comment,
-        'benefit':benefit,
-        'comments' : comments,
-        'comments_count' : comments_count,
-        })
+    if request.user == delete_comment.writer:
+        delete_comment.delete()
+        return redirect('benefits:detail', delete_comment.benefit.id)
+    elif request.user.is_superuser:
+        delete_comment.delete()
+        return redirect('benefits:detail', delete_comment.benefit.id)
+    else:
+        return render(request, 'accounts/no_auth.html')
 
 def edit_comment(request, comment_id):
     if request.user.is_authenticated:
         edit_comment = get_object_or_404(BComment, pk=comment_id)
-        if request.method == 'POST':
-            edit_comment.benefit = edit_comment.benefit #게시물 비교하기 위한 공간에 이 게시물 담음
-            edit_comment.writer = request.user
-            edit_comment.content = request.POST['content'] #댓글 내용 담아담아
-            edit_comment.benefit_rate = request.POST['benefit_rate'] #평점 담아담아
-            edit_comment.pub_date = timezone.now() #댓글 작성한 시간 담아담아
+        if request.user == edit_comment.writer:
+            if request.method == 'POST':
+                edit_comment.benefit = edit_comment.benefit #게시물 비교하기 위한 공간에 이 게시물 담음
+                edit_comment.writer = request.user
+                edit_comment.content = request.POST['content'] #댓글 내용 담아담아
+                edit_comment.benefit_rate = request.POST['benefit_rate'] #평점 담아담아
+                edit_comment.pub_date = timezone.now() #댓글 작성한 시간 담아담아
 
-            edit_comment.save() #댓글 저장, id 생성
-        
-            return redirect('benefits:detail', edit_comment.benefit.id)
-        if request.method == 'GET':
-            benefit = Benefit.objects.get(id = edit_comment.benefit.id)
-            comments = BComment.objects.filter(benefit = benefit)
-            comments_count = len(comments)
-            return render(request, 'benefits/edit_comment.html',{
-                'comment':edit_comment,
-                'benefit':benefit,
-                'comments' : comments,
-                'comments_count' : comments_count,
-                })
+                edit_comment.save() #댓글 저장, id 생성
+            
+                return redirect('benefits:detail', edit_comment.benefit.id)
+            if request.method == 'GET':
+                benefit = Benefit.objects.get(id = edit_comment.benefit.id)
+                comments = BComment.objects.filter(benefit = benefit)
+                comments_count = len(comments)
+                return render(request, 'benefits/edit_comment.html',{
+                    'comment':edit_comment,
+                    'benefit':benefit,
+                    'comments' : comments,
+                    'comments_count' : comments_count,
+                    })
+        elif request.user.is_superuser:
+            if request.method == 'POST':
+                edit_comment.benefit = edit_comment.benefit #게시물 비교하기 위한 공간에 이 게시물 담음
+                edit_comment.writer = request.user
+                edit_comment.content = request.POST['content'] #댓글 내용 담아담아
+                edit_comment.benefit_rate = request.POST['benefit_rate'] #평점 담아담아
+                edit_comment.pub_date = timezone.now() #댓글 작성한 시간 담아담아
+
+                edit_comment.save() #댓글 저장, id 생성
+            
+                return redirect('benefits:detail', edit_comment.benefit.id)
+            if request.method == 'GET':
+                benefit = Benefit.objects.get(id = edit_comment.benefit.id)
+                comments = BComment.objects.filter(benefit = benefit)
+                comments_count = len(comments)
+                return render(request, 'benefits/edit_comment.html',{
+                    'comment':edit_comment,
+                    'benefit':benefit,
+                    'comments' : comments,
+                    'comments_count' : comments_count,
+                    })
+        else:
+            return render(request, 'accounts/no_auth.html')
     else:
         return redirect('accounts:login')
-
-def edit(request, id):
-    edit_benefit = Benefit.objects.get(id = id)
-    return render(request, 'benefits/edit.html', {
-        'benefit':edit_benefit,
-    })
 
 def update(request, id):
     if request.user.is_authenticated:
         update_benefit = Benefit.objects.get(id = id)
         if request.user == update_benefit.writer:
-            update_benefit.title = request.POST['title']
-            update_benefit.writer = request.user
-            update_benefit.start_date = request.POST['start_date']
-            update_benefit.due_date = request.POST['due_date']
-            update_benefit.image = request.FILES.get('image', update_benefit.image)
-            update_benefit.body = request.POST['body']
+            if request.method == 'POST':
+                update_benefit.title = request.POST['title']
+                update_benefit.writer = request.user
+                update_benefit.start_date = request.POST['start_date']
+                update_benefit.due_date = request.POST['due_date']
+                update_benefit.image = request.FILES.get('image', update_benefit.image)
+                update_benefit.body = request.POST['body']
 
-            update_benefit.save()
+                update_benefit.save()
 
-            return redirect('benefits:detail', update_benefit.id)
+                return redirect('benefits:detail', update_benefit.id)
+            
+            elif request.method == 'GET':
+                edit_benefit = Benefit.objects.get(id = id)
+                return render(request, 'benefits/edit.html', {
+                    'benefit':edit_benefit,
+                    })
+        elif request.user.is_superuser:
+            if request.method == 'POST':
+                update_benefit.title = request.POST['title']
+                update_benefit.writer = request.user
+                update_benefit.start_date = request.POST['start_date']
+                update_benefit.due_date = request.POST['due_date']
+                update_benefit.image = request.FILES.get('image', update_benefit.image)
+                update_benefit.body = request.POST['body']
+
+                update_benefit.save()
+
+                return redirect('benefits:detail', update_benefit.id)
+            
+            elif request.method == 'GET':
+                edit_benefit = Benefit.objects.get(id = id)
+                return render(request, 'benefits/edit.html', {
+                    'benefit':edit_benefit,
+                    })
+        else:
+            return render(request, 'accounts/no_auth.html')
     else:
         return redirect('accounts:login')
 
 def delete(request, id):
-    delete_benefits = Benefit.objects.get(id = id)
-    delete_benefits.delete()
-    return redirect('benefits:choose')
+    if request.user.is_authenticated:
+        delete_benefits = Benefit.objects.get(id = id)
+        if request.user == delete_benefits.writer:
+            delete_benefits.delete()
+            return redirect('benefits:choose')
+        elif request.user.is_superuser:
+            delete_benefits.delete()
+            return redirect('benefits:choose')
+        else:
+            return render(request, 'accounts/no_auth.html')
+    else:
+        return redirect('accounts:login')
 
 #경영대학 메인페이지 좋아요
 def business_likes(request, benefit_id): #메인 페이지에서 좋아요 누를 때

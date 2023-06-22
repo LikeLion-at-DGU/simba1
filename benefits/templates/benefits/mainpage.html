@@ -4,7 +4,7 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/benefits.css' %}">
 {% if user.is_staff %}
-<a href="{% url 'benefits:new' %}">글쓰기</a>
+<a href="{% url 'benefits:create' %}">글쓰기</a>
 {% endif %}
     
     <div class="root">
@@ -15,12 +15,12 @@
 
         <!--oo대학 제휴혜택-->
         <div class="title">
-            AI융합대학 제휴혜택
+            {{category_univ}} 제휴혜택
         </div>
 
         <!--oo대학 제휴혜택 페이지 소개-->
         <div class="introduce">
-            AI융합대학 제휴혜택 페이지입니다.
+            {{category_univ}} 제휴혜택 페이지입니다.
         </div>
 
         <div class="line"></div>
@@ -50,11 +50,11 @@
                         <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
                         {% if user in benefit.benefit_like.all %}
                         <div class="heart">
-                            <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                            <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
                         </div>
                         {% else %}
                         <div class="heart">
-                            <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                            <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
                         </div>
                         {% endif %}
                         <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
@@ -80,11 +80,11 @@
                         <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
                         {% if user in benefit.benefit_like.all %}
                         <div class="heart">
-                            <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                            <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
                         </div>
                         {% else %}
                         <div class="heart">
-                            <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                            <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
                         </div>
                         {% endif %}
                         <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
@@ -108,11 +108,11 @@
                     <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
                     {% if user in benefit.benefit_like.all %}
                     <div class="heart">
-                        <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                        <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
                     </div>
                     {% else %}
                     <div class="heart">
-                        <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                        <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
                     </div>
                     {% endif %}
                     <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
@@ -138,11 +138,11 @@
                         <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
                         {% if user in benefit.benefit_like.all %}
                         <div class="heart">
-                            <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                            <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
                         </div>
                         {% else %}
                         <div class="heart">
-                            <a href="{% url 'benefits:ai_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                            <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
                         </div>
                         {% endif %}
                         <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>

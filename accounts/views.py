@@ -67,41 +67,56 @@ def image_verification(request, id):
 # 어드민 페이지
 # 유저 승인
 def approve_user(request, user_id):
-    user = CustomUser.objects.get(id=user_id)
-    user.is_approved = True
-    user.save()
-    return redirect('adminpage:user_admin')
+    if request.user.is_superuser:
+        user = CustomUser.objects.get(id=user_id)
+        user.is_approved = True
+        user.save()
+        return redirect('adminpage:user_admin')
+    else:
+        return render(request, 'accounts/no_auth.html')
 
 # 유저 삭제
 def delete_user(request, user_id):
-    user = CustomUser.objects.get(id=user_id)
-    blogs = Benefit.objects.filter(benefit_like=user)
-    for blog in blogs: #이게 유저 삭제 시 좋아요 개수도 줄어들게 하는 건데 왜 안되는 지 모르겠뜸.
-        blog.benefit_like.remove(user)
-        blog.benefit_like_count -=1
-    user.image.delete() #유저 삭제시 인증할 때 받은 사진도 같이 삭제
-    user.delete() #유저 삭제
-    return redirect('adminpage:user_admin')
+    if request.user.is_superuser:
+        user = CustomUser.objects.get(id=user_id)
+        blogs = Benefit.objects.filter(benefit_like=user)
+        for blog in blogs: #이게 유저 삭제 시 좋아요 개수도 줄어들게 하는 건데 왜 안되는 지 모르겠뜸.
+            blog.benefit_like.remove(user)
+            blog.benefit_like_count -=1
+        user.image.delete() #유저 삭제시 인증할 때 받은 사진도 같이 삭제
+        user.delete() #유저 삭제
+        return redirect('adminpage:user_admin')
+    else:
+        return render(request, 'accounts/no_auth.html')
 
 # 유저 승인 취소
 def cancel_approval(request, user_id):
-    user = CustomUser.objects.get(id=user_id)
-    user.is_approved = False
-    user.is_staff = False
-    user.save()
-    return redirect('adminpage:user_admin')
+    if request.user.is_superuser:
+        user = CustomUser.objects.get(id=user_id)
+        user.is_approved = False
+        user.is_staff = False
+        user.save()
+        return redirect('adminpage:user_admin')
+    else:
+        return render(request, 'accounts/no_auth.html')
 
 # 유저 스태프 권한 승인
 def approve_staff(request, user_id):
-    user = CustomUser.objects.get(id=user_id)
-    user.is_staff = True
-    user.save()
-    return redirect('adminpage:staff_admin')
+    if request.user.is_superuser:
+        user = CustomUser.objects.get(id=user_id)
+        user.is_staff = True
+        user.save()
+        return redirect('adminpage:staff_admin')
+    else:
+        return render(request, 'accounts/no_auth.html')
 
 # 유저 스태프 권한 취소
 def cancel_staff(request, user_id):
-    user = CustomUser.objects.get(id=user_id)
-    user.is_staff = False
-    user.save()
-    return redirect('adminpage:staff_admin')
+    if request.user.is_superuser:
+        user = CustomUser.objects.get(id=user_id)
+        user.is_staff = False
+        user.save()
+        return redirect('adminpage:staff_admin')
+    else:
+        return render(request, 'accounts/no_auth.html')
 

@@ -9,8 +9,8 @@ class Benefit(models.Model):
     start_time = models.TimeField() #제휴 상점 운영 시작 시간
     end_time = models.TimeField() #제휴 상점 운영 종료 시간
     address = models.CharField(max_length = 30) #제휴 상점 주소
-    start_date = models.DateTimeField(null = True, blank = True) #제휴혜택 시작 날짜
-    end_date = models.DateTimeField(null = True, blank = True) #제휴혜택 종료 날짜
+    start_date = models.DateField(null = True, blank = True) #제휴혜택 시작 날짜
+    end_date = models.DateField(null = True, blank = True) #제휴혜택 종료 날짜
     category_univ = models.CharField(max_length = 50, null = False, blank = False) #단과대학 카테고리
     category_type = models.CharField(max_length = 50, null = False, blank = False) #식당, 주점, 의료 ...카테고리
     body = models.TextField() #게시물 내용
