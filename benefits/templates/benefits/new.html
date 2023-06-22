@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<form action="{%url 'benefits:create'%}" method="POST" enctype="multipart/form-data">
+    {%csrf_token%}
+    <p>제목 : <input type="text" name="title"></p>
+    <p>게시판을 선택해주세요: 
+        <select name="category_univ">
+            <option value = "경영대학">경영대학</option>
+            <option value = "예술대학">예술대학</option>
+            <option value = "사회과학대학">사회과학대학</option>
+            <option value = "AI융합대학">AI융합대학</option>
+            <option value = "공과대학">공과대학</option>
+            <option value = "불교대학">불교대학</option>
+            <option value = "미래융합대학">미래융합대학</option>
+            <option value = "이과대학">이과대학</option>
+            <option value = "문과대학">문과대학</option>
+            <option value = "경찰사법대학">경찰사법대학</option>
+            <option value = "사범대학">사범대학</option>
+            <option value = "법과대학">법과대학</option>
+        </select>
+        <select name="category_type">
+            <option value = "식당">식당</option>
+            <option value = "주점">주점</option>
+            <option value = "카페">카페</option>
+            <option value = "교육">교육</option>
+            <option value = "의료">의료</option>
+        </select>
+    </p>
+    <p>시작 날짜: <input type="date" name="start_date"></p>
+    <p>종료 날짜: <input type="date" name="end_date"></p>
+    <p>가게 운영 시간 : <input type = "time" name = "start_time"> ~ <input type = "time" name = "end_time"></p>
+    <p>주소 : <input type="text" name="address"></p>
+    <p>이미지: <input type="file" name="image"></p>
+    <p>내용 : <textarea type="text" name="body" id="" cols="30" rows="10"></textarea></p>
+    <button type="submit">제출</button>
+</form>
+
+{% endblock %}
+
+
