@@ -9,7 +9,7 @@
 <div class="root">
     <div class="intro">
         <div class="benefits">
-            <img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px">
+            <a href="{% url 'main:mainpage' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
             <div class="benefits_title">제휴혜택</div>
             <div class="benefits_banner">
                 <hr class="hr" color="#EC6130">
@@ -52,7 +52,7 @@
                 <div class="business">미래융합대학</div>
             </div>
             <div class="card">
-                <a href="{% url 'benefits:business' %}"><img src="{% static 'images/choose/practiceLogo.png' %}" width="50px" height="50px"></a>
+                <a href="{% url 'benefits:science' %}"><img src="{% static 'images/choose/practiceLogo.png' %}" width="50px" height="50px"></a>
                 <div class="business">이과대학</div>
             </div>
         </div>

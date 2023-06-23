@@ -80,6 +80,32 @@ body {
   color: #ec6130;
 }
 
+.total-benefit-content-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 게시물 작성 버튼 */
+.total-benefit-content__writingButton {
+  align-items: center;
+  height: 30px;
+  width: 90px;
+  margin-right: 60px;
+
+  font-family: "HancomMalangMalang";
+  font-weight: weight;
+  font-size: 12px;
+  border-radius: 10px;
+  background-color: #FF8F0B;
+  color: white;
+  border: none;
+  line-height: 20px; 
+}
+
+.pencil {
+  padding: 0px 3px 0px 0px;
+}
+
 .total-benefit-content__item__slide {
   position: relative;
   margin-top: 20px;

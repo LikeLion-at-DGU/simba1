@@ -13,7 +13,31 @@
 {% endif %}
 
 <div class="item">
-    <img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px">
+    {% if benefit.category_univ == "경영대학" %}
+    <a href="{% url 'benefits:business' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+    {% elif benefit.category_univ == "예술대학" %}
+    <a href="{% url 'benefits:art' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+    {% elif benefit.category_univ == "사회과학대학" %}
+    <a href="{% url 'benefits:social' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+    {% elif benefit.category_univ == "AI융합대학" %}
+    <a href="{% url 'benefits:ai' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+    {% elif benefit.category_univ == "공과대학" %}
+    <a href="{% url 'benefits:engineering' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+    {% elif benefit.category_univ == "불교대학" %}
+    <a href="{% url 'benefits:buddhism' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+    {% elif benefit.category_univ == "미래융합대학" %}
+    <a href="{% url 'benefits:future' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+    {% elif benefit.category_univ == "이과대학" %}
+    <a href="{% url 'benefits:science' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+    {% elif benefit.category_univ == "문과대학" %}
+    <a href="{% url 'benefits:liberal' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+    {% elif benefit.category_univ == "경찰사법대학" %}
+    <a href="{% url 'benefits:police' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+    {% elif benefit.category_univ == "사범대학" %}
+    <a href="{% url 'benefits:education' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+    {% elif benefit.category_univ == "법과대학" %}
+    <a href="{% url 'benefits:law' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+    {% endif %}
 </div>
 
 <div class="item">
@@ -43,12 +67,30 @@
         </div>
 
         <div class="card-main">
-            <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
+            <div class="time">
+                {% if benefit.start_time and benefit.end_time %}
+                    {{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}
+                {% elif benefit.start_time %}
+                    {{benefit.start_time|time:"H:i"}}~
+                {% elif benefit.end_time %}
+                    ~{{benefit.end_time|time:"H:i"}}
+                {% endif %}
+            </div>
             <div class="address">{{benefit.address}}</div>
             <div class="benefit">{{benefit.body}}</div>
             <div class="dates">
                 <img src="{% static 'images/card/date.png' %}" height="10px" width="11px">
-                <div class="date">{{benefit.start_date}}~{{benefit.end_date}}</div>
+                <div class="date">
+                    {% if benefit.start_date and benefit.end_date %}
+                        {{benefit.start_date|date:'Y.m.d'}}~{{benefit.end_date|date:'Y.m.d'}}
+                    {% elif benefit.start_date %}
+                        {{benefit.start_date|date:'Y.m.d'}}부터
+                    {% elif benefit.end_date %}
+                        {{benefit.end_date|date:'Y.m.d'}}까지
+                    {% else %}
+                        상시적용
+                    {% endif %}
+                </div>
             </div>
         </div>
         <hr class="comment-hr">

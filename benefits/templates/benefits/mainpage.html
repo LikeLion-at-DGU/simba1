@@ -10,27 +10,95 @@
     <div class="root">
         <!--단과대학 선택 페이지 이동 버튼-->
         <div class="move-selectpage-button">
-            <i class="fas fa-chevron-left" style="color: #404040;"></i>
+            <a href="{% url 'benefits:choose' %}"><i class="fas fa-chevron-left" style="color: #404040;"></i></a>
         </div>
 
         <!--oo대학 제휴혜택-->
         <div class="title">
-            {{category_univ}} 제휴혜택
+            {{univ}} 제휴혜택
         </div>
 
         <!--oo대학 제휴혜택 페이지 소개-->
         <div class="introduce">
-            {{category_univ}} 제휴혜택 페이지입니다.
+            {{univ}} 제휴혜택 페이지입니다.
         </div>
 
         <div class="line"></div>
 
         <div class="menu">
-            <li><a href="">식당</a></li>
-            <li><a href="">주점</a></li>
-            <li><a href="">카페</a></li>
-            <li><a href="">교육</a></li>
-            <li><a href="">의료</a></li>
+            {% if univ == "경영대학" %}
+                <li><a href="{% url 'benefits:business_restaurant' %}">식당</a></li>
+                <li><a href="{% url 'benefits:business_pub' %}">주점</a></li>
+                <li><a href="{% url 'benefits:business_cafe' %}">카페</a></li>
+                <li><a href="{% url 'benefits:business_education' %}">교육</a></li>
+                <li><a href="{% url 'benefits:business_medical' %}">의료</a></li>
+            {% elif univ == "예술대학" %}
+                <li><a href="{% url 'benefits:art_restaurant' %}">식당</a></li>
+                <li><a href="{% url 'benefits:art_pub' %}">주점</a></li>
+                <li><a href="{% url 'benefits:art_cafe' %}">카페</a></li>
+                <li><a href="{% url 'benefits:art_education' %}">교육</a></li>
+                <li><a href="{% url 'benefits:art_medical' %}">의료</a></li>
+            {% elif univ == "사회과학대학" %}
+                <li><a href="{% url 'benefits:social_restaurant' %}">식당</a></li>
+                <li><a href="{% url 'benefits:social_pub' %}">주점</a></li>
+                <li><a href="{% url 'benefits:social_cafe' %}">카페</a></li>
+                <li><a href="{% url 'benefits:social_education' %}">교육</a></li>
+                <li><a href="{% url 'benefits:social_medical' %}">의료</a></li>
+            {% elif univ == "AI융합대학" %}
+                <li><a href="{% url 'benefits:ai_restaurant' %}">식당</a></li>
+                <li><a href="{% url 'benefits:ai_pub' %}">주점</a></li>
+                <li><a href="{% url 'benefits:ai_cafe' %}">카페</a></li>
+                <li><a href="{% url 'benefits:ai_education' %}">교육</a></li>
+                <li><a href="{% url 'benefits:ai_medical' %}">의료</a></li>
+            {% elif univ == "공과대학" %}
+                <li><a href="{% url 'benefits:engineering_restaurant' %}">식당</a></li>
+                <li><a href="{% url 'benefits:engineering_pub' %}">주점</a></li>
+                <li><a href="{% url 'benefits:engineering_cafe' %}">카페</a></li>
+                <li><a href="{% url 'benefits:engineering_education' %}">교육</a></li>
+                <li><a href="{% url 'benefits:engineering_medical' %}">의료</a></li>
+            {% elif univ == "불교대학" %}
+                <li><a href="{% url 'benefits:buddhism_restaurant' %}">식당</a></li>
+                <li><a href="{% url 'benefits:buddhism_pub' %}">주점</a></li>
+                <li><a href="{% url 'benefits:buddhism_cafe' %}">카페</a></li>
+                <li><a href="{% url 'benefits:buddhism_education' %}">교육</a></li>
+                <li><a href="{% url 'benefits:buddhism_medical' %}">의료</a></li>
+            {% elif univ == "미래융합대학" %}
+                <li><a href="{% url 'benefits:future_restaurant' %}">식당</a></li>
+                <li><a href="{% url 'benefits:future_pub' %}">주점</a></li>
+                <li><a href="{% url 'benefits:future_cafe' %}">카페</a></li>
+                <li><a href="{% url 'benefits:future_education' %}">교육</a></li>
+                <li><a href="{% url 'benefits:future_medical' %}">의료</a></li>
+            {% elif univ == "이과대학" %}
+                <li><a href="{% url 'benefits:science_restaurant' %}">식당</a></li>
+                <li><a href="{% url 'benefits:science_pub' %}">주점</a></li>
+                <li><a href="{% url 'benefits:science_cafe' %}">카페</a></li>
+                <li><a href="{% url 'benefits:science_education' %}">교육</a></li>
+                <li><a href="{% url 'benefits:science_medical' %}">의료</a></li>
+            {% elif univ == "문과대학" %}
+                <li><a href="{% url 'benefits:liberal_restaurant' %}">식당</a></li>
+                <li><a href="{% url 'benefits:liberal_pub' %}">주점</a></li>
+                <li><a href="{% url 'benefits:liberal_cafe' %}">카페</a></li>
+                <li><a href="{% url 'benefits:liberal_education' %}">교육</a></li>
+                <li><a href="{% url 'benefits:liberal_medical' %}">의료</a></li>
+            {% elif univ == "경찰사법대학" %}
+                <li><a href="{% url 'benefits:police_restaurant' %}">식당</a></li>
+                <li><a href="{% url 'benefits:police_pub' %}">주점</a></li>
+                <li><a href="{% url 'benefits:police_cafe' %}">카페</a></li>
+                <li><a href="{% url 'benefits:police_education' %}">교육</a></li>
+                <li><a href="{% url 'benefits:police_medical' %}">의료</a></li>
+            {% elif univ == "사범대학" %}
+                <li><a href="{% url 'benefits:education_restaurant' %}">식당</a></li>
+                <li><a href="{% url 'benefits:education_pub' %}">주점</a></li>
+                <li><a href="{% url 'benefits:education_cafe' %}">카페</a></li>
+                <li><a href="{% url 'benefits:education_education' %}">교육</a></li>
+                <li><a href="{% url 'benefits:education_medical' %}">의료</a></li>
+            {% elif univ == "법과대학" %}
+                <li><a href="{% url 'benefits:law_restaurant' %}">식당</a></li>
+                <li><a href="{% url 'benefits:law_pub' %}">주점</a></li>
+                <li><a href="{% url 'benefits:law_cafe' %}">카페</a></li>
+                <li><a href="{% url 'benefits:law_education' %}">교육</a></li>
+                <li><a href="{% url 'benefits:law_medical' %}">의료</a></li>
+            {% endif %}
         </div>
         
         <div class="content">
@@ -57,7 +125,15 @@
                             <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
                         </div>
                         {% endif %}
-                        <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
+                        <div class="time">
+                            {% if benefit.start_time and benefit.end_time %}
+                                {{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}
+                            {% elif benefit.start_time %}
+                                {{benefit.start_time|time:"H:i"}}-
+                            {% elif benefit.end_time %}
+                                ~{{benefit.end_time|time:"H:i"}}
+                            {% endif %}
+                        </div>
                         <div class="benefit">{{benefit.body}}</div>
                     </div>
                 {% endfor %}
