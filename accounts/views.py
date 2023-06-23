@@ -53,16 +53,20 @@ def signup_completed(request):
     return render(request, 'accounts/sign-up-completed.html')
 
 # 유저 회원가입 시 이미지 인증
-def image_verification(request, id):
-    user = get_object_or_404(CustomUser, pk = id)
-    if request.method == 'POST':
+def image_verification(request, user_id):
+    user = get_object_or_404(CustomUser, pk = user_id)
+    if user.image:
+        return render(request, 'accounts/no_auth.html')
+    elif request.method == 'POST':
         user.image = request.FILES.get('image_verification')
         if user.image:
             user.save()
             return redirect('accounts:signup_completed')
         else:
             return redirect('accounts:image_verification', user.id) #이미지 없으면 다시 이미지 인증 페이지로 넘어감.
-    return render(request, 'accounts/verification.html', {'user':user})
+    return render(request, 'accounts/verification.html', {
+        'user' : user,
+        })
 
 # 어드민 페이지
 # 유저 승인
@@ -79,10 +83,10 @@ def approve_user(request, user_id):
 def delete_user(request, user_id):
     if request.user.is_superuser:
         user = CustomUser.objects.get(id=user_id)
-        blogs = Benefit.objects.filter(benefit_like=user)
-        for blog in blogs: #이게 유저 삭제 시 좋아요 개수도 줄어들게 하는 건데 왜 안되는 지 모르겠뜸.
-            blog.benefit_like.remove(user)
-            blog.benefit_like_count -=1
+        posts = Benefit.objects.filter(benefit_like=user)
+        for post in posts: #이게 유저 삭제 시 좋아요 개수도 줄어들게 하는 건데 왜 안되는 지 모르겠뜸.
+            post.benefit_like.remove(user)
+            post.benefit_like_count -=1
         user.image.delete() #유저 삭제시 인증할 때 받은 사진도 같이 삭제
         user.delete() #유저 삭제
         return redirect('adminpage:user_admin')
