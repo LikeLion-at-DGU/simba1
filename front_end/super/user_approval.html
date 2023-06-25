@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Approval</title>
+
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="./user_approval.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+
+</head>
+
+<body>
+
+    <div class="root">
+        <nav class="navbar">
+
+            <div class="navbar__logo">
+                <img src="../image/logo.png">
+            </div>
+
+            <ul class="navbar__menu">
+                <li><a href="#">제휴혜택</a></li>
+                <li><a href="#">학생복지</a></li>
+                <li><a href="#"><i class="fas fa-user-circle" style="color: #814e01;"></i></a></li>
+            </ul>
+        </nav>
+
+        <div class="content_wrap">
+
+            <div class="top">
+                <!--이전 페이지 이동 버튼-->
+                <a href="#">
+                    <div class="top_move-selectpage-button">
+                        <i class="fas fa-chevron-left" style="color: #404040;"></i>
+                    </div>
+                </a>
+                <div class="top_title">유저 승인</div>
+            </div>
+
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>이름</td>
+                        <td>아이디</td>
+                        <td>이미지</td>
+                        <td>유저 승인</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!--데이터 추가-->
+                    <tr>
+                        <td>곽호은</td>
+                        <td>2020202020</td>
+                        <td>
+                            <button class="image-button">이미지 파일
+                            </button>
+                            <div class="modal">
+                                <div class="modal_content">
+                                    <div class="modal_content_title">이미지 파일</div>
+                                    <img class="modal_content_close" src="../image/close_button.png"></img>
+                                    <img class="modal_content_img" src="../image/approval_img.png" alt="approval_img">
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <button class="approval">승인</button>
+                            <div class="approval_modal">
+                                <div class="approval_modal_content">
+                                    <div class="modal_content_title">메시지</div>
+                                    <img class="modal_content_close" src="../image/close_button.png"></img>
+                                    <div class="approval_modal_content_line"></div>
+                                    <img class="approval_modal_content_img" src="../image/approval.png"
+                                        alt="approval_img">
+                                    <div class="approval_modal_content_message">관리자 승인이 확인되었습니다.</div>
+
+                                </div>
+                            </div>
+                            <button class="refusal">거절</button>
+                            <div class="refusal_modal">
+                                <div class="refusal_modal_content">
+                                    <div class="modal_content_title">메시지</div>
+                                    <img class="modal_content_close" src="../image/close_button.png"></img>
+                                    <div class="refusal_modal_content_line"></div>
+                                    <img class="refusal_modal_content_img" src="../image/refusal.png"
+                                        alt="refusal_img">
+                                    <div class="refusal_modal_content_message">관리자 승인이 거절되었습니다.</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <!--두번째 데이터-->
+                    <tr>
+                        <td>윤혜정</td>
+                        <td>2121212121</td>
+                        <td>
+                            <button class="image-button">이미지 파일
+                            </button>
+                            <div class="modal">
+                                <div class="modal_content">
+                                    <div class="modal_content_title">이미지 파일</div>
+                                    <img class="modal_content_close" src="../image/close_button.png"></img>
+                                    <img class="modal_content_img" src="../image/approval_img.png" alt="approval_img">
+
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <button class="approval">승인</button>
+                            <div class="approval_modal">
+                                <div class="approval_modal_content">
+                                    <div class="modal_content_title">메시지</div>
+                                    <img class="modal_content_close" src="../image/close_button.png"></img>
+                                    <div class="approval_modal_content_line"></div>
+                                    <img class="approval_modal_content_img" src="../image/approval.png"
+                                        alt="approval_img">
+                                    <div class="approval_modal_content_message">관리자 승인이 확인되었습니다.</div>
+
+                                </div>
+                            </div>
+                            <button class="refusal">거절</button>
+                            <div class="refusal_modal">
+                                <div class="refusal_modal_content">
+                                    <div class="modal_content_title">메시지</div>
+                                    <img class="modal_content_close" src="../image/close_button.png"></img>
+                                    <div class="refusal_modal_content_line"></div>
+                                    <img class="refusal_modal_content_img" src="../image/refusal.png"
+                                        alt="approval_img">
+                                    <div class="refusal_modal_content_message">관리자 승인이 거절되었습니다.</div>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+
+
+                    <!--세번째 데이터-->
+                    <tr>
+                        <td>이유진</td>
+                        <td>2222222222</td>
+                        <td>
+                            <button class="image-button">이미지 파일
+                            </button>
+                            <div class="modal">
+                                <div class="modal_content">
+                                    <div class="modal_content_title">이미지 파일</div>
+                                    <img class="modal_content_close" src="../image/close_button.png"></img>
+                                    <img class="modal_content_img" src="../image/approval_img.png" alt="approval_img">
+
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <button class="approval">승인</button>
+                            <div class="approval_modal">
+                                <div class="approval_modal_content">
+                                    <div class="modal_content_title">메시지</div>
+                                    <img class="modal_content_close" src="../image/close_button.png"></img>
+                                    <div class="approval_modal_content_line"></div>
+                                    <img class="approval_modal_content_img" src="../image/approval.png"
+                                        alt="approval_img">
+                                    <div class="approval_modal_content_message">관리자 승인이 확인되었습니다.</div>
+
+                                </div>
+                            </div>
+                            <button class="refusal">거절</button>
+                            <div class="refusal_modal">
+                                <div class="refusal_modal_content">
+                                    <div class="modal_content_title">메시지</div>
+                                    <img class="modal_content_close" src="../image/close_button.png"></img>
+                                    <div class="refusal_modal_content_line"></div>
+                                    <img class="refusal_modal_content_img" src="../image/refusal.png"
+                                        alt="approval_img">
+                                    <div class="refusal_modal_content_message">관리자 승인이 거절되었습니다.</div>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+
+
+                    <!--네번째 데이터-->
+                    <tr>
+                        <td>정세윤</td>
+                        <td>2323232323</td>
+                        <td>
+                            <button class="image-button">이미지 파일</button>
+
+                            <div class="modal">
+                                <div class="modal_content">
+                                    <div class="modal_content_title">이미지 파일</div>
+                                    <img class="modal_content_close" src="../image/close_button.png"></img>
+                                    <img class="modal_content_img" src="../image/approval_img.png" alt="approval_img">
+
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <button class="approval">승인</button>
+                            <div class="approval_modal">
+                                <div class="approval_modal_content">
+                                    <div class="modal_content_title">메시지</div>
+                                    <img class="modal_content_close" src="../image/close_button.png"></img>
+                                    <div class="approval_modal_content_line"></div>
+                                    <img class="approval_modal_content_img" src="../image/approval.png"
+                                        alt="approval_img">
+                                    <div class="approval_modal_content_message">관리자 승인이 확인되었습니다.</div>
+
+                                </div>
+                            </div>
+                            <button class="refusal">거절</button>
+                            <div class="refusal_modal">
+                                <div class="refusal_modal_content">
+                                    <div class="modal_content_title">메시지</div>
+                                    <img class="modal_content_close" src="../image/close_button.png"></img>
+                                    <div class="refusal_modal_content_line"></div>
+                                    <img class="refusal_modal_content_img" src="../image/refusal.png"
+                                        alt="approval_img">
+                                    <div class="refusal_modal_content_message">관리자 승인이 거절되었습니다.</div>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+
+
+                    <!--다섯번째 데이터-->
+                    <tr>
+                        <td>김민준</td>
+                        <td>2525252525</td>
+                        <td>
+                            <button class="image-button">이미지 파일
+                            </button>
+                            <div class="modal">
+                                <div class="modal_content">
+                                    <div class="modal_content_title">이미지 파일</div>
+                                    <img class="modal_content_close" src="../image/close_button.png"></img>
+                                    <img class="modal_content_img" src="../image/approval_img.png" alt="approval_img">
+
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <button class="approval">승인</button>
+                            <div class="approval_modal">
+                                <div class="approval_modal_content">
+                                    <div class="modal_content_title">메시지</div>
+                                    <img class="modal_content_close" src="../image/close_button.png"></img>
+                                    <div class="approval_modal_content_line"></div>
+                                    <img class="approval_modal_content_img" src="../image/approval.png"
+                                        alt="approval_img">
+                                    <div class="approval_modal_content_message">관리자 승인이 확인되었습니다.</div>
+
+                                </div>
+                            </div>
+                            <button class="refusal">거절</button>
+                            <div class="refusal_modal">
+                                <div class="modal_content_title">메시지</div>
+                                <img class="modal_content_close" src="../image/close_button.png"></img>
+                                <div class="refusal_modal_content_line"></div>
+                                <img class="refusal_modal_content_img" src="../image/refusal.png" alt="approval_img">
+                                <div class="refusal_modal_content_message">관리자 승인이 거절되었습니다.</div>
+
+                            </div>
+        </div>
+        </td>
+        </tr>
+        </tbody>
+
+        </table>
+
+
+
+        <!-- footer -->
+        <footer>
+            동국대학교 멋쟁이사자처럼 심바톤 1조<br>
+            @ likelion_dongguk<br>
+            ⓒ DGU Likelion. All rights reserved.
+        </footer>
+
+    </div>
+    <script src="./user_approval.js"></script>
+</body>
+
+</html>
