@@ -8,6 +8,8 @@ urlpatterns = [
     path('create/', create, name="create"),
     path('delete/<int:id>', delete, name="delete"),
     path('<int:id>', detail, name="detail"),
-    path('welfare_likes/<int:welfare_id>', mainpage_likes, name="mainpage_likes"),
+    path('mainpage_likes/<int:welfare_id>', mainpage_likes, name="mainpage_likes"),
     path('likes/<int:welfare_id>', detail_likes, name="detail_likes"),
+    path('<int:id>', detail, name="detail"),
+    path('review/<int:welfare_id>', review, name="review"),
 ]

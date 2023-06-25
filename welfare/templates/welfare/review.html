@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/review.css' %}">
+<div class="root">
+    <div class="gray-box"></div>
+    <div class="item">
+        <img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px">
+    </div>
+
+    <div class="item">
+        <form action="{% url 'welfare:review' welfare.id %}" method="POST" enctype="multipart/form-data">
+            {%csrf_token%}
+        <div class="review-box">
+            <div class="question"><span class="store-name">{{welfare.title}}</span>는<br>어떠셨나요?</div>
+                <input type="text" class="input-comment" placeholder="코멘트를 남겨주세요." name="content">
+                <div class="buttons">
+                    <button type="submit" class="submit">등록</button>
+                </div>
+        </div>
+        </form>
+    </div>
+
+        <div class="item">
+            <div class="card">
+                {% if welfare.image %}
+                <div  class="card-img">
+                    <img class="store-img" src="{{welfare.image.url}}">
+                </div>
+                {% endif %}
+                
+                <div class="card-head">
+                    <div class="head-content">
+                        <div class="store-title">{{welfare.title}}</div>
+                        <hr class="title_hr">
+                        <img src="{% static 'images/card/pen.png' %}" height="13px" width="13px">
+                        <div class="grades"><a href="{% url 'welfare:review' welfare.id %}">평가하기/코멘트</a></div>
+                    </div>
+                    {% if user in welfare.welfare_like.all %}
+                        <a href=""><img class="heart" src="{% static 'images/card/heart.png' %}" height="21px" width="23px"></a>
+                    {% else %}
+                        <a href=""><img class="heart" src="{% static 'images/card/heart.png' %}" height="21px" width="23px"></a>
+                    {% endif %}
+                </div>
+        
+                <div class="card-main">
+                    <div class="time">08:00-21:00</div>
+                    <div class="address">서울특별시 중구 동호로24길 7</div>
+                    <div class="welfare">{{welfare.body}}</div>
+                    <div class="dates">
+                        <img src="{% static 'images/card/date.png' %}" height="10px" width="11px">
+                        <div class="date">{{welfare.start_date.date}}~{{welfare.due_date.date}}</div>
+                    </div>
+                </div>
+                <hr class="comment-hr">
+        
+                <div class="card-comment">
+                    <div class="comment-count">코멘트 {{comments_count}}</div>
+                    {% for comment in comments %}
+                    <div class="comment">
+                        <div class="users">
+                            <img src="{% static 'images/card/user.png' %}" height="15px" width="15px">
+                            <div class="nickname">{{comment.writer}}</div>
+                            <img src="{% static 'images/card/star.png' %}" height="12px" width="11px">
+                            <div class="grade">{{comment.welfare_rate}}</div>
+                            <a href="">삭제하기</a>
+                        </div>
+                        <div class="likes">
+                            <img src="{% static 'images/card/like.png' %}" height="13px" width="13px">
+                            <div class="like">{{comment.comment_like_count}}</div>
+                        </div>
+                    </div>
+        
+                    <div class="content">{{comment.content}}</div>
+                    <div class="comment-date">{{comment.pub_date}}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="margin"></div>
+    </div>
+
+{% endblock %}
