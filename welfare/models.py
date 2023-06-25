@@ -25,3 +25,12 @@ class Welfare(models.Model):
     
     def summary(self):
         return self.body[:20]
+    
+# 댓글 모델 작성
+class WComment(models.Model):
+    welfare = models.ForeignKey(Welfare, on_delete = models.CASCADE, blank = False, null = False)
+    content = models.TextField() # 댓글 내용
+    pub_date = models.DateTimeField() # 댓글 작성 날짜
+    writer = models.ForeignKey(CustomUser, on_delete = models.CASCADE, blank = False, null = False)
+    comment_like = models.ManyToManyField(CustomUser, related_name = 'Welfarecomment_likes', blank = True)
+    comment_like_count = models.IntegerField(default = 0)
