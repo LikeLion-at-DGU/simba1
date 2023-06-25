@@ -1,0 +1,124 @@
+* {
+    font-family: 'HancomMalangMalang';
+    font-weight: normal;
+}
+
+body {
+    background: #fcfaf7;
+    margin: 0;
+}
+
+.root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    color: #814E01;
+}
+
+/* nav바 */
+.navbar__menu li:nth-child(1) {
+    padding: 0;
+}
+
+.navbar__menu li:nth-child(2) a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 74px;
+    height: 30px;
+    background: rgba(255, 143, 11, 0.5);
+    border-radius: 50px;
+}
+
+/* 뒤로가기 */
+.vectors {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px 0px 0px 47px;
+}
+
+.vector {
+    width: 10px;
+    height: 15px;
+    padding-top: 30px;
+    display: flex;
+    align-items: flex-start;
+}
+
+/* profile */
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-image {
+    width: 50px;
+    height: 50px;
+    padding-top: 30px;
+}
+
+.profile-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 0px 10px 0px;
+}
+
+.profile-hr {
+    background: #CCC9C9;
+    border: 0;
+    height: 1px;
+    width: 250px;
+}
+
+/* content */
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0px 0px 0px;
+    width: 100%;
+}
+
+/* 스크랩 */
+.profile-content-scrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 20px;
+}
+.profile-content-scrap-image {
+    width: 23px;
+    height: 20px;
+    padding-right: 20px;
+}
+
+.profile-content-scrap-title{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* 게시물 작성 관리 */
+.profile-content-postManagment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.profile-content-postManagement-image {
+    width: 20px;
+    height: 20px;
+    padding-right: 20px;
+}
+
+.profile-content-postManagement-title {
+    font-size: 15px;
+    font-weight: bold;
+}
