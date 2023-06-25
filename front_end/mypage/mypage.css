@@ -78,7 +78,7 @@ body {
 .profile-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     padding: 20px 0px 0px 0px;
     width: 100%;
 }
@@ -88,9 +88,9 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
-    padding-bottom: 20px;
+    padding: 0px 0px 20px 120px;
 }
 .profile-content-scrap-image {
     width: 23px;
@@ -108,8 +108,9 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
+    padding: 0px 0px 20px 120px;
 }
 
 .profile-content-postManagement-image {
