@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block content %}
-
+<script defer src="{% static 'js/star.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/card.css' %}">
 <link rel="stylesheet" href="{% static 'css/review.css' %}">
 <div class="root">
     <div class="gray-box"></div>
@@ -11,18 +12,17 @@
     </div>
 
     <div class="item">
-        <form action="{% url 'benefits:edit_comment' comment.id %}" method="POST" enctype="multipart/form-data">
+        <form action="{% url 'benefits:review' benefit.id %}" method="POST" enctype="multipart/form-data">
             {%csrf_token%}
         <div class="review-box">
             <div class="question"><span class="store-name">{{benefit.title}}</span>는<br>어떠셨나요?</div>
-            <input type="number" name="benefit_rate" value="{{comment.benefit_rate}}">
             <div class="evaluation">
-                <div class="stars">
-                    <img src="{% static 'images/review/star.png' %}">
-                    <img src="{% static 'images/review/star.png' %}">
-                    <img src="{% static 'images/review/star.png' %}">
-                    <img src="{% static 'images/review/star.png' %}">
-                    <img src="{% static 'images/review/star.png' %}">
+                <div class="rating_box">
+                    <div class="rating">
+                    ★★★★★
+                    <span class="rating_star">★★★★★</span>
+                    <input type="range" value="1" step="1" min="0" max="5" name="benefit_rate">
+                    </div>
                 </div>
                 <img class="refresh" src="{% static 'images/review/refresh.png' %}" height="17px" width="20px">
             </div>
@@ -34,9 +34,6 @@
                     <!-- <input type="number" name="benefit_rate"> -->
         </div>
         </form>
-    </div>
-
-        <div class="item">
             <div class="card">
                 {% if benefit.image %}
                 <div  class="card-img">
@@ -63,12 +60,28 @@
                 </div>
         
                 <div class="card-main">
-                    <div class="time">08:00-21:00</div>
-                    <div class="address">서울특별시 중구 동호로24길 7</div>
+                    <div class="time">
+                        {% if benefit.start_time and benefit.end_time %}
+                            {{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}
+                        {% elif benefit.start_time %}
+                            {{benefit.start_time|time:"H:i"}}~
+                        {% elif benefit.end_time %}
+                            ~{{benefit.end_time|time:"H:i"}}
+                        {% endif %}
+                    </div>
+                    <div class="address">{{benefit.address}}</div>
                     <div class="benefit">{{benefit.body}}</div>
                     <div class="dates">
                         <img src="{% static 'images/card/date.png' %}" height="10px" width="11px">
-                        <div class="date">{{benefit.start_date.date}}~{{benefit.due_date.date}}</div>
+                            {% if benefit.start_date and benefit.end_date %}
+                                {{benefit.start_date|date:'Y.m.d'}}~{{benefit.end_date|date:'Y.m.d'}}
+                            {% elif benefit.start_date %}
+                                {{benefit.start_date|date:'Y.m.d'}}부터
+                            {% elif benefit.end_date %}
+                                {{benefit.end_date|date:'Y.m.d'}}까지
+                            {% else %}
+                                상시적용
+                            {% endif %}
                     </div>
                 </div>
                 <hr class="comment-hr">
@@ -95,8 +108,14 @@
                     {% endfor %}
                 </div>
             </div>
+            <div class="margin"></div>
         </div>
-        <div class="margin"></div>
-    </div>
+        
+    <footer>
+        동국대학교 멋쟁이사자처럼 심바톤 1조<br>
+        @ likelion_dongguk<br>
+        ⓒ DGU Likelion. All rights reserved.
+    </footer>
+        </div>
 
 {% endblock %}

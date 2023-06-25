@@ -80,12 +80,12 @@
 
 .title_hr {
     width: 20px;
-    transform:rotate(90deg);
+    transform: rotate(90deg);
     background: #CCC9C9;
     border: 0;
     height: 1px;
-    position: relative; 
-    top: 4px; 
+    position: relative;
+    top: 4px;
 }
 
 .store-title {
@@ -132,9 +132,10 @@
 .comment-hr {
     background: #CCC9C9;
     border: 0;
-    width: 320px; 
+    width: 320px;
     height: 1px;
 }
+
 /* card comment */
 
 .card-comment {
@@ -238,7 +239,7 @@
 }
 
 .store-name {
-    color:#FF8F0B;
+    color: #FF8F0B;
     font-size: 18px;
 }
 
@@ -257,6 +258,8 @@
 .evaluation {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     padding-top: 10px;
 }
 
@@ -267,7 +270,7 @@
     margin-top: 10px;
     background-color: #D9D9D9;
     opacity: 50%;
-    height: 150px; 
+    height: 150px;
     width: 235px;
     border: 0px;
     border-radius: 10%;
@@ -297,4 +300,36 @@
 
 .buttons {
     padding: 20px 0px 0px 150px;
+}
+
+/* 별점 구현 */
+.rating_box {
+    display: flex;
+}
+
+.rating {
+    position: relative;
+    color: #ddd;
+    font-size: 30px;
+    text-align: center;
+}
+
+.rating input {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.rating_star {
+    width: 0;
+    color: #ffc107;
+    position: absolute;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    pointer-events: none;
 }
