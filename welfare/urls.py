@@ -3,6 +3,9 @@ from .views import *
 
 app_name = "welfare"
 urlpatterns = [
+    path('choose/', choose, name="choose"),
+    path('business/', business, name="business"),
+    path('art/', art, name="art"),
     path('mainpage/', mainpage, name="mainpage"),
     path('new/', new, name="new"),
     path('create/', create, name="create"),
