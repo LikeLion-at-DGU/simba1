@@ -7,7 +7,7 @@
 
     <ul class="navbar__menu">
         <li><a href="{% url 'benefits:choose' %}">제휴혜택</a></li>
-        <li><a href="{% url 'welfare:mainpage' %}">학생복지</a></li>
+        <li><a href="{% url 'welfare:choose' %}">학생복지</a></li>
         {% if user.is_authenticated %}
             {% if user.is_staff %}
                 {% if user.profile.univ == "경영대학" %}
