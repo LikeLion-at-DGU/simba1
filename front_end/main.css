@@ -6,6 +6,10 @@ body {
 .root {
   align-items: center;
   justify-content: center;
+  --swiper-theme-color: #FFA337;
+  --swiper-pagination-bottom: 8px;
+  --swiper-pagination-bullet-size: 5px;
+  --swiper-navigation-size: 25px;
 }
 
 
@@ -104,30 +108,6 @@ body {
 
 .pencil {
   padding: 0px 3px 0px 0px;
-}
-
-.total-benefit-content__item__slide {
-  position: relative;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  display: flex;
-  width: 390px;
-  height: 185px;
-  background: rgba(255, 218, 175, 0.5);
-}
-
-.arrow-left {
-  position: absolute;
-  width: 20px;
-  left: 3.57%;
-  top: 45.96%;
-}
-
-.arrow-right {
-  position: absolute;
-  width: 20px;
-  right: 3.57%;
-  top: 45.96%;
 }
 
 .total-benefit-content__item__slide__background1 {
@@ -229,16 +209,6 @@ body {
   top: 76px;
 }
 
-/* 두 번째 슬라이드는 배경색-하얀색 */
-.total-benefit-content__item:nth-child(2) .total-benefit-content__item__slide {
-  background: white;
-  margin-top: 5px;
-  margin-bottom: 20px;
-}
-
-.total-benefit-content__item:nth-child(2) .total-benefit-content__item__category {
-  margin-top: 20px;
-}
 
 
 /* 단과대학별 */
@@ -308,4 +278,40 @@ footer {
   font-family: 'NotoSansKR';
   background: rgba(255, 218, 175, 0.5);
   color: #404040;
+}
+
+/* 슬라이드 */
+
+.mySwiper {
+  margin-top: 20px;
+  background: rgba(255, 218, 175, 0.5); 
+}
+
+.mySwiper:nth-child(2){
+  margin-bottom: 20px;
+}
+
+.mySwiper:nth-child(4){
+  margin-top: 5px;
+  margin-bottom: 20px;
+  background: #FCFAF7;
+}
+
+swiper-container {
+  width: 390px;
+  height: 200px;
+}
+
+swiper-slide {
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
