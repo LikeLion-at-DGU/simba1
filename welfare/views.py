@@ -230,3 +230,421 @@ def art(request):
         'first_rows_end':first_rows_end,
         'second_rows_end':second_rows_end,
         })
+
+def social(request):
+    now = timezone.now() #현재 시간 받아옴
+    univ = "사회과학대학"
+    welfares_notend = Welfare.objects.filter(start_date__lte = now, end_date__gte = now, category_univ = "사회과학대학") | Welfare.objects.filter(end_date = None, category_univ = "사회과학대학") | Welfare.objects.filter(start_date = None, end_date__gte = now, category_univ = "사회과학대학").order_by(F('end_date').desc(nulls_last=True)) #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    welfares_end = Welfare.objects.filter(end_date__lt = now, category_univ = "사회과학대학") #기간이 지난 게시물들을 받아옴
+    
+    first_rows_notend = []
+    second_rows_notend = []
+    first_rows_end = []
+    second_rows_end = []
+    # 기간이 끝나지 않은 게시물
+    for index, welfare_notend in enumerate(welfares_notend):
+        if (index+1)%2 == 1:
+            first_rows_notend.append(welfare_notend) # 짝수이면, first_rows에 담아
+        else:
+            second_rows_notend.append(welfare_notend) # 홀수이면, second_rows에 담아
+    # 기간이 끝난 게시물
+    for index, welfare_end in enumerate(welfares_end):
+        # 만약 끝나지 않은 글 개수가 짝수면,
+        if len(welfares_notend)%2 == 0:
+            if (index+1)%2 == 1:
+                first_rows_end.append(welfare_end) # 짝수이면, first_rows에 담아
+            else:
+                second_rows_end.append(welfare_end) # 홀수이면, second_rows에 담아
+        # 만약 끝나지 않은 글 개수가 홀수면,
+        else:
+            if (index+1)%2 == 0:
+                first_rows_end.append(welfare_end)
+            else:
+                second_rows_end.append(welfare_end)
+
+    return render(request, 'welfare/mainpage.html', {
+        'univ' : univ,
+        'welfares_notend':welfares_notend,
+        'first_rows_notend':first_rows_notend,
+        'second_rows_notend':second_rows_notend,
+        'welfares_end':welfares_end,
+        'first_rows_end':first_rows_end,
+        'second_rows_end':second_rows_end,
+        })
+
+
+def ai(request):
+    now = timezone.now() #현재 시간 받아옴
+    univ = "AI융합대학"
+    welfares_notend = Welfare.objects.filter(start_date__lte = now, end_date__gte = now, category_univ = "AI융합대학") | Welfare.objects.filter(end_date = None, category_univ = "AI융합대학") | Welfare.objects.filter(start_date = None, end_date__gte = now, category_univ = "AI융합대학").order_by(F('end_date').desc(nulls_last=True)) #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    welfares_end = Welfare.objects.filter(end_date__lt = now, category_univ = "AI융합대학") #기간이 지난 게시물들을 받아옴
+    
+    first_rows_notend = []
+    second_rows_notend = []
+    first_rows_end = []
+    second_rows_end = []
+    # 기간이 끝나지 않은 게시물
+    for index, welfare_notend in enumerate(welfares_notend):
+        if (index+1)%2 == 1:
+            first_rows_notend.append(welfare_notend) # 짝수이면, first_rows에 담아
+        else:
+            second_rows_notend.append(welfare_notend) # 홀수이면, second_rows에 담아
+    # 기간이 끝난 게시물
+    for index, welfare_end in enumerate(welfares_end):
+        # 만약 끝나지 않은 글 개수가 짝수면,
+        if len(welfares_notend)%2 == 0:
+            if (index+1)%2 == 1:
+                first_rows_end.append(welfare_end) # 짝수이면, first_rows에 담아
+            else:
+                second_rows_end.append(welfare_end) # 홀수이면, second_rows에 담아
+        # 만약 끝나지 않은 글 개수가 홀수면,
+        else:
+            if (index+1)%2 == 0:
+                first_rows_end.append(welfare_end)
+            else:
+                second_rows_end.append(welfare_end)
+
+    return render(request, 'welfare/mainpage.html', {
+        'univ' : univ,
+        'welfares_notend':welfares_notend,
+        'first_rows_notend':first_rows_notend,
+        'second_rows_notend':second_rows_notend,
+        'welfares_end':welfares_end,
+        'first_rows_end':first_rows_end,
+        'second_rows_end':second_rows_end,
+        })
+
+
+def engineering(request):
+    now = timezone.now() #현재 시간 받아옴
+    univ = "공과대학"
+    welfares_notend = Welfare.objects.filter(start_date__lte = now, end_date__gte = now, category_univ = "공과대학") | Welfare.objects.filter(end_date = None, category_univ = "공과대학") | Welfare.objects.filter(start_date = None, end_date__gte = now, category_univ = "공과대학").order_by(F('end_date').desc(nulls_last=True)) #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    welfares_end = Welfare.objects.filter(end_date__lt = now, category_univ = "공과대학") #기간이 지난 게시물들을 받아옴
+    
+    first_rows_notend = []
+    second_rows_notend = []
+    first_rows_end = []
+    second_rows_end = []
+    # 기간이 끝나지 않은 게시물
+    for index, welfare_notend in enumerate(welfares_notend):
+        if (index+1)%2 == 1:
+            first_rows_notend.append(welfare_notend) # 짝수이면, first_rows에 담아
+        else:
+            second_rows_notend.append(welfare_notend) # 홀수이면, second_rows에 담아
+    # 기간이 끝난 게시물
+    for index, welfare_end in enumerate(welfares_end):
+        # 만약 끝나지 않은 글 개수가 짝수면,
+        if len(welfares_notend)%2 == 0:
+            if (index+1)%2 == 1:
+                first_rows_end.append(welfare_end) # 짝수이면, first_rows에 담아
+            else:
+                second_rows_end.append(welfare_end) # 홀수이면, second_rows에 담아
+        # 만약 끝나지 않은 글 개수가 홀수면,
+        else:
+            if (index+1)%2 == 0:
+                first_rows_end.append(welfare_end)
+            else:
+                second_rows_end.append(welfare_end)
+
+    return render(request, 'welfare/mainpage.html', {
+        'univ' : univ,
+        'welfares_notend':welfares_notend,
+        'first_rows_notend':first_rows_notend,
+        'second_rows_notend':second_rows_notend,
+        'welfares_end':welfares_end,
+        'first_rows_end':first_rows_end,
+        'second_rows_end':second_rows_end,
+        })
+
+def buddhism(request):
+    now = timezone.now() #현재 시간 받아옴
+    univ = "불교대학"
+    welfares_notend = Welfare.objects.filter(start_date__lte = now, end_date__gte = now, category_univ = "불교대학") | Welfare.objects.filter(end_date = None, category_univ = "불교대학") | Welfare.objects.filter(start_date = None, end_date__gte = now, category_univ = "불교대학").order_by(F('end_date').desc(nulls_last=True)) #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    welfares_end = Welfare.objects.filter(end_date__lt = now, category_univ = "불교대학") #기간이 지난 게시물들을 받아옴
+    
+    first_rows_notend = []
+    second_rows_notend = []
+    first_rows_end = []
+    second_rows_end = []
+    # 기간이 끝나지 않은 게시물
+    for index, welfare_notend in enumerate(welfares_notend):
+        if (index+1)%2 == 1:
+            first_rows_notend.append(welfare_notend) # 짝수이면, first_rows에 담아
+        else:
+            second_rows_notend.append(welfare_notend) # 홀수이면, second_rows에 담아
+    # 기간이 끝난 게시물
+    for index, welfare_end in enumerate(welfares_end):
+        # 만약 끝나지 않은 글 개수가 짝수면,
+        if len(welfares_notend)%2 == 0:
+            if (index+1)%2 == 1:
+                first_rows_end.append(welfare_end) # 짝수이면, first_rows에 담아
+            else:
+                second_rows_end.append(welfare_end) # 홀수이면, second_rows에 담아
+        # 만약 끝나지 않은 글 개수가 홀수면,
+        else:
+            if (index+1)%2 == 0:
+                first_rows_end.append(welfare_end)
+            else:
+                second_rows_end.append(welfare_end)
+
+    return render(request, 'welfare/mainpage.html', {
+        'univ' : univ,
+        'welfares_notend':welfares_notend,
+        'first_rows_notend':first_rows_notend,
+        'second_rows_notend':second_rows_notend,
+        'welfares_end':welfares_end,
+        'first_rows_end':first_rows_end,
+        'second_rows_end':second_rows_end,
+        })
+
+
+def future(request):
+    now = timezone.now() #현재 시간 받아옴
+    univ = "미래융합대학"
+    welfares_notend = Welfare.objects.filter(start_date__lte = now, end_date__gte = now, category_univ = "미래융합대학") | Welfare.objects.filter(end_date = None, category_univ = "미래융합대학") | Welfare.objects.filter(start_date = None, end_date__gte = now, category_univ = "미래융합대학").order_by(F('end_date').desc(nulls_last=True)) #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    welfares_end = Welfare.objects.filter(end_date__lt = now, category_univ = "미래융합대학") #기간이 지난 게시물들을 받아옴
+    
+    first_rows_notend = []
+    second_rows_notend = []
+    first_rows_end = []
+    second_rows_end = []
+    # 기간이 끝나지 않은 게시물
+    for index, welfare_notend in enumerate(welfares_notend):
+        if (index+1)%2 == 1:
+            first_rows_notend.append(welfare_notend) # 짝수이면, first_rows에 담아
+        else:
+            second_rows_notend.append(welfare_notend) # 홀수이면, second_rows에 담아
+    # 기간이 끝난 게시물
+    for index, welfare_end in enumerate(welfares_end):
+        # 만약 끝나지 않은 글 개수가 짝수면,
+        if len(welfares_notend)%2 == 0:
+            if (index+1)%2 == 1:
+                first_rows_end.append(welfare_end) # 짝수이면, first_rows에 담아
+            else:
+                second_rows_end.append(welfare_end) # 홀수이면, second_rows에 담아
+        # 만약 끝나지 않은 글 개수가 홀수면,
+        else:
+            if (index+1)%2 == 0:
+                first_rows_end.append(welfare_end)
+            else:
+                second_rows_end.append(welfare_end)
+
+    return render(request, 'welfare/mainpage.html', {
+        'univ' : univ,
+        'welfares_notend':welfares_notend,
+        'first_rows_notend':first_rows_notend,
+        'second_rows_notend':second_rows_notend,
+        'welfares_end':welfares_end,
+        'first_rows_end':first_rows_end,
+        'second_rows_end':second_rows_end,
+        })
+
+
+def science(request):
+    now = timezone.now() #현재 시간 받아옴
+    univ = "이과대학"
+    welfares_notend = Welfare.objects.filter(start_date__lte = now, end_date__gte = now, category_univ = "이과대학") | Welfare.objects.filter(end_date = None, category_univ = "이과대학") | Welfare.objects.filter(start_date = None, end_date__gte = now, category_univ = "이과대학").order_by(F('end_date').desc(nulls_last=True)) #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    welfares_end = Welfare.objects.filter(end_date__lt = now, category_univ = "이과대학") #기간이 지난 게시물들을 받아옴
+    
+    first_rows_notend = []
+    second_rows_notend = []
+    first_rows_end = []
+    second_rows_end = []
+    # 기간이 끝나지 않은 게시물
+    for index, welfare_notend in enumerate(welfares_notend):
+        if (index+1)%2 == 1:
+            first_rows_notend.append(welfare_notend) # 짝수이면, first_rows에 담아
+        else:
+            second_rows_notend.append(welfare_notend) # 홀수이면, second_rows에 담아
+    # 기간이 끝난 게시물
+    for index, welfare_end in enumerate(welfares_end):
+        # 만약 끝나지 않은 글 개수가 짝수면,
+        if len(welfares_notend)%2 == 0:
+            if (index+1)%2 == 1:
+                first_rows_end.append(welfare_end) # 짝수이면, first_rows에 담아
+            else:
+                second_rows_end.append(welfare_end) # 홀수이면, second_rows에 담아
+        # 만약 끝나지 않은 글 개수가 홀수면,
+        else:
+            if (index+1)%2 == 0:
+                first_rows_end.append(welfare_end)
+            else:
+                second_rows_end.append(welfare_end)
+
+    return render(request, 'welfare/mainpage.html', {
+        'univ' : univ,
+        'welfares_notend':welfares_notend,
+        'first_rows_notend':first_rows_notend,
+        'second_rows_notend':second_rows_notend,
+        'welfares_end':welfares_end,
+        'first_rows_end':first_rows_end,
+        'second_rows_end':second_rows_end,
+        })
+
+
+def liberal(request):
+    now = timezone.now() #현재 시간 받아옴
+    univ = "문과대학"
+    welfares_notend = Welfare.objects.filter(start_date__lte = now, end_date__gte = now, category_univ = "문과대학") | Welfare.objects.filter(end_date = None, category_univ = "문과대학") | Welfare.objects.filter(start_date = None, end_date__gte = now, category_univ = "문과대학").order_by(F('end_date').desc(nulls_last=True)) #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    welfares_end = Welfare.objects.filter(end_date__lt = now, category_univ = "문과대학") #기간이 지난 게시물들을 받아옴
+    
+    first_rows_notend = []
+    second_rows_notend = []
+    first_rows_end = []
+    second_rows_end = []
+    # 기간이 끝나지 않은 게시물
+    for index, welfare_notend in enumerate(welfares_notend):
+        if (index+1)%2 == 1:
+            first_rows_notend.append(welfare_notend) # 짝수이면, first_rows에 담아
+        else:
+            second_rows_notend.append(welfare_notend) # 홀수이면, second_rows에 담아
+    # 기간이 끝난 게시물
+    for index, welfare_end in enumerate(welfares_end):
+        # 만약 끝나지 않은 글 개수가 짝수면,
+        if len(welfares_notend)%2 == 0:
+            if (index+1)%2 == 1:
+                first_rows_end.append(welfare_end) # 짝수이면, first_rows에 담아
+            else:
+                second_rows_end.append(welfare_end) # 홀수이면, second_rows에 담아
+        # 만약 끝나지 않은 글 개수가 홀수면,
+        else:
+            if (index+1)%2 == 0:
+                first_rows_end.append(welfare_end)
+            else:
+                second_rows_end.append(welfare_end)
+
+    return render(request, 'welfare/mainpage.html', {
+        'univ' : univ,
+        'welfares_notend':welfares_notend,
+        'first_rows_notend':first_rows_notend,
+        'second_rows_notend':second_rows_notend,
+        'welfares_end':welfares_end,
+        'first_rows_end':first_rows_end,
+        'second_rows_end':second_rows_end,
+        })
+
+
+def police(request):
+    now = timezone.now() #현재 시간 받아옴
+    univ = "경찰사법대학"
+    welfares_notend = Welfare.objects.filter(start_date__lte = now, end_date__gte = now, category_univ = "경찰사법대학") | Welfare.objects.filter(end_date = None, category_univ = "경찰사법대학") | Welfare.objects.filter(start_date = None, end_date__gte = now, category_univ = "경찰사법대학").order_by(F('end_date').desc(nulls_last=True)) #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    welfares_end = Welfare.objects.filter(end_date__lt = now, category_univ = "경찰사법대학") #기간이 지난 게시물들을 받아옴
+    
+    first_rows_notend = []
+    second_rows_notend = []
+    first_rows_end = []
+    second_rows_end = []
+    # 기간이 끝나지 않은 게시물
+    for index, welfare_notend in enumerate(welfares_notend):
+        if (index+1)%2 == 1:
+            first_rows_notend.append(welfare_notend) # 짝수이면, first_rows에 담아
+        else:
+            second_rows_notend.append(welfare_notend) # 홀수이면, second_rows에 담아
+    # 기간이 끝난 게시물
+    for index, welfare_end in enumerate(welfares_end):
+        # 만약 끝나지 않은 글 개수가 짝수면,
+        if len(welfares_notend)%2 == 0:
+            if (index+1)%2 == 1:
+                first_rows_end.append(welfare_end) # 짝수이면, first_rows에 담아
+            else:
+                second_rows_end.append(welfare_end) # 홀수이면, second_rows에 담아
+        # 만약 끝나지 않은 글 개수가 홀수면,
+        else:
+            if (index+1)%2 == 0:
+                first_rows_end.append(welfare_end)
+            else:
+                second_rows_end.append(welfare_end)
+
+    return render(request, 'welfare/mainpage.html', {
+        'univ' : univ,
+        'welfares_notend':welfares_notend,
+        'first_rows_notend':first_rows_notend,
+        'second_rows_notend':second_rows_notend,
+        'welfares_end':welfares_end,
+        'first_rows_end':first_rows_end,
+        'second_rows_end':second_rows_end,
+        })
+
+
+def education(request):
+    now = timezone.now() #현재 시간 받아옴
+    univ = "사범대학"
+    welfares_notend = Welfare.objects.filter(start_date__lte = now, end_date__gte = now, category_univ = "사범대학") | Welfare.objects.filter(end_date = None, category_univ = "사범대학") | Welfare.objects.filter(start_date = None, end_date__gte = now, category_univ = "사범대학").order_by(F('end_date').desc(nulls_last=True)) #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    welfares_end = Welfare.objects.filter(end_date__lt = now, category_univ = "사범대학") #기간이 지난 게시물들을 받아옴
+    
+    first_rows_notend = []
+    second_rows_notend = []
+    first_rows_end = []
+    second_rows_end = []
+    # 기간이 끝나지 않은 게시물
+    for index, welfare_notend in enumerate(welfares_notend):
+        if (index+1)%2 == 1:
+            first_rows_notend.append(welfare_notend) # 짝수이면, first_rows에 담아
+        else:
+            second_rows_notend.append(welfare_notend) # 홀수이면, second_rows에 담아
+    # 기간이 끝난 게시물
+    for index, welfare_end in enumerate(welfares_end):
+        # 만약 끝나지 않은 글 개수가 짝수면,
+        if len(welfares_notend)%2 == 0:
+            if (index+1)%2 == 1:
+                first_rows_end.append(welfare_end) # 짝수이면, first_rows에 담아
+            else:
+                second_rows_end.append(welfare_end) # 홀수이면, second_rows에 담아
+        # 만약 끝나지 않은 글 개수가 홀수면,
+        else:
+            if (index+1)%2 == 0:
+                first_rows_end.append(welfare_end)
+            else:
+                second_rows_end.append(welfare_end)
+
+    return render(request, 'welfare/mainpage.html', {
+        'univ' : univ,
+        'welfares_notend':welfares_notend,
+        'first_rows_notend':first_rows_notend,
+        'second_rows_notend':second_rows_notend,
+        'welfares_end':welfares_end,
+        'first_rows_end':first_rows_end,
+        'second_rows_end':second_rows_end,
+        })
+
+
+def law(request):
+    now = timezone.now() #현재 시간 받아옴
+    univ = "법과대학"
+    welfares_notend = Welfare.objects.filter(start_date__lte = now, end_date__gte = now, category_univ = "법과대학") | Welfare.objects.filter(end_date = None, category_univ = "법과대학") | Welfare.objects.filter(start_date = None, end_date__gte = now, category_univ = "법과대학").order_by(F('end_date').desc(nulls_last=True)) #현재 시간이 기간 내에 있는 게시물들을 받아오고 끝나는 기간이 이른 순서대로 나열함
+    welfares_end = Welfare.objects.filter(end_date__lt = now, category_univ = "법과대학") #기간이 지난 게시물들을 받아옴
+    
+    first_rows_notend = []
+    second_rows_notend = []
+    first_rows_end = []
+    second_rows_end = []
+    # 기간이 끝나지 않은 게시물
+    for index, welfare_notend in enumerate(welfares_notend):
+        if (index+1)%2 == 1:
+            first_rows_notend.append(welfare_notend) # 짝수이면, first_rows에 담아
+        else:
+            second_rows_notend.append(welfare_notend) # 홀수이면, second_rows에 담아
+    # 기간이 끝난 게시물
+    for index, welfare_end in enumerate(welfares_end):
+        # 만약 끝나지 않은 글 개수가 짝수면,
+        if len(welfares_notend)%2 == 0:
+            if (index+1)%2 == 1:
+                first_rows_end.append(welfare_end) # 짝수이면, first_rows에 담아
+            else:
+                second_rows_end.append(welfare_end) # 홀수이면, second_rows에 담아
+        # 만약 끝나지 않은 글 개수가 홀수면,
+        else:
+            if (index+1)%2 == 0:
+                first_rows_end.append(welfare_end)
+            else:
+                second_rows_end.append(welfare_end)
+
+    return render(request, 'welfare/mainpage.html', {
+        'univ' : univ,
+        'welfares_notend':welfares_notend,
+        'first_rows_notend':first_rows_notend,
+        'second_rows_notend':second_rows_notend,
+        'welfares_end':welfares_end,
+        'first_rows_end':first_rows_end,
+        'second_rows_end':second_rows_end,
+        })
