@@ -26,10 +26,43 @@
         <div class="line"></div>
 
         <div class="menu">
-            <li><a href="">공간대여</a></li>
-            <li><a href="">물품대여</a></li>
-            <li><a href="">링크트리</a></li>
-
+            {% if univ == "경영대학" %}
+                <li><a href="{% url 'welfare:business_room' %}">물품대여</a></li>
+                <li><a href="{% url 'welfare:business_material' %}">공간대여</a></li>
+            {% elif univ == "예술대학" %}
+                <li><a href="{% url 'welfare:art_room' %}">물품대여</a></li>
+                <li><a href="{% url 'welfare:art_material' %}">공간대여</a></li>
+            {% elif univ == "사회과학대학" %}
+                <li><a href="{% url 'welfare:social_room' %}">물품대여</a></li>
+                <li><a href="{% url 'welfare:social_material' %}">공간대여</a></li>
+            {% elif univ == "AI융합대학" %}
+                <li><a href="{% url 'welfare:ai_room' %}">물품대여</a></li>
+                <li><a href="{% url 'welfare:ai_material' %}">공간대여</a></li>
+            {% elif univ == "공과대학" %}
+                <li><a href="{% url 'welfare:engineering_room' %}">물품대여</a></li>
+                <li><a href="{% url 'welfare:engineering_material' %}">공간대여</a></li>
+            {% elif univ == "불교대학" %}
+                <li><a href="{% url 'welfare:buddhism_room' %}">물품대여</a></li>
+                <li><a href="{% url 'welfare:buddhism_material' %}">공간대여</a></li>
+            {% elif univ == "미래융합대학" %}
+                <li><a href="{% url 'welfare:future_room' %}">물품대여</a></li>
+                <li><a href="{% url 'welfare:future_material' %}">공간대여</a></li>
+            {% elif univ == "이과대학" %}
+                <li><a href="{% url 'welfare:science_room' %}">물품대여</a></li>
+                <li><a href="{% url 'welfare:science_material' %}">공간대여</a></li>
+            {% elif univ == "문과대학" %}
+                <li><a href="{% url 'welfare:liberal_room' %}">물품대여</a></li>
+                <li><a href="{% url 'welfare:liberal_material' %}">공간대여</a></li>
+            {% elif univ == "경찰사법대학" %}
+                <li><a href="{% url 'welfare:police_room' %}">물품대여</a></li>
+                <li><a href="{% url 'welfare:police_material' %}">공간대여</a></li>
+            {% elif univ == "사범대학" %}
+                <li><a href="{% url 'welfare:education_room' %}">물품대여</a></li>
+                <li><a href="{% url 'welfare:education_material' %}">공간대여</a></li>
+            {% elif univ == "법과대학" %}
+                <li><a href="{% url 'welfare:law_room' %}">물품대여</a></li>
+                <li><a href="{% url 'welfare:law_material' %}">공간대여</a></li>
+            {% endif %}
         </div>
 
         <div class="content">
