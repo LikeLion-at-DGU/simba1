@@ -115,6 +115,7 @@ footer {
     width: 390px;
     height: 100px;
     bottom: 0;
+    left: 0px;
     font-size: 6px;
     font-family: 'NotoSansKR';
     background: rgba(255, 218, 175, 0.5);
