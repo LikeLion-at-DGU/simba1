@@ -33,127 +33,113 @@
         </div>
 
         <div class="content">
-            <!--card 첫번째줄-->
+            
+            <!--fist_row-->
             <div class="card">
+                <!-- first_row 기간 안끝난 게시물 -->
+                {% for first in first_rows_notend %}
+                {% if first.image %}
                 <div class="card__item">
-                    <img class="card__item__img" src="{% static 'images/비즈마루.png' %}">
+                    <a href="{% url 'welfare:detail' first.id %}"><img class="card__item__img" src="{{first.image.url}}"></a>
+                {% endif %}
                     <div class="card__content">
-                        <div class="name">비즈마루</div>
+                        <div class="name">{{first.title}}</div>
                     </div>
+                    {% if user in first.welfare_like.all %}
                     <div class="heart">
-                        <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                        <a href="{% url 'welfare:mainpage_likes' first.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
                     </div>
-                    <div class="time">스터디룸: 주중/토 09:00~20:00</div>
-                    <div class="benefit">경영대학 비즈마루 대관 방법</div>
-                </div>
-                <div class="card__item">
-                    <img class="card__item__img" src="{% static 'images/비즈마루.png' %}">
-                    <div class="card__content">
-                        <div class="name">비즈마루</div>
-                    </div>
+                    {% else %}
                     <div class="heart">
-                        <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                        <a href="{% url 'welfare:mainpage_likes' first.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
                     </div>
-                    <div class="time">스터디룸: 주중/토 09:00~20:00</div>
-                    <div class="benefit">경영대학 비즈마루 대관 방법</div>
+                    {% endif %}
+                    <div class="time">{{first.start_time|time:"H:i"}}-{{first.end_time|time:"H:i"}}</div>
+                    <div class="benefit">{{first.body}}</div>
                 </div>
-            </div>
+                {% endfor %}
 
-            <!--card 두번째줄-->
-            <div class="card">
-                <div class="card__item">
-                    <img class="card__item__img" src="{% static 'images/비즈마루.png' %}">
-                    <div class="card__content">
-                        <div class="name">비즈마루</div>
-                    </div>
-                    <div class="heart">
-                        <i class="far fa-heart" style="color: #ff8f0b;"></i>
-                    </div>
-                    <div class="time">스터디룸: 주중/토 09:00~20:00</div>
-                    <div class="benefit">경영대학 비즈마루 대관 방법</div>
-                </div>
-                <div class="card__item">
-                    <img class="card__item__img" src="{% static 'images/비즈마루.png' %}">
-                    <div class="card__content">
-                        <div class="name">비즈마루</div>
-                    </div>
-                    <div class="heart">
-                        <i class="far fa-heart" style="color: #ff8f0b;"></i>
-                    </div>
-                    <div class="time">스터디룸: 주중/토 09:00~20:00</div>
-                    <div class="benefit">경영대학 비즈마루 대관 방법</div>
-                </div>
-            </div>
-
-            <!--card 세번째줄-->
-            <div class="card">
-                <div class="card__item">
-                    <img class="card__item__img" src="{% static 'images/비즈마루.png' %}">
-                    <div class="card__content">
-                        <div class="name">비즈마루</div>
-                    </div>
-                    <div class="heart">
-                        <i class="far fa-heart" style="color: #ff8f0b;"></i>
-                    </div>
-                    <div class="time">스터디룸: 주중/토 09:00~20:00</div>
-                    <div class="benefit">경영대학 비즈마루 대관 방법</div>
-                </div>
-                <div class="card__item">
-                    <img class="card__item__img" src="{% static 'images/비즈마루.png' %}">
-                    <div class="card__content">
-                        <div class="name">비즈마루</div>
-                    </div>
-                    <div class="heart">
-                        <i class="far fa-heart" style="color: #ff8f0b;"></i>
-                    </div>
-                    <div class="time">스터디룸: 주중/토 09:00~20:00</div>
-                    <div class="benefit">경영대학 비즈마루 대관 방법</div>
-                </div>
-            </div>
-
-
-            <!--card 네번째줄-->
-            <!--혜택 기간이 지난 게시물-->
-            <div class="card">
+                <!-- first_row 기간 끝난 게시물 -->
+                {% for first in first_rows_end %}
                 <div class="card__item">
                     <div class="card__item__end">
                         <p>혜택 기간이 지난<br> 게시물입니다</p>
                     </div>
-                    <img class="card__item__img" src="{% static 'images/비즈마루.png' %}">
+                    {% if first.image %}
+                    <a href="{% url 'welfare:detail' first.id %}"><img class="card__item__img" src="{{first.image.url}}"></a>
+                    {% endif %}
                     <div class="card__content">
-                        <div class="name">비즈마루</div>
+                        <div class="name">{{first.title}}</div>
                     </div>
+                    {% if user in first.welfare_like.all %}
                     <div class="heart">
-                        <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                        <a href="{% url 'welfare:mainpage_likes' first.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
                     </div>
-                    <div class="time">스터디룸: 주중/토 09:00~20:00</div>
-                    <div class="benefit">경영대학 비즈마루 대관 방법</div>
+                    {% else %}
+                    <div class="heart">
+                        <a href="{% url 'welfare:mainpage_likes' first.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                    </div>
+                    {% endif %}
+                    <div class="time">{{first.start_time|time:"H:i"}}-{{first.end_time|time:"H:i"}}</div>
+                    <div class="benefit">{{first.body}}</div>
                 </div>
+                {% endfor %}
+            </div>
+            <!-- second_row -->
+            <div class="card">
+                <!-- second row 기간 안끝난 게시물 -->
+                {% for second in second_rows_notend %}
+                {% if second.image %}
                 <div class="card__item">
+                    <a href="{% url 'welfare:detail' second.id %}"><img class="card__item__img" src="{{second.image.url}}"></a>
+                {% endif %}
+                    <div class="card__content">
+                        <div class="name">{{second.title}}</div>
+                    </div>
+                    {% if user in second.welfare_like.all %}
+                    <div class="heart">
+                        <a href="{% url 'welfare:mainpage_likes' second.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
+                    </div>
+                    {% else %}
+                    <div class="heart">
+                        <a href="{% url 'welfare:mainpage_likes' second.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                    </div>
+                    {% endif %}
+                    <div class="time">{{second.start_time|time:"H:i"}}-{{second.end_time|time:"H:i"}}</div>
+                    <div class="benefit">{{second.body}}</div>
+                </div>
+                {% endfor %}
+
+                <!-- second_row 기간 끝난 게시물 -->
+                {% for second in second_rows_end %}
+                <div class="card__item">
+                    {% if second.image %}
                     <div class="card__item__end">
                         <p>혜택 기간이 지난<br> 게시물입니다</p>
                     </div>
-                    <img class="card__item__img" src="{% static 'images/비즈마루.png' %}">
+                    <a href="{% url 'welfare:detail' second.id %}"><img class="card__item__img" src="{{second.image.url}}"></a>
+                    {% endif %}
                     <div class="card__content">
-                        <div class="name">비즈마루</div>
+                        <div class="name">{{second.title}}</div>
                     </div>
+                    {% if user in second.welfare_like.all %}
                     <div class="heart">
-                        <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                        <a href="{% url 'welfare:mainpage_likes' second.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
                     </div>
-                    <div class="time">스터디룸: 주중/토 09:00~20:00</div>
-                    <div class="benefit">경영대학 비즈마루 대관 방법</div>
+                    {% else %}
+                    <div class="heart">
+                        <a href="{% url 'welfare:mainpage_likes' second.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
+                    </div>
+                    {% endif %}
+                    <div class="time">{{second.start_time|time:"H:i"}}-{{second.end_time|time:"H:i"}}</div>
+                    <div class="benefit">{{second.body}}</div>
                 </div>
+                {% endfor %}
             </div>
-
-
-
-
-
-
-
+            
+    
+            
         </div>
-
-
 
 
         <!-- footer -->
