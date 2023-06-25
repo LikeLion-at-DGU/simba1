@@ -1,0 +1,145 @@
+
+
+.content_wrap {
+    display: flex;
+    flex-direction: column;
+    padding: 47px 47px 0px 47px;
+}
+
+
+/* top */
+.top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+}
+
+
+/* 스크랩 */
+.top_title {
+    display: flex;
+    text-align: center;
+    color: #814E01;
+    font-size: 20px;
+    font-family: Hancom MalangMalang;
+    font-weight: 700;
+    margin-left: 13px;
+    margin-right: 5%;
+}
+
+/* 하트 아이콘 */ 
+.top_heart {
+    width: 27px;
+    height: 25px;
+}
+
+/* 이전 페이지 이동 버튼 */
+.move-selectpage-button {
+    display: flex;
+    margin-top: 46px;
+}
+
+
+/* 스크랩 card */
+.content {
+    display: flex;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    margin-top: 14px;
+}
+
+.card_item {
+    display: flex;
+    position: relative;
+    width: 135px;
+    height: 150px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    margin-top: 31px;
+}
+
+.card:nth-child(2) .card_item {
+    margin-left: 26px;
+}
+
+.card_item_img {
+    position: absolute;
+    width: 135px;
+    height: 75px;
+    border-radius: 15px 15px 0px 0px;
+}
+
+.card_item_content {
+    display: flex;
+    justify-content: flex-start;
+    position: absolute;
+    width: 53%;
+    height: 10%;
+    left: 7%;
+    top: 52%;
+}
+
+.card_item_content_name {
+    margin: 0px;
+    font-family: "HancomMalangMalang";
+    font-weight: bold;
+    font-size: 10px;
+    color: #404040;
+    margin-right: 10%;
+}
+
+.card_item_content_star {
+    font-size: 10px;
+    margin-right: 3%;
+}
+
+.card_item_content_star-count {
+    display: flex;
+    align-items: center;
+    font-family: "NanumSquareNeo-regular";
+    font-size: 6px;
+    color: #404040;
+}
+
+.card_item_time {
+    left: 7%;
+    top: 64%;
+    position: absolute;
+    font-family: "NanumSquareNeo-regular";
+    font-size: 8px;
+    color: #404040;
+}
+
+.card_item_benefit {
+    width: 120px;
+    height: 9px;
+    left: 7%;
+    bottom: 15%;
+    position: absolute;
+    font-family: "NanumSquareNeo-Extra-bold";
+    letter-spacing: -1.5px;
+    font-size: 8px;
+    font-style: normal;
+    line-height: 10px;
+    color: #ffa337;
+}
+
+.card_item_calendar {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    left: 95px;
+    top: 82px;
+}
+
+.card_item_heart {
+    position: absolute;
+    box-sizing: border-box;
+    left: 110px;
+    top: 76px;
+}
