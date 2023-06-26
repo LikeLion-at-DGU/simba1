@@ -75,8 +75,8 @@ def new(request):
     return render(request, 'welfare/new.html')
 
 
-def detail(request, id):
-    welfare = get_object_or_404(Welfare, pk = id)
+def detail(request, welfare_id):
+    welfare = get_object_or_404(Welfare, pk = welfare_id)
     comments = WComment.objects.filter(welfare = welfare)
     comments_count = len(comments)
     return render(request, 'welfare/detail.html',{
@@ -90,6 +90,81 @@ def delete(request, id):
     delete_welfare = Welfare.objects.get(id = id)
     delete_welfare.delete()
     return redirect('welfare:mainpage')
+
+def comment_likes(request, comment_id):
+    if request.user.is_authenticated: 
+        comment = get_object_or_404(WComment, id=comment_id)
+        if request.user in comment.comment_like.all():
+            comment.comment_like.remove(request.user)
+            comment.comment_like_count -=1
+            comment.save()
+        else:
+            comment.comment_like.add(request.user)
+            comment.comment_like_count +=1
+            comment.save()
+        return redirect('welfare:detail', comment.welfare.id)
+    else:
+        return render(request, 'accounts/no_auth.html')
+
+def delete_comment(request, comment_id):
+    delete_comment = WComment.objects.get(id = comment_id)
+    if request.user == delete_comment.writer:
+        delete_comment.delete()
+        return redirect('welfare:detail', delete_comment.welfare.id)
+    elif request.user.is_superuser:
+        delete_comment.delete()
+        return redirect('welfare:detail', delete_comment.welfare.id)
+    else:
+        return render(request, 'accounts/no_auth.html')
+
+def edit_comment(request, comment_id):
+    if request.user.is_authenticated:
+        edit_comment = get_object_or_404(WComment, pk=comment_id)
+        if request.user == edit_comment.writer:
+            if request.method == 'POST':
+                edit_comment.welfare = edit_comment.welfare #게시물 비교하기 위한 공간에 이 게시물 담음
+                edit_comment.writer = request.user
+                edit_comment.content = request.POST['content'] #댓글 내용 담아담아
+                edit_comment.pub_date = timezone.now() #댓글 작성한 시간 담아담아
+
+                edit_comment.save() #댓글 저장, id 생성
+            
+                return redirect('welfare:detail', edit_comment.welfare.id)
+            elif request.method == 'GET':
+                welfare = Welfare.objects.get(id = edit_comment.welfare.id)
+                comments = WComment.objects.filter(welfare = welfare)
+                comments_count = len(comments)
+                return render(request, 'welfare/edit_comment.html',{
+                    'comment' : edit_comment,
+                    'welfare' : welfare,
+                    'comments' : comments,
+                    'comments_count' : comments_count,
+                    })
+        elif request.user.is_superuser:
+            if request.method == 'POST':
+                edit_comment.welfare = edit_comment.welfare #게시물 비교하기 위한 공간에 이 게시물 담음
+                edit_comment.writer = request.user
+                edit_comment.content = request.POST['content'] #댓글 내용 담아담아
+                edit_comment.pub_date = timezone.now() #댓글 작성한 시간 담아담아
+
+                edit_comment.save() #댓글 저장, id 생성
+            
+                return redirect('welfare:detail', edit_comment.welfare.id)
+            if request.method == 'GET':
+                welfare = Welfare.objects.get(id = edit_comment.welfare.id)
+                comments = WComment.objects.filter(welfare = welfare)
+                comments_count = len(comments)
+                return render(request, 'welfare/edit_comment.html',{
+                    'comment' : edit_comment,
+                    'welfare' : welfare,
+                    'comments' : comments,
+                    'comments_count' : comments_count,
+                    })
+        else:
+            return render(request, 'accounts/no_auth.html')
+    else:
+        return redirect('accounts:login')
+
 
 def mainpage_likes(request, welfare_id):
     if request.user.is_authenticated:

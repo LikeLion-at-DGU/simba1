@@ -47,9 +47,12 @@ urlpatterns = [
     path('new/', new, name="new"),
     path('create/', create, name="create"),
     path('delete/<int:id>', delete, name="delete"),
-    path('<int:id>', detail, name="detail"),
+    path('<int:welfare_id>', detail, name="detail"),
     path('mainpage_likes/<int:welfare_id>', mainpage_likes, name="mainpage_likes"),
     path('likes/<int:welfare_id>', detail_likes, name="detail_likes"),
-    path('<int:id>', detail, name="detail"),
     path('review/<int:welfare_id>', review, name="review"),
+    # 댓글
+    path('comment_likes/<int:comment_id>', comment_likes, name="comment_likes"),
+    path('delete_comment/<int:comment_id>', delete_comment, name="delete_comment"),
+    path('edit_comment/<int:comment_id>', edit_comment, name="edit_comment"),
 ]
