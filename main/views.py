@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import MainPost, MainComment
 from django.utils import timezone
+from django.http import HttpResponse
+import json
 
 
 def intro(request):
@@ -177,18 +179,51 @@ def delete(request, mainpost_id):
     else:
         return render(request, 'accounts/no_auth.html')
 
-def comment_likes(request, comment_id):
-    if request.user.is_authenticated: 
-        comment = get_object_or_404(MainComment, id=comment_id)
-        if request.user in comment.comment_like.all():
-            comment.comment_like.remove(request.user)
-            comment.comment_like_count -=1
-            comment.save()
+def mainpost_like_toggle(request):
+    if request.user.is_authenticated: #유저가 로그인했으면
+        pk = request.GET["pk"]
+        mainpost = get_object_or_404(MainPost, pk=pk) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
+        if request.user in mainpost.mainpost_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
+            mainpost.mainpost_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
+            mainpost.mainpost_like_count -=1 # 좋아요 개수 1개 줄음
+            mainpost.save() #저장
+            result = "like_cancel"
         else:
-            comment.comment_like.add(request.user)
-            comment.comment_like_count +=1
+            mainpost.mainpost_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
+            mainpost.mainpost_like_count +=1 #좋아요 1개 추가
+            mainpost.save()
+            result = "like"
+
+        context = {
+            "mainpost_like_count" : mainpost.mainpost_like_count,
+            "result" : result
+        }
+
+        return HttpResponse(json.dumps(context), content_type = "application/json")
+    else:
+        return render(request, 'accounts/no_auth.html')
+    
+def comment_like_toggle(request):
+    if request.user.is_authenticated: #유저가 로그인했으면
+        pk = request.GET["pk"]
+        comment = get_object_or_404(MainComment, pk=pk) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
+        if request.user in comment.comment_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
+            comment.comment_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
+            comment.comment_like_count -=1 # 좋아요 개수 1개 줄음
+            comment.save() #저장
+            result = "like_cancel"
+        else:
+            comment.comment_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
+            comment.comment_like_count +=1 #좋아요 1개 추가
             comment.save()
-        return redirect('main:detail', comment.mainpost.id)
+            result = "like"
+
+        context = {
+            "comment_like_count" : comment.comment_like_count,
+            "result" : result
+        }
+
+        return HttpResponse(json.dumps(context), content_type = "application/json")
     else:
         return render(request, 'accounts/no_auth.html')
 

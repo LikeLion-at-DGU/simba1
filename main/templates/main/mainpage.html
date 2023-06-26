@@ -35,17 +35,23 @@
                             <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
                             {% endif %}
                             <div class="slide-content">
-                                <div class="name">{{post.title}}</div>
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
                                 <div class="star">
                                     <i class="far fa-star" style="color: #ffd66b;"></i>
                                 </div>
                                 <div class="star-count">{{post.mainpost_rate_average}}</div>
                             </div>
                             <div class="heart">
-                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
                             </div>
                             <div class="time">
-                            {% if benefit.start_time and benefit.end_time %}
+                            {% if post.start_time and post.end_time %}
                                 {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
                             {% elif post.start_time %}
                                 {{post.start_time|time:"H:i"}}-
@@ -60,17 +66,23 @@
                         {% for post in culture_posts_2 %}
                         <div class="total-benefit-content__item__slide__background2">
                             {% if post.image %}
-                            <img class="taegeukdang" src="{{post.image.url}}">
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
                             {% endif %}
                             <div class="slide-content">
-                                <div class="name">{{post.title}}</div>
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
                                 <div class="star">
                                     <i class="far fa-star" style="color: #ffd66b;"></i>
                                 </div>
                                 <div class="star-count">{{post.mainpost_rate_average}}</div>
                             </div>
                             <div class="heart">
-                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
                             </div>
                             <div class="time">
                                 {% if post.start_time and post.end_time %}
@@ -95,17 +107,23 @@
                             <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
                             {% endif %}
                             <div class="slide-content">
-                                <div class="name">{{post.title}}</div>
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
                                 <div class="star">
                                     <i class="far fa-star" style="color: #ffd66b;"></i>
                                 </div>
                                 <div class="star-count">{{post.mainpost_rate_average}}</div>
                             </div>
                             <div class="heart">
-                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
                             </div>
                             <div class="time">
-                            {% if benefit.start_time and benefit.end_time %}
+                            {% if post.start_time and post.end_time %}
                                 {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
                             {% elif post.start_time %}
                                 {{post.start_time|time:"H:i"}}-
@@ -120,17 +138,23 @@
                         {% for post in culture_posts_4 %}
                         <div class="total-benefit-content__item__slide__background2">
                             {% if post.image %}
-                            <img class="taegeukdang" src="{{post.image.url}}">
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
                             {% endif %}
                             <div class="slide-content">
-                                <div class="name">{{post.title}}</div>
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
                                 <div class="star">
                                     <i class="far fa-star" style="color: #ffd66b;"></i>
                                 </div>
                                 <div class="star-count">{{post.mainpost_rate_average}}</div>
                             </div>
                             <div class="heart">
-                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
                             </div>
                             <div class="time">
                                 {% if post.start_time and post.end_time %}
@@ -169,17 +193,23 @@
                             <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
                             {% endif %}
                             <div class="slide-content">
-                                <div class="name">{{post.title}}</div>
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
                                 <div class="star">
                                     <i class="far fa-star" style="color: #ffd66b;"></i>
                                 </div>
                                 <div class="star-count">{{post.mainpost_rate_average}}</div>
                             </div>
                             <div class="heart">
-                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
                             </div>
                             <div class="time">
-                            {% if benefit.start_time and benefit.end_time %}
+                            {% if post.start_time and post.end_time %}
                                 {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
                             {% elif post.start_time %}
                                 {{post.start_time|time:"H:i"}}-
@@ -192,17 +222,23 @@
 
                         <div class="total-benefit-content__item__slide__background2">
                             {% if post.image %}
-                            <img class="taegeukdang" src="{{post.image.url}}">
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
                             {% endif %}
                             <div class="slide-content">
-                                <div class="name">{{post.title}}</div>
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
                                 <div class="star">
                                     <i class="far fa-star" style="color: #ffd66b;"></i>
                                 </div>
                                 <div class="star-count">{{post.mainpost_rate_average}}</div>
                             </div>
                             <div class="heart">
-                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
                             </div>
                             <div class="time">
                                 {% if post.start_time and post.end_time %}
@@ -225,17 +261,23 @@
                             <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
                             {% endif %}
                             <div class="slide-content">
-                                <div class="name">{{post.title}}</div>
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
                                 <div class="star">
                                     <i class="far fa-star" style="color: #ffd66b;"></i>
                                 </div>
                                 <div class="star-count">{{post.mainpost_rate_average}}</div>
                             </div>
                             <div class="heart">
-                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
                             </div>
                             <div class="time">
-                            {% if benefit.start_time and benefit.end_time %}
+                            {% if post.start_time and post.end_time %}
                                 {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
                             {% elif post.start_time %}
                                 {{post.start_time|time:"H:i"}}-
@@ -248,17 +290,23 @@
 
                         <div class="total-benefit-content__item__slide__background2">
                             {% if post.image %}
-                            <img class="taegeukdang" src="{{post.image.url}}">
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
                             {% endif %}
                             <div class="slide-content">
-                                <div class="name">{{post.title}}</div>
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
                                 <div class="star">
                                     <i class="far fa-star" style="color: #ffd66b;"></i>
                                 </div>
                                 <div class="star-count">{{post.mainpost_rate_average}}</div>
                             </div>
                             <div class="heart">
-                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
                             </div>
                             <div class="time">
                                 {% if post.start_time and post.end_time %}
@@ -300,17 +348,23 @@
                             <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
                             {% endif %}
                             <div class="slide-content">
-                                <div class="name">{{post.title}}</div>
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
                                 <div class="star">
                                     <i class="far fa-star" style="color: #ffd66b;"></i>
                                 </div>
                                 <div class="star-count">{{post.mainpost_rate_average}}</div>
                             </div>
                             <div class="heart">
-                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
                             </div>
                             <div class="time">
-                            {% if benefit.start_time and benefit.end_time %}
+                            {% if post.start_time and post.end_time %}
                                 {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
                             {% elif post.start_time %}
                                 {{post.start_time|time:"H:i"}}-
@@ -323,17 +377,23 @@
 
                         <div class="total-benefit-content__item__slide__background2">
                             {% if post.image %}
-                            <img class="taegeukdang" src="{{post.image.url}}">
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
                             {% endif %}
                             <div class="slide-content">
-                                <div class="name">{{post.title}}</div>
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
                                 <div class="star">
                                     <i class="far fa-star" style="color: #ffd66b;"></i>
                                 </div>
                                 <div class="star-count">{{post.mainpost_rate_average}}</div>
                             </div>
                             <div class="heart">
-                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
                             </div>
                             <div class="time">
                                 {% if post.start_time and post.end_time %}
@@ -356,17 +416,23 @@
                             <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
                             {% endif %}
                             <div class="slide-content">
-                                <div class="name">{{post.title}}</div>
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
                                 <div class="star">
                                     <i class="far fa-star" style="color: #ffd66b;"></i>
                                 </div>
                                 <div class="star-count">{{post.mainpost_rate_average}}</div>
                             </div>
                             <div class="heart">
-                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
                             </div>
                             <div class="time">
-                            {% if benefit.start_time and benefit.end_time %}
+                            {% if post.start_time and post.end_time %}
                                 {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
                             {% elif post.start_time %}
                                 {{post.start_time|time:"H:i"}}-
@@ -379,7 +445,7 @@
 
                         <div class="total-benefit-content__item__slide__background2">
                             {% if post.image %}
-                            <img class="taegeukdang" src="{{post.image.url}}">
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
                             {% endif %}
                             <div class="slide-content">
                                 <div class="name">{{post.title}}</div>
@@ -389,7 +455,13 @@
                                 <div class="star-count">{{post.mainpost_rate_average}}</div>
                             </div>
                             <div class="heart">
-                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
                             </div>
                             <div class="time">
                                 {% if post.start_time and post.end_time %}
@@ -426,6 +498,7 @@
                     </div>
                     </a>
 
+                    <a href="{% url 'welfare:choose' %}">
                     <div class="college-button">
                         <div class="college-benefit__title">
                             <p>
@@ -437,6 +510,7 @@
                             <i class="fas fa-long-arrow-alt-right" style="color: #ff8f0b;"></i>
                         </div>
                     </div>
+                    </a>
                 </div>
 
 
@@ -451,4 +525,35 @@
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    $(".like").click(function(){
+        var pk = $(this).attr('name')
+        $.ajax({
+            method : 'GET',
+            url:"{% url 'main:mainpost_like_toggle' %}",
+            data:{'pk':pk, 'csrfmiddlewaretoken':'{{csrf_token}}'},
+            dataType:'json',
+            success:function(response){
+                if(response.mainpost_like_count == null){
+                    alert('로그인이 필요합니다.');
+                    window.location.replace('/accounts/login/');
+                }
+                else{
+                    if(response.result=='like'){
+                        $(`#like-icon-${pk}`).removeClass();
+                        $(`#like-icon-${pk}`).addClass('fas fa-heart');
+                    }
+                    else{
+                        $(`#like-icon-${pk}`).removeClass();
+                        $(`#like-icon-${pk}`).addClass('far fa-heart');
+                    }
+                }
+            },
+            error:function(request, status, error){
+                alert("로그인이 필요합니다.");
+            },
+        })
+    })
+</script>
 {% endblock %}

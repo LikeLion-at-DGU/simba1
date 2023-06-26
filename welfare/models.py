@@ -6,6 +6,7 @@ from accounts.models import CustomUser
 class Welfare(models.Model):
     title = models.CharField(max_length=200)
     writer = models.ForeignKey(CustomUser, on_delete = models.CASCADE )
+    pub_date = models.DateTimeField()
     start_time = models.TimeField(null = True) # 영업시간_시작
     end_time = models.TimeField(null = True) # 영업시간_끝
     address = models.CharField(max_length = 30) # 주소
