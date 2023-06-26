@@ -2,38 +2,295 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/benefits.css' %}">
+<link rel="stylesheet" href="{% static 'css/mypage/scrap.css' %}">
+    <div class="root">
+        <div class="content_wrap">
 
-<h3>스크랩한 글 목록</h3>
-{% for benefit in benefits %}
-<div class="card">
-    <div class="card__item">
-        {% if benefit.image %}
-        <img class="card__item__img" src={{benefit.image.url}}>
-        {% endif %}
-        <div class="card__content">
-            <div class="name"><a href="{% url 'benefits:detail' benefit.id %}">{{benefit.title}}</a></div>
-            <div class="star">
-                <i class="far fa-star" style="color: #ffd66b;"></i>
+            <div class="top">
+                <div class="top_heart"><img src="{% static 'images/scrap_heart_noshadow.png' %}"></div>
+                <div class="top_title">스크랩</div>
             </div>
-            <div class="star-count">5.0</div>
-        </div>
-        <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
-        {% if user in benefit.benefit_like.all %}
-        <div class="heart">
-            <a href="{% url 'mypage:scrap_benefits_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
-        </div>
-        {% else %}
-        <div class="heart">
-            <a href="{% url 'mypage:scrap_benefits_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
-        </div>
-        {% endif %}
-        <div class="time">08:00-21:00</div>
-        <div class="benefit">동국대학교 학생 인증 시 10% 할인</div>
-    </div>
-</div>
-{% empty %}
-    <p>스크랩한 게시물이 없습니다.</p>
-{% endfor %}
 
+            <!--이전 페이지 이동 버튼-->
+            <div class="move-selectpage-button">
+                <a href="{% url 'mypage:information' %}"><i class="fas fa-chevron-left" style="color: #404040;"></i></a>
+            </div>
+
+
+            <div class="content">
+                <!--왼쪽-->
+                <div class="card">
+                    <!--card 첫번째줄-->
+                    {% for benefit in benefit_first_line %}
+                    <div class="card_item">
+                        {% if benefit.image %}
+                        <a href="{% url 'benefits:detail' benefit.id %}"><img class="card_item_img" src="{{benefit.image.url}}"></a>
+                        {% endif %}
+                        <div class="card_item_content">
+                            <div class="card_item_content_name"><a href="{% url 'benefits:detail' benefit.id %}">{{benefit.title}}</a></div>
+                            <div class="card_item_content_star">
+                                <i class="far fa-star" style="color: #ffd66b;"></i>
+                            </div>
+                            <div class="card_item_content_star-count">{{benefit.benefit_rate_average}}</div>
+                        </div>
+                        <img class="card_item_calendar" src="{% static 'images/calendar.png' %}"></img>
+                        <div class="card_item_heart">
+                            <span href="#" class = "like1" name="{{benefit.id}}" value="Like">
+                                {% if user in benefit.benefit_like.all %}
+                                    <i class="fas fa-heart" id = "like-icon1-{{benefit.id}}" style="color: #ff8f0b;"></i>
+                                {% else %}
+                                    <i class="far fa-heart" id = "like-icon1-{{benefit.id}}" style="color: #ff8f0b;"></i>
+                                {% endif %}
+                            </span>
+                        </div>
+                        <div class="card_item_time">
+                            {% if benefit.start_time and benefit.end_time %}
+                                {{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}
+                            {% elif benefit.start_time %}
+                                {{benefit.start_time|time:"H:i"}}-
+                            {% elif benefit.end_time %}
+                                ~{{benefit.end_time|time:"H:i"}}
+                            {% endif %}
+                        </div>
+                        <div class="card_item_benefit">{{benefit.body}}</div>
+                    </div>
+                    {% endfor %}
+
+                    {% for welfare in welfare_first_line %}
+                    <div class="card_item">
+                        {% if welfare.image %}
+                        <a href="{% url 'welfare:detail' welfare.id %}"><img class="card_item_img" src="{{welfare.image.url}}"></a>
+                        {% endif %}
+                        <div class="card_item_content">
+                            <div class="card_item_content_name"><a href="{% url 'welfare:detail' welfare.id %}">{{welfare.title}}</a></div>
+                            <div class="card_item_content_star">
+                            </div>
+                            <div class="card_item_content_star-count"></div>
+                        </div>
+                        <img class="card_item_calendar" src="{% static 'images/calendar.png' %}"></img>
+                        <div class="card_item_heart">
+                            <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                        </div>
+                        <div class="card_item_time">
+                            {% if welfare.start_time and welfare.end_time %}
+                                {{welfare.start_time|time:"H:i"}}-{{welfare.end_time|time:"H:i"}}
+                            {% elif welfare.start_time %}
+                                {{welfare.start_time|time:"H:i"}}-
+                            {% elif welfare.end_time %}
+                                ~{{welfare.end_time|time:"H:i"}}
+                            {% endif %}
+                        </div>
+                        <div class="card_item_benefit">{{welfare.body}}</div>
+                    </div>
+                    {% endfor %}
+
+                    {% for mainpost in mainpost_first_line %}
+                    <div class="card_item">
+                        {% if mainpost.image %}
+                        <a href="{% url 'main:detail' mainpost.id %}"><img class="card_item_img" src="{{mainpost.image.url}}"></a>
+                        {% endif %}
+                        <div class="card_item_content">
+                            <div class="card_item_content_name"><a href="{% url 'main:detail' mainpost.id %}">{{mainpost.title}}</a></div>
+                            <div class="card_item_content_star">
+                                <i class="far fa-star" style="color: #ffd66b;"></i>
+                            </div>
+                            <div class="card_item_content_star-count">{{mainpost.mainpost_rate_average}}</div>
+                        </div>
+                        <img class="card_item_calendar" src="{% static 'images/calendar.png' %}"></img>
+                        <div class="card_item_heart">
+                            <span href="#" class = "like3" name="{{mainpost.id}}" value="Like">
+                                {% if user in mainpost.mainpost_like.all %}
+                                    <i class="fas fa-heart" id = "like-icon3-{{mainpost.id}}" style="color: #ff8f0b;"></i>
+                                {% else %}
+                                    <i class="far fa-heart" id = "like-icon3-{{mainpost.id}}" style="color: #ff8f0b;"></i>
+                                {% endif %}
+                            </span>
+                        </div>
+                        <div class="card_item_time">
+                            {% if mainpost.start_time and mainpost.end_time %}
+                                {{mainpost.start_time|time:"H:i"}}-{{mainpost.end_time|time:"H:i"}}
+                            {% elif mainpost.start_time %}
+                                {{mainpost.start_time|time:"H:i"}}-
+                            {% elif mainpost.end_time %}
+                                ~{{mainpost.end_time|time:"H:i"}}
+                            {% endif %}
+                        </div>
+                        <div class="card_item_benefit">{{mainpost.body}}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!--오른쪽-->
+                <div class="card">
+                    <!--card 첫번째줄-->
+                    {% for benefit in benefit_second_line %}
+                    <div class="card_item">
+                        {% if benefit.image %}
+                        <a href="{% url 'benefits:detail' benefit.id %}"><img class="card_item_img" src="{{benefit.image.url}}"></a>
+                        {% endif %}
+                        <div class="card_item_content">
+                            <div class="card_item_content_name"><a href="{% url 'benefits:detail' benefit.id %}">{{benefit.title}}</a></div>
+                            <div class="card_item_content_star">
+                                <i class="far fa-star" style="color: #ffd66b;"></i>
+                            </div>
+                            <div class="card_item_content_star-count">{{benefit.benefit_rate_average}}</div>
+                        </div>
+                        <img class="card_item_calendar" src="{% static 'images/calendar.png' %}"></img>
+                        <div class="card_item_heart">
+                            <span href="#" class = "like1" name="{{benefit.id}}" value="Like">
+                                {% if user in benefit.benefit_like.all %}
+                                    <i class="fas fa-heart" id = "like-icon1-{{benefit.id}}" style="color: #ff8f0b;"></i>
+                                {% else %}
+                                    <i class="far fa-heart" id = "like-icon1-{{benefit.id}}" style="color: #ff8f0b;"></i>
+                                {% endif %}
+                            </span>
+                        </div>
+                        <div class="card_item_time">
+                            {% if benefit.start_time and benefit.end_time %}
+                                {{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}
+                            {% elif benefit.start_time %}
+                                {{benefit.start_time|time:"H:i"}}-
+                            {% elif benefit.end_time %}
+                                ~{{benefit.end_time|time:"H:i"}}
+                            {% endif %}
+                        </div>
+                        <div class="card_item_benefit">{{benefit.body}}</div>
+                    </div>
+                    {% endfor %}
+
+                    {% for welfare in welfare_second_line %}
+                    <div class="card_item">
+                        {% if welfare.image %}
+                        <a href="{% url 'welfare:detail' welfare.id %}"><img class="card_item_img" src="{{welfare.image.url}}"></a>
+                        {% endif %}
+                        <div class="card_item_content">
+                            <div class="card_item_content_name"><a href="{% url 'welfare:detail' welfare.id %}">{{welfare.title}}</a></div>
+                            <div class="card_item_content_star">
+                            </div>
+                            <div class="card_item_content_star-count"></div>
+                        </div>
+                        <img class="card_item_calendar" src="{% static 'images/calendar.png' %}"></img>
+                        <div class="card_item_heart">
+                            <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                        </div>
+                        <div class="card_item_time">
+                            {% if welfare.start_time and welfare.end_time %}
+                                {{welfare.start_time|time:"H:i"}}-{{welfare.end_time|time:"H:i"}}
+                            {% elif welfare.start_time %}
+                                {{welfare.start_time|time:"H:i"}}-
+                            {% elif welfare.end_time %}
+                                ~{{welfare.end_time|time:"H:i"}}
+                            {% endif %}
+                        </div>
+                        <div class="card_item_benefit">{{welfare.body}}</div>
+                    </div>
+                    {% endfor %}
+
+                    {% for mainpost in mainpost_second_line %}
+                    <div class="card_item">
+                        {% if mainpost.image %}
+                        <a href="{% url 'main:detail' mainpost.id %}"><img class="card_item_img" src="{{mainpost.image.url}}"></a>
+                        {% endif %}
+                        <div class="card_item_content">
+                            <div class="card_item_content_name"><a href="{% url 'main:detail' mainpost.id %}">{{mainpost.title}}</a></div>
+                            <div class="card_item_content_star">
+                                <i class="far fa-star" style="color: #ffd66b;"></i>
+                            </div>
+                            <div class="card_item_content_star-count">{{mainpost.mainpost_rate_average}}</div>
+                        </div>
+                        <img class="card_item_calendar" src="{% static 'images/calendar.png' %}"></img>
+                        <div class="card_item_heart">
+                            <span href="#" class = "like3" name="{{mainpost.id}}" value="Like">
+                                {% if user in mainpost.mainpost_like.all %}
+                                    <i class="fas fa-heart" id = "like-icon3-{{mainpost.id}}" style="color: #ff8f0b;"></i>
+                                {% else %}
+                                    <i class="far fa-heart" id = "like-icon3-{{mainpost.id}}" style="color: #ff8f0b;"></i>
+                                {% endif %}
+                            </span>
+                        </div>
+                        <div class="card_item_time">
+                            {% if mainpost.start_time and mainpost.end_time %}
+                                {{mainpost.start_time|time:"H:i"}}-{{mainpost.end_time|time:"H:i"}}
+                            {% elif mainpost.start_time %}
+                                {{mainpost.start_time|time:"H:i"}}-
+                            {% elif mainpost.end_time %}
+                                ~{{mainpost.end_time|time:"H:i"}}
+                            {% endif %}
+                        </div>
+                        <div class="card_item_benefit">{{mainpost.body}}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <!-- footer -->
+            <footer>
+                동국대학교 멋쟁이사자처럼 심바톤 1조<br>
+                @ likelion_dongguk<br>
+                ⓒ DGU Likelion. All rights reserved.
+            </footer>
+
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script>
+            $(".like3").click(function(){
+                var pk = $(this).attr('name')
+                $.ajax({
+                    method : 'GET',
+                    url:"{% url 'main:mainpost_like_toggle' %}",
+                    data:{'pk':pk, 'csrfmiddlewaretoken':'{{csrf_token}}'},
+                    dataType:'json',
+                    success:function(response){
+                        if(response.mainpost_like_count == null){
+                            alert('로그인이 필요합니다.');
+                            window.location.replace('/accounts/login/');
+                        }
+                        else{
+                            if(response.result=='like'){
+                                $(`#like-icon3-${pk}`).removeClass();
+                                $(`#like-icon3-${pk}`).addClass('fas fa-heart');
+                            }
+                            else{
+                                $(`#like-icon3-${pk}`).removeClass();
+                                $(`#like-icon3-${pk}`).addClass('far fa-heart');
+                            }
+                        }
+                    },
+                    error:function(request, status, error){
+                        alert("로그인이 필요합니다.");
+                    },
+                })
+            })
+        </script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script>
+            $(".like1").click(function(){
+                var pk = $(this).attr('name')
+                $.ajax({
+                    method : 'GET',
+                    url:"{% url 'benefits:benefit_like_toggle' %}",
+                    data:{'pk':pk, 'csrfmiddlewaretoken':'{{csrf_token}}'},
+                    dataType:'json',
+                    success:function(response){
+                        if(response.benefit_like_count == null){
+                            alert('로그인이 필요합니다.');
+                            window.location.replace('/accounts/login/');
+                        }
+                        else{
+                            if(response.result=='like'){
+                                $(`#like-icon1-${pk}`).removeClass();
+                                $(`#like-icon1-${pk}`).addClass('fas fa-heart');
+                            }
+                            else{
+                                $(`#like-icon1-${pk}`).removeClass();
+                                $(`#like-icon1-${pk}`).addClass('far fa-heart');
+                            }
+                        }
+                    },
+                    error:function(request, status, error){
+                        alert("로그인이 필요합니다.");
+                    },
+                })
+            })
+        </script>
 {% endblock %}

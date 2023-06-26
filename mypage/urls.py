@@ -6,8 +6,9 @@ urlpatterns = [
     path('information/', information, name="information"),
     path('scrap/', scrap, name="scrap"),
     path('my_comment/', my_comment, name="my_comment"),
-    path('mypage_benefits_likes/<int:benefit_id>', mypage_benefits_likes, name="mypage_benefits_likes"),
-    path('scrap_benefits_likes/<int:benefit_id>', scrap_benefits_likes, name="scrap_benefits_likes"),
     path('postmanagement/', postmanagement, name="postmanagement"),
     path('staff_postmanagement/', staff_postmanagement, name="staff_postmanagement"),
+    path('benefit_delete_comment/<int:comment_id>', benefit_delete_comment, name="benefit_delete_comment"),
+    path('welfare_delete_comment/<int:comment_id>', welfare_delete_comment, name="welfare_delete_comment"),
+    path('mainpost_delete_comment/<int:comment_id>', mainpost_delete_comment, name="mainpost_delete_comment"),
 ]

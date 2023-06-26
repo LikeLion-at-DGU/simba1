@@ -53,7 +53,7 @@
                         <div class="grades"><a href="{% url 'benefits:review' benefit.id %}">평가하기/코멘트</a></div>
                     </div>
                     {% if user in benefit.benefit_like.all %}
-                        <a href="{% url 'benefits:detail_likes' benefit.id %}"><img class="heart" src="{% static 'images/card/fheart.png' %}" height="21px" width="23px"></a>
+                        <a href="{% url 'benefits:detail_likes' benefit.id %}"><img class="heart" src="{% static 'images/scrap_heart_noshadow.png' %}" height="21px" width="23px"></a>
                     {% else %}
                         <a href="{% url 'benefits:detail_likes' benefit.id %}"><img class="heart" src="{% static 'images/card/heart.png' %}" height="21px" width="23px"></a>
                     {% endif %}

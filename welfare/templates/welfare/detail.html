@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/card.css' %}">
+<link rel="stylesheet" href="{% static 'css/welfare/card.css' %}">
 <div class="root">
 {% if user == welfare.writer %}
 <a href="{% url 'welfare:delete' welfare.id %}">삭제하기</a>

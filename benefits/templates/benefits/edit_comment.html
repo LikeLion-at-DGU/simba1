@@ -12,7 +12,7 @@
     </div>
 
     <div class="item">
-        <form action="{% url 'benefits:review' benefit.id %}" method="POST" enctype="multipart/form-data">
+        <form action="{% url 'benefits:edit_comment' comment.id %}" method="POST" enctype="multipart/form-data">
             {%csrf_token%}
         <div class="review-box">
             <div class="question"><span class="store-name">{{benefit.title}}</span>는<br>어떠셨나요?</div>
@@ -21,7 +21,7 @@
                     <div class="rating">
                     ★★★★★
                     <span class="rating_star">★★★★★</span>
-                    <input type="range" value="1" step="1" min="0" max="5" name="benefit_rate">
+                    <input type="range" value="{{comment.benefit_rate}}" step="1" min="0" max="5" name="benefit_rate">
                     </div>
                 </div>
                 <img class="refresh" src="{% static 'images/review/refresh.png' %}" height="17px" width="20px">
