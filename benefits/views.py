@@ -2767,6 +2767,7 @@ def create(request):
 
                 new_benefit.title = request.POST['title']
                 new_benefit.writer = request.user
+                new_benefit.pub_date = timezone.now()
                 new_benefit.category_univ = request.POST['category_univ']
                 new_benefit.category_type = request.POST['category_type']
                 if request.POST['start_time']:
@@ -2914,6 +2915,7 @@ def update(request, benefit_id):
             if request.method == 'POST':
                 update_benefit.title = request.POST['title']
                 update_benefit.writer = request.user
+                update_benefit.pub_date = timezone.now()
                 if request.POST['start_time']:
                     update_benefit.start_time = request.POST['start_time']
                 if request.POST['end_time']:

@@ -55,6 +55,7 @@ def create(request):
         new_welfare = Welfare()
         new_welfare.title = request.POST['title']
         new_welfare.writer = request.user
+        new_welfare.pub_date = timezone.now()
         new_welfare.category_univ = request.POST['category_univ']
         new_welfare.category_type = request.POST['category_type']
         new_welfare.start_time = request.POST['start_time']

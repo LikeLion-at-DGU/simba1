@@ -8,4 +8,6 @@ urlpatterns = [
     path('my_comment/', my_comment, name="my_comment"),
     path('mypage_benefits_likes/<int:benefit_id>', mypage_benefits_likes, name="mypage_benefits_likes"),
     path('scrap_benefits_likes/<int:benefit_id>', scrap_benefits_likes, name="scrap_benefits_likes"),
+    path('postmanagement/', postmanagement, name="postmanagement"),
+    path('staff_postmanagement/', staff_postmanagement, name="staff_postmanagement"),
 ]

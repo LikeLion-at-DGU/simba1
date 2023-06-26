@@ -7,6 +7,7 @@ from accounts.models import CustomUser
 class Benefit(models.Model):
     title = models.CharField(max_length=20, blank = False, null = False) #제휴 상점 이름
     writer = models.ForeignKey(CustomUser, on_delete = models.CASCADE) #게시물 작성자
+    pub_date = models.DateTimeField()
     start_time = models.TimeField(null = True, blank = True, default = None) #제휴 상점 운영 시작 시간
     end_time = models.TimeField(null = True, blank = True, default = None) #제휴 상점 운영 종료 시간
     address = models.CharField(max_length = 30, blank = False, null = False) #제휴 상점 주소
