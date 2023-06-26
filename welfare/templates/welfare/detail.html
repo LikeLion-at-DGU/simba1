@@ -55,16 +55,15 @@
                 <div class="users">
                     <img src="{% static 'images/card/user.png' %}" height="15px" width="15px">
                     <div class="nickname">{{comment.writer}}</div>
-                    <a href="">삭제하기</a>
                 </div>
                 <div class="likes">
-                    <img src="{% static 'images/card/like.png' %}" height="13px" width="13px">
+                    <a href="{% url 'welfare:comment_likes' comment.id %}"><img src="{% static 'images/card/like.png' %}" height="13px" width="13px"></a>
                     <div class="like">{{comment.comment_like_count}}</div>
                 </div>
             </div>
 
             <div class="content">{{comment.content}}</div>
-            <div class="comment-date">{{comment.pub_date}}</div>
+            <div class="comment-date">{{comment.pub_date|date:'Y/m/d H:i'}} {% if user == comment.writer %}<a href="{% url 'welfare:delete_comment' comment.id %}" style="font-size : 10px">삭제하기</a> <a href="{% url 'welfare:edit_comment' comment.id %}" style="font-size : 10px">수정하기</a></div>{% endif %}
             {% endfor %}
         </div>
     </div>
