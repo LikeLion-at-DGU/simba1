@@ -29,7 +29,7 @@
                     space-between="30" loop="true">
 
                     <swiper-slide>
-                        {% for post in culture_posts %}
+                        {% for post in culture_posts_1 %}
                         <div class="total-benefit-content__item__slide__background1">
                             {% if post.image %}
                             <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
@@ -55,7 +55,9 @@
                             </div>
                             <div class="benefit">{{post.body}}</div>
                         </div>
+                        {% endfor %}
 
+                        {% for post in culture_posts_2 %}
                         <div class="total-benefit-content__item__slide__background2">
                             {% if post.image %}
                             <img class="taegeukdang" src="{{post.image.url}}">
@@ -81,11 +83,13 @@
                             </div>
                             <div class="benefit">{{post.body}}</div>
                         </div>
+                        {% endfor %}
                         
                     </swiper-slide>
 
                     <swiper-slide>
 
+                        {% for post in culture_posts_3 %}
                         <div class="total-benefit-content__item__slide__background1">
                             {% if post.image %}
                             <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
@@ -111,7 +115,9 @@
                             </div>
                             <div class="benefit">{{post.body}}</div>
                         </div>
+                        {% endfor %}
 
+                        {% for post in culture_posts_4 %}
                         <div class="total-benefit-content__item__slide__background2">
                             {% if post.image %}
                             <img class="taegeukdang" src="{{post.image.url}}">
