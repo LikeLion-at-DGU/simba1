@@ -11,10 +11,39 @@ def mainpage(request):
     cafe_posts = MainPost.objects.filter(category_type = "카페&식당") #기간이 지난 게시물들을 받아옴
     etc_posts = MainPost.objects.filter(category_type = "기타 서비스")
 
+    culture_posts_1 = []
+    culture_posts_2 = []
+    culture_posts_3 = []
+    culture_posts_4 = []
+    culture_posts_5 = []
+    culture_posts_6 = []
+
+    for index, culture_post in enumerate(culture_posts):
+        if (index+1)%6 == 1:
+            culture_posts_1.append(culture_post)
+        elif (index+1)%6 == 2:
+            culture_posts_2.append(culture_post)
+        elif (index+1)%6 == 3:
+            culture_posts_3.append(culture_post)
+        elif (index+1)%6 == 4:
+            culture_posts_4.append(culture_post)
+        elif (index+1)%6 == 5:
+            culture_posts_5.append(culture_post)
+        elif (index+1)%6 == 6:
+            culture_posts_6.append(culture_post)
+
+    # for index, first_culture_post in enumerate(cultureposts)
+
     return render(request, 'main/mainpage.html', {
         'culture_posts' : culture_posts,
         'cafe_posts' : cafe_posts,
         "etc_posts" : etc_posts,
+        'culture_posts_1' : culture_posts_1,
+        'culture_posts_2' : culture_posts_2,
+        'culture_posts_3' : culture_posts_3,
+        'culture_posts_4' : culture_posts_4,
+        'culture_posts_5' : culture_posts_5,
+        'culture_posts_6' : culture_posts_6,
     })
 
 def create(request):
