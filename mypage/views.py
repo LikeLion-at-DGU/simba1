@@ -1,7 +1,10 @@
 # Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
 from benefits.models import Benefit, BComment
-from welfare.models import Welfare
+from welfare.models import Welfare, WComment
+from main.models import MainPost, MainComment
+from django.http import HttpResponse
+import json
 
 # Create your views here.
 def information(request):
@@ -14,9 +17,13 @@ def postmanagement(request):
     if request.user.is_staff:
         user = request.user
         benefits = Benefit.objects.filter(writer = user) #게시물 작성자가 현재 로그인한 유저와 같은 것들만 가져옴
+        welfares = Welfare.objects.filter(writer = user)
+        mainposts = MainPost.objects.filter(writer = user)
 
         return render(request, 'mypage/postmanagement.html', {
             'benefits' : benefits,
+            'welfares' : welfares,
+            'mainposts' : mainposts,
         })
     else:
         return render(request, 'accounts/no_auth.html')
@@ -34,11 +41,14 @@ def scrap(request): #스크랩 기능
         user = request.user
         benefits = Benefit.objects.filter(benefit_like = user) #좋아요한 게시물 중에 유저가 있는 게시물들
         welfares = Welfare.objects.filter(welfare_like = user)
+        mainposts = MainPost.objects.filter(mainpost_like = user)
 
         benefit_first_line = [] #기간 내에 있는 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
         benefit_second_line = [] #기간 내에 있는 게시물들 중 둘째 줄에 들어갈 게시물들이 들어갈 공간 마련
         welfare_first_line = [] #기간 지난 게시물들 중 첫째 줄에 들어갈 게시물들이 들어갈 공간 마련
         welfare_second_line = []
+        mainpost_first_line = []
+        mainpost_second_line = []
 
         for i, benefit in enumerate(benefits): #enumerate 함수는 찾아본 결과 순서가 있는 자료형을 인덱스와 해당 요소를 포함하는 객체를 반환한다 해서 사용함 (순서번호 객체)
             if (i+1) % 2 == 1: #짝수 번째에 있는 게시물들
@@ -52,6 +62,19 @@ def scrap(request): #스크랩 기능
                     welfare_second_line.append(welfare)
                 elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
                     welfare_first_line.append(welfare) #담아담아
+
+            if (len(benefits) + len(welfares)) % 2 == 1:
+                for i, mainpost in enumerate(mainposts):
+                    if (i+1) % 2 == 1: #짝수 번째에 있는 게시물들
+                        mainpost_second_line.append(mainpost)
+                    elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
+                        mainpost_first_line.append(mainpost) #담아담아
+            elif (len(benefits) + len(welfares)) % 2 == 0:
+                for i, mainpost in enumerate(mainposts):
+                    if (i+1) % 2 == 1: #짝수 번째에 있는 게시물들
+                        mainpost_first_line.append(mainpost)
+                    elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
+                        mainpost_second_line.append(mainpost) #담아담아
         else:
             for i, welfare in enumerate(welfares):
                 if (i+1) % 2 == 1: #짝수 번째에 있는 게시물들
@@ -59,11 +82,26 @@ def scrap(request): #스크랩 기능
                 elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
                     welfare_second_line.append(welfare) #담아담아
 
+            if (len(benefits) + len(welfares)) % 2 == 1:
+                for i, mainpost in enumerate(mainposts):
+                    if (i+1) % 2 == 1: #짝수 번째에 있는 게시물들
+                        mainpost_second_line.append(mainpost)
+                    elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
+                        mainpost_first_line.append(mainpost) #담아담아
+            elif (len(benefits) + len(welfares)) % 2 == 0:
+                for i, mainpost in enumerate(mainposts):
+                    if (i+1) % 2 == 1: #짝수 번째에 있는 게시물들
+                        mainpost_first_line.append(mainpost)
+                    elif (i+1) % 2 == 0: #홀수 번째에 있는 게시물들
+                        mainpost_second_line.append(mainpost) #담아담아
+
         return render(request, 'mypage/scrap.html', {
             'benefit_first_line' : benefit_first_line,
             'benefit_second_line' : benefit_second_line,
             'welfare_first_line' : welfare_first_line,
             'welfare_second_line' : welfare_second_line,
+            'mainpost_first_line' : mainpost_first_line,
+            'mainpost_second_line' : mainpost_second_line,
             })
     else:
         return render(request, 'accounts/no_auth.html')
@@ -71,39 +109,46 @@ def scrap(request): #스크랩 기능
 def my_comment(request):
     if request.user.is_authenticated:
         user = request.user
-        comments = BComment.objects.filter(writer = user)
+        benefit_comments = BComment.objects.filter(writer = user)
+        welfare_comments = WComment.objects.filter(writer = user)
+        mainpost_comments = MainComment.objects.filter(writer = user)
         return render(request, 'mypage/my_comment.html',{
-            'comments' : comments,
+            'benefit_comments' : benefit_comments,
+            'welfare_comments' : welfare_comments,
+            'mainpost_comments' : mainpost_comments,
         })
     else:
         return redirect('accounts:login')
-
-def scrap_benefits_likes(request, benefit_id): #스크랩 안에서 좋아요 누를 때
-    if request.user.is_authenticated:
-        benefit = get_object_or_404(Benefit, id=benefit_id)
-        if request.user in benefit.benefit_like.all():
-            benefit.benefit_like.remove(request.user)
-            benefit.benefit_like_count -=1
-            benefit.save()
-        else:
-            benefit.benefit_like.add(request.user)
-            benefit.benefit_like_count +=1
-            benefit.save()
-        return redirect('mypage:scrap')
+    
+def benefit_delete_comment(request, comment_id):
+    delete_comment = BComment.objects.get(id = comment_id)
+    if request.user == delete_comment.writer:
+        delete_comment.delete()
+        return redirect('mypage:my_comment')
+    elif request.user.is_superuser:
+        delete_comment.delete()
+        return redirect('mypage:my_comment')
     else:
         return render(request, 'accounts/no_auth.html')
     
-def mypage_benefits_likes(request, benefit_id): #마이페이지 안에서 좋아요 누를 때
-    if request.user.is_authenticated:
-        benefit = get_object_or_404(Benefit, id=benefit_id)
-        if request.user in benefit.benefit_like.all():
-            benefit.benefit_like.remove(request.user)
-            benefit.benefit_like_count -=1
-            benefit.save()
-        else:
-            benefit.benefit_like.add(request.user)
-            benefit.benefit_like_count +=1
-            benefit.save()
-        return redirect('mypage:information')
+def welfare_delete_comment(request, comment_id):
+    delete_comment = WComment.objects.get(id = comment_id)
+    if request.user == delete_comment.writer:
+        delete_comment.delete()
+        return redirect('mypage:my_comment')
+    elif request.user.is_superuser:
+        delete_comment.delete()
+        return redirect('mypage:my_comment')
+    else:
+        return render(request, 'accounts/no_auth.html')
+    
+def mainpost_delete_comment(request, comment_id):
+    delete_comment = MainComment.objects.get(id = comment_id)
+    if request.user == delete_comment.writer:
+        delete_comment.delete()
+        return redirect('mypage:my_comment')
+    elif request.user.is_superuser:
+        delete_comment.delete()
+        return redirect('mypage:my_comment')
     else:
         return render(request, 'accounts/no_auth.html')

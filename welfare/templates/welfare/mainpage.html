@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/welfare.css' %}">
+<link rel="stylesheet" href="{% static 'css/welfare/welfare.css' %}">
 {% if user.is_staff %}
 <a href="{% url 'welfare:new' %}">글 쓰기</a>
 {% endif %}
