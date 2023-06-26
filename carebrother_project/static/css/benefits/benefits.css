@@ -121,15 +121,6 @@
     margin-top: 31px;
 }
 
-.card__item__empty {
-    display: flex;
-    position: relative;
-    width: 135px;
-    height: 150px;
-    margin-left: 40px;
-    margin-top: 31px;
-}
-
 .card__item__img {
     position: absolute;
     width: 135px;

@@ -6,12 +6,8 @@ from accounts.models import CustomUser
 def user_admin(request):
     if request.user.is_superuser:
         waiting_users = CustomUser.objects.filter(is_approved=False) #승인 안된 유저 담아담아
-        approved_users = CustomUser.objects.filter(is_approved=True) #승인 된 유저 담아담아
-        staff_users = CustomUser.objects.filter(is_staff = True) #스태프 유저 담아담아
-        return render(request, 'adminpage/user_admin.html', {
+        return render(request, 'adminpage/user_approval.html', {
             'waiting_users' : waiting_users,
-            'approved_users' : approved_users,
-            'staff_users' : staff_users,
             })
     else:
         return render(request, 'accounts/no_auth.html')

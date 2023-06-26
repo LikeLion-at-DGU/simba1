@@ -55,9 +55,8 @@ body {
 .root {
     display: flex;
     width: 390px;
-    min-height: 100%;
+    min-height: 100vh;
     position: relative;
-    padding-bottom: 150px;
     flex-direction: column;
 }
 
@@ -115,6 +114,7 @@ footer {
     width: 390px;
     height: 100px;
     bottom: 0;
+    left: 0px;
     font-size: 6px;
     font-family: 'NotoSansKR';
     background: rgba(255, 218, 175, 0.5);

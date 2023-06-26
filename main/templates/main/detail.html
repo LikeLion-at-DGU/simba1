@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/benefits/card.css' %}">
+
+    <div class="root">
+        <div class="item">
+            <a href="{% url 'main:mainpage' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+        </div>
+
+        <div class="item">
+            <div class="card">
+                {% if mainpost.image %}
+                <div class="card-img">
+                    <img class="store-img" src="{{mainpost.image.url}}">
+                </div>
+                {% endif %}
+
+                <div class="card-head">
+                    <div class="head-content">
+                        <div class="store-title">{{mainpost.title}}</div>
+                        <hr class="title_hr">
+                        <div class="stars">
+                            <img src="{% static 'images/card/star.png' %}" height="12px" width="11px">
+                            <div class="grade">{{mainpost.mainpost_rate_average}}</div>
+                        </div>
+                        <img src="{% static 'images/card/pen.png' %}" height="13px" width="13px">
+                        <div class="grades"><a href="{% url 'main:review' mainpost.id %}">평가하기/코멘트</a></div>
+                    </div>
+                    {% if user in mainpost.mainpost_like.all %}
+                        <a href="{% url 'main:detail_likes' mainpost.id %}"><img class="heart" src="{% static 'images/card/fheart.png' %}" height="21px" width="23px"></a>
+                    {% else %}
+                        <a href="{% url 'main:detail_likes' mainpost.id %}"><img class="heart" src="{% static 'images/card/heart.png' %}" height="21px" width="23px"></a>
+                    {% endif %}
+                </div>
+
+                <div class="card-main">
+                    <div class="time">
+                        {% if mainpost.start_time and mainpost.end_time %}
+                            {{mainpost.start_time|time:"H:i"}}-{{mainpost.end_time|time:"H:i"}}
+                        {% elif mainpost.start_time %}
+                            {{mainpost.start_time|time:"H:i"}}~
+                        {% elif mainpost.end_time %}
+                            ~{{mainpost.end_time|time:"H:i"}}
+                        {% endif %}
+                    </div>
+                    <div class="address">{{mainpost.address}}</div>
+                    <div class="benefit">{{mainpost.body}}</div>
+                    <div class="dates">
+                        <div class="date">
+                        </div>
+                        <div class="button">
+                            <div class="button_modify"><a href="{% url 'main:update' mainpost.id %}">수정</a></div>
+                            <button class="button_delete" onclick = "location.href='{% url 'main:delete' mainpost.id %}'">삭제</button>
+                            <div class="button_delete_modal">
+                                <div class="button_delete_modal_content">
+                                    <div class="button_delete_content_title">메시지</div>
+                                    <img class="button_delete_content_close" src="{% static 'images/close_button.png' %}"></img>
+                                    <div class="button_delete_modal_content_line"></div>
+                                    <img class="button_delete_modal_content_img" src="{% static 'images/wastebasket.png' %}"
+                                        alt="button_delete_img">
+                                    <div class="button_delete_modal_content_message">게시물이 정상적으로 삭제되었습니다.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="comment-hr">
+
+                <div class="card-comment">
+                    <div class="comment-count">코멘트 {{comments_count}}</div>
+                    {% for comment in comments %}
+                    <!-- 1번째 댓글 -->
+                    <div class="comment">
+                        <div class="users">
+                            <img src="{% static 'images/card/user.png' %}" height="15px" width="15px">
+                            <div class="nickname">{{comment.writer}}</div>
+                            <img src="{% static 'images/card/star.png' %}" height="12px" width="11px">
+                            <div class="grade">{{comment.mainpost_rate}}</div>
+                        </div>
+                        <div class="likes">
+                            <a href="{% url 'main:comment_likes' comment.id %}"><img src="{% static 'images/card/like.png' %}" height="13px" width="13px"></a>
+                            <div class="like">{{comment.comment_like_count}}</div>
+                        </div>
+                    </div>
+
+                    <div class="content">{{comment.content}}</div>
+                    <div class="comment-date">{{comment.pub_date|date:'Y/m/d H:i'}}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="margin"></div>
+        <script src="{% static 'js/card.js' %}"></script>
+        <footer>
+            동국대학교 멋쟁이사자처럼 심바톤 1조<br>
+            @ likelion_dongguk<br>
+            ⓒ DGU Likelion. All rights reserved.
+        </footer>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<form action="{%url 'main:update' mainpost.id %}" method="POST" enctype="multipart/form-data">
+    {%csrf_token%}
+    <p>제목 : <input type="text" name="title" value="{{mainpost.title}}"></p>
+    <p>게시판을 선택해주세요: 
+        <select name="category_type">
+            {% if mainpost.category_univ %}
+                <option value = "{{mainpost.category_type}}" disabled selected>{{mainpost.category_univ}}</option>
+            {% endif %}
+            <option value = "문화생활">문화생활</option>
+            <option value = "카페&식당">카페&식당</option>
+            <option value = "기타 서비스">기타 서비스</option>
+        </select>
+    </p>
+    <p>가게 운영 시간 : 
+        {% if mainpost.start_time %} <input type = "time" name = "start_time" value="{{mainpost.start_time|time:'H:i'}}"> {% else %} <input type = "time" name = "start_time">{% endif %} ~ {% if mainpost.end_time %} <input type = "time" name = "end_time" value="{{mainpost.end_time|time:'H:i'}}"></p> {% else %} <input type = "time" name = "end_time"></p> {% endif %} <input type="reset">
+    <p>주소 : <input type="text" name="address" value="{{mainpost.address}}"></p>
+    <p>이미지: <input type="file" name="image"></p>
+    <p>내용 : <textarea type="text" name="body" id="" cols="30" rows="10">{{mainpost.body}}</textarea></p>
+    <button type="submit">제출</button>
+</form>
+
+{% endblock %}
+
+
