@@ -116,15 +116,17 @@
                             <div class="star-count">{{benefit.benefit_rate_average}}</div>
                         </div>
                         <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
-                        {% if user in benefit.benefit_like.all %}
-                        <div class="heart">
-                            <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
-                        </div>
-                        {% else %}
-                        <div class="heart">
-                            <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
-                        </div>
-                        {% endif %}
+                        <span href="#" class = "like" name="{{benefit.id}}" value="Like">
+                            {% if user in benefit.benefit_like.all %}
+                            <div class="heart">
+                                <i class="fas fa-heart" id = "like-icon-{{benefit.id}}" style="color: #ff8f0b;"></i>
+                            </div>
+                            {% else %}
+                            <div class="heart">
+                                <i class="far fa-heart" id = "like-icon-{{benefit.id}}" style="color: #ff8f0b;"></i>
+                            </div>
+                            {% endif %}
+                        </span>
                         <div class="time">
                             {% if benefit.start_time and benefit.end_time %}
                                 {{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}
@@ -154,15 +156,17 @@
                             <div class="star-count">{{benefit.benefit_rate_average}}</div>
                         </div>
                         <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
-                        {% if user in benefit.benefit_like.all %}
-                        <div class="heart">
-                            <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
-                        </div>
-                        {% else %}
-                        <div class="heart">
-                            <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
-                        </div>
-                        {% endif %}
+                        <span href="#" class = "like" name="{{benefit.id}}" value="Like">
+                            {% if user in benefit.benefit_like.all %}
+                            <div class="heart">
+                                <i class="fas fa-heart" id = "like-icon-{{benefit.id}}" style="color: #ff8f0b;"></i>
+                            </div>
+                            {% else %}
+                            <div class="heart">
+                                <i class="far fa-heart" id = "like-icon-{{benefit.id}}" style="color: #ff8f0b;"></i>
+                            </div>
+                            {% endif %}
+                        </span>
                         <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
                         <div class="benefit">{{benefit.body}}</div>
                     </div>
@@ -182,15 +186,17 @@
                         <div class="star-count">{{benefit.benefit_rate_average}}</div>
                     </div>
                     <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
-                    {% if user in benefit.benefit_like.all %}
-                    <div class="heart">
-                        <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
-                    </div>
-                    {% else %}
-                    <div class="heart">
-                        <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
-                    </div>
-                    {% endif %}
+                    <span href="#" class = "like" name="{{benefit.id}}" value="Like">
+                        {% if user in benefit.benefit_like.all %}
+                        <div class="heart">
+                            <i class="fas fa-heart" id = "like-icon-{{benefit.id}}" style="color: #ff8f0b;"></i>
+                        </div>
+                        {% else %}
+                        <div class="heart">
+                            <i class="far fa-heart" id = "like-icon-{{benefit.id}}" style="color: #ff8f0b;"></i>
+                        </div>
+                        {% endif %}
+                    </span>
                     <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
                     <div class="benefit">{{benefit.body}}</div>
                 </div>
@@ -212,15 +218,17 @@
                             <div class="star-count">{{benefit.benefit_rate_average}}</div>
                         </div>
                         <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
-                        {% if user in benefit.benefit_like.all %}
-                        <div class="heart">
-                            <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
-                        </div>
-                        {% else %}
-                        <div class="heart">
-                            <a href="{% url 'benefits:business_likes' benefit.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
-                        </div>
-                        {% endif %}
+                        <span href="#" class = "like" name="{{benefit.id}}" value="Like">
+                            {% if user in benefit.benefit_like.all %}
+                            <div class="heart">
+                                <i class="fas fa-heart" id = "like-icon-{{benefit.id}}" style="color: #ff8f0b;"></i>
+                            </div>
+                            {% else %}
+                            <div class="heart">
+                                <i class="far fa-heart" id = "like-icon-{{benefit.id}}" style="color: #ff8f0b;"></i>
+                            </div>
+                            {% endif %}
+                        </span>
                         <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
                         <div class="benefit">{{benefit.body}}</div>
                     </div>
@@ -235,4 +243,35 @@
         </footer>
 
     </div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    $(".like").click(function(){
+        var pk = $(this).attr('name')
+        $.ajax({
+            method : 'GET',
+            url:"{% url 'benefits:benefit_like_toggle' %}",
+            data:{'pk':pk, 'csrfmiddlewaretoken':'{{csrf_token}}'},
+            dataType:'json',
+            success:function(response){
+                if(response.benefit_like_count == null){
+                    alert('로그인이 필요합니다.');
+                    window.location.replace('/accounts/login/');
+                }
+                else{
+                    if(response.result=='like'){
+                        $(`#like-icon-${pk}`).removeClass();
+                        $(`#like-icon-${pk}`).addClass('fas fa-heart');
+                    }
+                    else{
+                        $(`#like-icon-${pk}`).removeClass();
+                        $(`#like-icon-${pk}`).addClass('far fa-heart');
+                    }
+                }
+            },
+            error:function(request, status, error){
+                alert("로그인이 필요합니다.");
+            },
+        })
+    })
+</script>
 {% endblock %}

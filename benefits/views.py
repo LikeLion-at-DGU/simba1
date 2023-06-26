@@ -3,6 +3,8 @@ from .models import Benefit, BComment
 from accounts.models import CustomUser
 from django.utils import timezone
 from django.db.models import F
+from django.http import HttpResponse
+import json
 
 
 def choose(request):
@@ -2869,7 +2871,7 @@ def edit_comment(request, comment_id):
                 edit_comment.save() #댓글 저장, id 생성
             
                 return redirect('benefits:detail', edit_comment.benefit.id)
-            if request.method == 'GET':
+            elif request.method == 'GET':
                 benefit = Benefit.objects.get(id = edit_comment.benefit.id)
                 comments = BComment.objects.filter(benefit = benefit)
                 comments_count = len(comments)
@@ -2890,7 +2892,7 @@ def edit_comment(request, comment_id):
                 edit_comment.save() #댓글 저장, id 생성
             
                 return redirect('benefits:detail', edit_comment.benefit.id)
-            if request.method == 'GET':
+            elif request.method == 'GET':
                 benefit = Benefit.objects.get(id = edit_comment.benefit.id)
                 comments = BComment.objects.filter(benefit = benefit)
                 comments_count = len(comments)
@@ -2977,195 +2979,51 @@ def delete(request, benefit_id):
     else:
         return render(request, 'accounts/no_auth.html')
 
-#경영대학 메인페이지 좋아요
-def business_likes(request, benefit_id): #메인 페이지에서 좋아요 누를 때
+def benefit_like_toggle(request):
     if request.user.is_authenticated: #유저가 로그인했으면
-        benefit = get_object_or_404(Benefit, id=benefit_id) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
+        pk = request.GET["pk"]
+        benefit = get_object_or_404(Benefit, pk=pk) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
         if request.user in benefit.benefit_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
             benefit.benefit_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
             benefit.benefit_like_count -=1 # 좋아요 개수 1개 줄음
             benefit.save() #저장
+            result = "like_cancel"
         else:
             benefit.benefit_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
             benefit.benefit_like_count +=1 #좋아요 1개 추가
             benefit.save()
-        return redirect('benefits:business')
+            result = "like"
+
+        context = {
+            "benefit_like_count" : benefit.benefit_like_count,
+            "result" : result
+        }
+
+        return HttpResponse(json.dumps(context), content_type = "application/json")
     else:
         return render(request, 'accounts/no_auth.html')
     
-#예술대학 메인페이지 좋아요
-def art_likes(request, benefit_id): #메인 페이지에서 좋아요 누를 때
+def comment_like_toggle(request):
     if request.user.is_authenticated: #유저가 로그인했으면
-        benefit = get_object_or_404(Benefit, id=benefit_id) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
-        if request.user in benefit.benefit_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
-            benefit.benefit_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
-            benefit.benefit_like_count -=1 # 좋아요 개수 1개 줄음
-            benefit.save() #저장
+        pk = request.GET["pk"]
+        comment = get_object_or_404(BComment, pk=pk) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
+        if request.user in comment.comment_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
+            comment.comment_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
+            comment.comment_like_count -=1 # 좋아요 개수 1개 줄음
+            comment.save() #저장
+            result = "like_cancel"
         else:
-            benefit.benefit_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
-            benefit.benefit_like_count +=1 #좋아요 1개 추가
-            benefit.save()
-        return redirect('benefits:art')
-    else:
-        return render(request, 'accounts/no_auth.html')
-    
-#사회과학대학 메인페이지 좋아요
-def social_likes(request, benefit_id): #메인 페이지에서 좋아요 누를 때
-    if request.user.is_authenticated: #유저가 로그인했으면
-        benefit = get_object_or_404(Benefit, id=benefit_id) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
-        if request.user in benefit.benefit_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
-            benefit.benefit_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
-            benefit.benefit_like_count -=1 # 좋아요 개수 1개 줄음
-            benefit.save() #저장
-        else:
-            benefit.benefit_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
-            benefit.benefit_like_count +=1 #좋아요 1개 추가
-            benefit.save()
-        return redirect('benefits:social')
-    else:
-        return render(request, 'accounts/no_auth.html')
-    
-#AI융합대학 메인페이지 좋아요
-def ai_likes(request, benefit_id): #메인 페이지에서 좋아요 누를 때
-    if request.user.is_authenticated: #유저가 로그인했으면
-        benefit = get_object_or_404(Benefit, id=benefit_id) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
-        if request.user in benefit.benefit_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
-            benefit.benefit_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
-            benefit.benefit_like_count -=1 # 좋아요 개수 1개 줄음
-            benefit.save() #저장
-        else:
-            benefit.benefit_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
-            benefit.benefit_like_count +=1 #좋아요 1개 추가
-            benefit.save()
-        return redirect('benefits:ai')
-    else:
-        return render(request, 'accounts/no_auth.html')
-    
-#공과대학 메인페이지 좋아요
-def engineering_likes(request, benefit_id): #메인 페이지에서 좋아요 누를 때
-    if request.user.is_authenticated: #유저가 로그인했으면
-        benefit = get_object_or_404(Benefit, id=benefit_id) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
-        if request.user in benefit.benefit_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
-            benefit.benefit_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
-            benefit.benefit_like_count -=1 # 좋아요 개수 1개 줄음
-            benefit.save() #저장
-        else:
-            benefit.benefit_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
-            benefit.benefit_like_count +=1 #좋아요 1개 추가
-            benefit.save()
-        return redirect('benefits:engineering')
-    else:
-        return render(request, 'accounts/no_auth.html')
-    
-#불교대학 메인페이지 좋아요
-def buddhism_likes(request, benefit_id): #메인 페이지에서 좋아요 누를 때
-    if request.user.is_authenticated: #유저가 로그인했으면
-        benefit = get_object_or_404(Benefit, id=benefit_id) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
-        if request.user in benefit.benefit_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
-            benefit.benefit_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
-            benefit.benefit_like_count -=1 # 좋아요 개수 1개 줄음
-            benefit.save() #저장
-        else:
-            benefit.benefit_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
-            benefit.benefit_like_count +=1 #좋아요 1개 추가
-            benefit.save()
-        return redirect('benefits:buddhism')
-    else:
-        return render(request, 'accounts/no_auth.html')
-    
-#미래융합대학 메인페이지 좋아요
-def future_likes(request, benefit_id): #메인 페이지에서 좋아요 누를 때
-    if request.user.is_authenticated: #유저가 로그인했으면
-        benefit = get_object_or_404(Benefit, id=benefit_id) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
-        if request.user in benefit.benefit_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
-            benefit.benefit_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
-            benefit.benefit_like_count -=1 # 좋아요 개수 1개 줄음
-            benefit.save() #저장
-        else:
-            benefit.benefit_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
-            benefit.benefit_like_count +=1 #좋아요 1개 추가
-            benefit.save()
-        return redirect('benefits:future')
-    else:
-        return render(request, 'accounts/no_auth.html')
-    
-#이과대학 메인페이지 좋아요
-def science_likes(request, benefit_id): #메인 페이지에서 좋아요 누를 때
-    if request.user.is_authenticated: #유저가 로그인했으면
-        benefit = get_object_or_404(Benefit, id=benefit_id) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
-        if request.user in benefit.benefit_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
-            benefit.benefit_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
-            benefit.benefit_like_count -=1 # 좋아요 개수 1개 줄음
-            benefit.save() #저장
-        else:
-            benefit.benefit_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
-            benefit.benefit_like_count +=1 #좋아요 1개 추가
-            benefit.save()
-        return redirect('benefits:science')
-    else:
-        return render(request, 'accounts/no_auth.html')
-    
-#문과대학 메인페이지 좋아요
-def liberal_likes(request, benefit_id): #메인 페이지에서 좋아요 누를 때
-    if request.user.is_authenticated: #유저가 로그인했으면
-        benefit = get_object_or_404(Benefit, id=benefit_id) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
-        if request.user in benefit.benefit_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
-            benefit.benefit_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
-            benefit.benefit_like_count -=1 # 좋아요 개수 1개 줄음
-            benefit.save() #저장
-        else:
-            benefit.benefit_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
-            benefit.benefit_like_count +=1 #좋아요 1개 추가
-            benefit.save()
-        return redirect('benefits:liberal')
-    else:
-        return render(request, 'accounts/no_auth.html')
-    
-#경찰사법대학 메인페이지 좋아요
-def police_likes(request, benefit_id): #메인 페이지에서 좋아요 누를 때
-    if request.user.is_authenticated: #유저가 로그인했으면
-        benefit = get_object_or_404(Benefit, id=benefit_id) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
-        if request.user in benefit.benefit_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
-            benefit.benefit_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
-            benefit.benefit_like_count -=1 # 좋아요 개수 1개 줄음
-            benefit.save() #저장
-        else:
-            benefit.benefit_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
-            benefit.benefit_like_count +=1 #좋아요 1개 추가
-            benefit.save()
-        return redirect('benefits:police')
-    else:
-        return render(request, 'accounts/no_auth.html')
-    
-#사범대학 메인페이지 좋아요
-def education_likes(request, benefit_id): #메인 페이지에서 좋아요 누를 때
-    if request.user.is_authenticated: #유저가 로그인했으면
-        benefit = get_object_or_404(Benefit, id=benefit_id) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
-        if request.user in benefit.benefit_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
-            benefit.benefit_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
-            benefit.benefit_like_count -=1 # 좋아요 개수 1개 줄음
-            benefit.save() #저장
-        else:
-            benefit.benefit_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
-            benefit.benefit_like_count +=1 #좋아요 1개 추가
-            benefit.save()
-        return redirect('benefits:education')
-    else:
-        return render(request, 'accounts/no_auth.html')
-    
-#법과대학 메인페이지 좋아요
-def law_likes(request, benefit_id): #메인 페이지에서 좋아요 누를 때
-    if request.user.is_authenticated: #유저가 로그인했으면
-        benefit = get_object_or_404(Benefit, id=benefit_id) #URL 매핑으로 받은 게시물 아이디에 해당하는 게시물을 담음
-        if request.user in benefit.benefit_like.all(): #게시물의 like 안에 있는 모든 유저들 중에 현재 유저가 있는지 판별
-            benefit.benefit_like.remove(request.user) #이미 좋아요가 눌러진 상태라는 것이기에 좋아요를 누르면 like안에 있는 유저들 중 자기를 없앰
-            benefit.benefit_like_count -=1 # 좋아요 개수 1개 줄음
-            benefit.save() #저장
-        else:
-            benefit.benefit_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
-            benefit.benefit_like_count +=1 #좋아요 1개 추가
-            benefit.save()
-        return redirect('benefits:law')
+            comment.comment_like.add(request.user) #좋아요를 누르면 like 안에 유저 추가
+            comment.comment_like_count +=1 #좋아요 1개 추가
+            comment.save()
+            result = "like"
+
+        context = {
+            "comment_like_count" : comment.comment_like_count,
+            "result" : result
+        }
+
+        return HttpResponse(json.dumps(context), content_type = "application/json")
     else:
         return render(request, 'accounts/no_auth.html')
 
