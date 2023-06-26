@@ -4,6 +4,7 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <div class="root">
+    
         <div class="container">
             <div class="total-benefit">
                 <div class="total-benefit__button">동국대 전체 학생 혜택</div>
@@ -16,136 +17,396 @@
             </div>
 
             <div class="total-benefit-content">
-                <div class="total-benefit-content__item">
-                    <div class="total-benefit-content__item__category">문화생활</div>
-                    <div class="total-benefit-content__item__slide">
-                        <img class="arrow-left" src="{% static 'images/arrow_left.png' %}">
-                        <img class="arrow-right" src="{% static 'images/arrow_right.png' %}">
 
+                <div class="total-benefit-content__item">
+                    <div class="total-benefit-content-top">
+                        <div class="total-benefit-content__item__category">문화생활</div>
+                        {% if request.user.is_staff %}
+                        <button class="total-benefit-content__writingButton" onclick = "location.href='{% url 'main:create' %}'"><img class="pencil" src="{% static 'images/pencil.png' %}">게시물 작성</button>
+                        {% endif %}
+                    </div>
+                    <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true"
+                    space-between="30" loop="true">
+
+                    <swiper-slide>
+                        {% for post in culture_posts %}
                         <div class="total-benefit-content__item__slide__background1">
-                            <img class="taegeukdang" src="{% static 'images/태극당.png' %}">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
                             <div class="slide-content">
-                                <div class="name">태극당</div>
+                                <div class="name">{{post.title}}</div>
                                 <div class="star">
                                     <i class="far fa-star" style="color: #ffd66b;"></i>
                                 </div>
-                                <div class="star-count">5.0</div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
                             </div>
-                                <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
-                                <div class="heart">
-                                    <i class="far fa-heart" style="color: #ff8f0b;"></i>
-                                </div>
-                                <div class="time">08:00-21:00</div>
-                                <div class="benefit">동국대학교 학생 인증 시 10% 할인</div>
-                        </div>
-
-                        <div class="total-benefit-content__item__slide__background2">
-                            <img class="taegeukdang" src="{% static 'images/대한극장.png' %}">
-                            <div class="slide-content">
-                            <div class="name">대한극장</div>
-                            <div class="star">
-                                <i class="far fa-star" style="color: #ffd66b;"></i>
-                            </div>
-                            <div class="star-count">5.0</div>
-                        </div>
-                            <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
                             <div class="heart">
                                 <i class="far fa-heart" style="color: #ff8f0b;"></i>
                             </div>
-                            <div class="benefit">동국대학교 학생 인증 시 영화표 8000원</div>
+                            <div class="time">
+                            {% if benefit.start_time and benefit.end_time %}
+                                {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                            {% elif post.start_time %}
+                                {{post.start_time|time:"H:i"}}-
+                            {% elif post.end_time %}
+                                ~{{post.end_time|time:"H:i"}}
+                            {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
                         </div>
-                    </div>
-                </div>
+
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <img class="taegeukdang" src="{{post.image.url}}">
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name">{{post.title}}</div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        
+                    </swiper-slide>
+
+                    <swiper-slide>
+
+                        <div class="total-benefit-content__item__slide__background1">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name">{{post.title}}</div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                            </div>
+                            <div class="time">
+                            {% if benefit.start_time and benefit.end_time %}
+                                {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                            {% elif post.start_time %}
+                                {{post.start_time|time:"H:i"}}-
+                            {% elif post.end_time %}
+                                ~{{post.end_time|time:"H:i"}}
+                            {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <img class="taegeukdang" src="{{post.image.url}}">
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name">{{post.title}}</div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+                    </swiper-slide>
+
+                    <swiper-slide>Slide 3</swiper-slide>
+                    <swiper-slide>Slide 4</swiper-slide>
+                    <swiper-slide>Slide 5</swiper-slide>
+
+                </swiper-container>
 
 
-
-
+                <!--카페&식당-->
                 <div class="total-benefit-content__item">
                     <div class="total-benefit-content__item__category">카페&식당</div>
-                    <div class="total-benefit-content__item__slide">
-                        <img class="arrow-left" src="{% static 'images/arrow_left.png' %}">
-                        <img class="arrow-right" src="{% static 'images/arrow_right.png' %}">
+                </div>
 
+                <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true"
+                    space-between="30" loop="true">
+                    
+                    <swiper-slide>
+
+                        {% for post in cafe_posts %}
                         <div class="total-benefit-content__item__slide__background1">
-                            <img class="taegeukdang" src="{% static 'images/태극당.png' %}">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
                             <div class="slide-content">
-                                <div class="name">태극당</div>
+                                <div class="name">{{post.title}}</div>
                                 <div class="star">
                                     <i class="far fa-star" style="color: #ffd66b;"></i>
                                 </div>
-                                <div class="star-count">5.0</div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
                             </div>
-                                <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
-                                <div class="heart">
-                                    <i class="far fa-heart" style="color: #ff8f0b;"></i>
-                                </div>
-                                <div class="time">08:00-21:00</div>
-                                <div class="benefit">동국대학교 학생 인증 시 10% 할인</div>
-                        </div>
-
-                        <div class="total-benefit-content__item__slide__background2">
-                            <img class="taegeukdang" src="{% static 'images/대한극장.png' %}">
-                            <div class="slide-content">
-                            <div class="name">대한극장</div>
-                            <div class="star">
-                                <i class="far fa-star" style="color: #ffd66b;"></i>
-                            </div>
-                            <div class="star-count">5.0</div>
-                        </div>
-                            <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
                             <div class="heart">
                                 <i class="far fa-heart" style="color: #ff8f0b;"></i>
                             </div>
-                            <div class="benefit">동국대학교 학생 인증 시 영화표 8000원</div>
+                            <div class="time">
+                            {% if benefit.start_time and benefit.end_time %}
+                                {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                            {% elif post.start_time %}
+                                {{post.start_time|time:"H:i"}}-
+                            {% elif post.end_time %}
+                                ~{{post.end_time|time:"H:i"}}
+                            {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
                         </div>
-                    </div>
-                </div>
+
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <img class="taegeukdang" src="{{post.image.url}}">
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name">{{post.title}}</div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        
+                    </swiper-slide>
+
+                    <swiper-slide>
+
+                        <div class="total-benefit-content__item__slide__background1">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name">{{post.title}}</div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                            </div>
+                            <div class="time">
+                            {% if benefit.start_time and benefit.end_time %}
+                                {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                            {% elif post.start_time %}
+                                {{post.start_time|time:"H:i"}}-
+                            {% elif post.end_time %}
+                                ~{{post.end_time|time:"H:i"}}
+                            {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <img class="taegeukdang" src="{{post.image.url}}">
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name">{{post.title}}</div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+
+                    </swiper-slide>
+
+                    <swiper-slide>Slide 3</swiper-slide>
+                    <swiper-slide>Slide 4</swiper-slide>
+                    <swiper-slide>Slide 5</swiper-slide>
+
+                </swiper-container>
 
 
 
 
+                <!--기타-->
                 <div class="total-benefit-content__item">
                     <div class="total-benefit-content__item__category">기타 서비스</div>
-                    <div class="total-benefit-content__item__slide">
-                        <img class="arrow-left" src="{% static 'images/arrow_left.png' %}">
-                        <img class="arrow-right" src="{% static 'images/arrow_right.png' %}">
+                </div>
 
+                <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true"
+                    space-between="30" loop="true">
+
+                    <swiper-slide>
+
+                        {% for post in etc_posts %}
                         <div class="total-benefit-content__item__slide__background1">
-                            <img class="taegeukdang" src="{% static 'images/태극당.png' %}">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
                             <div class="slide-content">
-                                <div class="name">태극당</div>
+                                <div class="name">{{post.title}}</div>
                                 <div class="star">
                                     <i class="far fa-star" style="color: #ffd66b;"></i>
                                 </div>
-                                <div class="star-count">5.0</div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
                             </div>
-                                <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
-                                <div class="heart">
-                                    <i class="far fa-heart" style="color: #ff8f0b;"></i>
-                                </div>
-                                <div class="time">08:00-21:00</div>
-                                <div class="benefit">동국대학교 학생 인증 시 10% 할인</div>
-                        </div>
-
-                        <div class="total-benefit-content__item__slide__background2">
-                            <img class="taegeukdang" src="{% static 'images/대한극장.png' %}">
-                            <div class="slide-content">
-                            <div class="name">대한극장</div>
-                            <div class="star">
-                                <i class="far fa-star" style="color: #ffd66b;"></i>
-                            </div>
-                            <div class="star-count">5.0</div>
-                        </div>
-                            <img class="calendar" src="{% static 'images/calendar.png' %}"></img>
                             <div class="heart">
                                 <i class="far fa-heart" style="color: #ff8f0b;"></i>
                             </div>
-                            <div class="benefit">동국대학교 학생 인증 시 영화표 8000원</div>
+                            <div class="time">
+                            {% if benefit.start_time and benefit.end_time %}
+                                {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                            {% elif post.start_time %}
+                                {{post.start_time|time:"H:i"}}-
+                            {% elif post.end_time %}
+                                ~{{post.end_time|time:"H:i"}}
+                            {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
                         </div>
-                    </div>
-                </div>
+
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <img class="taegeukdang" src="{{post.image.url}}">
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name">{{post.title}}</div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        
+                    </swiper-slide>
+
+                    <swiper-slide>
+
+                        <div class="total-benefit-content__item__slide__background1">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name">{{post.title}}</div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                            </div>
+                            <div class="time">
+                            {% if benefit.start_time and benefit.end_time %}
+                                {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                            {% elif post.start_time %}
+                                {{post.start_time|time:"H:i"}}-
+                            {% elif post.end_time %}
+                                ~{{post.end_time|time:"H:i"}}
+                            {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <img class="taegeukdang" src="{{post.image.url}}">
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name">{{post.title}}</div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <i class="far fa-heart" style="color: #ff8f0b;"></i>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+                    </swiper-slide>
+
+                    <swiper-slide>Slide 3</swiper-slide>
+                    <swiper-slide>Slide 4</swiper-slide>
+                    <swiper-slide>Slide 5</swiper-slide>
+
+                </swiper-container>
 
                 <div class="college">
+                    <a href="{% url 'benefits:choose' %}">
                     <div class="college-button">
                         <div class="college-benefit__title">
                             <p>
@@ -157,6 +418,7 @@
                             <i class="fas fa-long-arrow-alt-right" style="color: #ff8f0b;"></i>
                         </div>
                     </div>
+                    </a>
 
                     <div class="college-button">
                         <div class="college-benefit__title">
@@ -182,5 +444,5 @@
         </footer>
 
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
 {% endblock %}

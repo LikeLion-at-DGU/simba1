@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/user_approval.css' %}">
+    <div class="root">
+        <div class="content_wrap">
+
+            <div class="top">
+                <!--이전 페이지 이동 버튼-->
+                <a href="#">
+                    <div class="top_move-selectpage-button">
+                        <i class="fas fa-chevron-left" style="color: #404040;"></i>
+                    </div>
+                </a>
+                <div class="top_title">유저 승인</div>
+            </div>
+
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>이름</td>
+                        <td>아이디</td>
+                        <td>이미지</td>
+                        <td>유저 승인</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for user in waiting_users %}
+                    <tr>
+                        <td>{{user.profile.nickname}}</td>
+                        <td>{{user.username}}</td>
+                        <td>
+                            <button class="image-button">이미지 파일
+                            </button>
+                            <div class="modal">
+                                <div class="modal_content">
+                                    <div class="modal_content_title">이미지 파일</div>
+                                    <img class="modal_content_close" src="{% static 'images/close_button.png' %}"></img>
+                                    <img class="modal_content_img" src="{{user.image.url}}" alt="approval_img">
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <button class="approval" onclick="location.href='{% url 'accounts:approve_user' user.id %}'">승인</button>
+                            <div class="approval_modal">
+                                <div class="approval_modal_content">
+                                    <div class="modal_content_title">메시지</div>
+                                    <img class="modal_content_close" src="{% static 'images/close_button.png' %}"></img>
+                                    <div class="approval_modal_content_line"></div>
+                                    <img class="approval_modal_content_img" src="{% static 'images/approval.png' %}"
+                                        alt="approval_img">
+                                    <div class="approval_modal_content_message">관리자 승인이 확인되었습니다.</div>
+
+                                </div>
+                            </div>
+                            <button class="refusal" onclick="location.href='{% url 'accounts:delete_user' user.id %}'">거절</button>
+                            <div class="refusal_modal">
+                                <div class="refusal_modal_content">
+                                    <div class="modal_content_title">메시지</div>
+                                    <img class="modal_content_close" src="{% static 'images/close_button.png' %}"></img>
+                                    <div class="refusal_modal_content_line"></div>
+                                    <img class="refusal_modal_content_img" src="{% static 'images/refusal.png' %}"
+                                        alt="refusal_img">
+                                    <div class="refusal_modal_content_message">관리자 승인이 거절되었습니다.</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+        </tbody>
+
+        </table>
+        </div>
+
+
+
+        <!-- footer -->
+        <footer>
+            동국대학교 멋쟁이사자처럼 심바톤 1조<br>
+            @ likelion_dongguk<br>
+            ⓒ DGU Likelion. All rights reserved.
+        </footer>
+
+    </div>
+    <script src="{% static 'js/user_approval.js' %}"></script>
+{% endblock %}

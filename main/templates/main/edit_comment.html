@@ -12,76 +12,66 @@
     </div>
 
     <div class="item">
-        <form action="{% url 'benefits:review' benefit.id %}" method="POST" enctype="multipart/form-data">
+        <form action="{% url 'main:review' mainpost.id %}" method="POST" enctype="multipart/form-data">
             {%csrf_token%}
         <div class="review-box">
-            <div class="question"><span class="store-name">{{benefit.title}}</span>는<br>어떠셨나요?</div>
+            <div class="question"><span class="store-name">{{mainpost.title}}</span>는<br>어떠셨나요?</div>
             <div class="evaluation">
                 <div class="rating_box">
                     <div class="rating">
                     ★★★★★
                     <span class="rating_star">★★★★★</span>
-                    <input type="range" value="1" step="1" min="0" max="5" name="benefit_rate">
+                    <input type="range" value="1" step="1" min="0" max="5" name="mainpost_rate">
                     </div>
                 </div>
                 <img class="refresh" src="{% static 'images/review/refresh.png' %}" height="17px" width="20px">
             </div>
                     <input type="text" class="input-comment" placeholder="코멘트를 남겨주세요." name="content" value="{{comment.content}}">
                 <div class="buttons">
-                    <button type="button" class="cancel" onclick="location.href='{% url 'benefits:detail' benefit.id %}'">취소</button>
+                    <button type="button" class="cancel" onclick="location.href='{% url 'main:detail' mainpost.id %}'">취소</button>
                     <button type="submit" class="submit">등록</button>
                 </div>
-                    <!-- <input type="number" name="benefit_rate"> -->
+                    <!-- <input type="number" name="mainpost_rate"> -->
         </div>
         </form>
             <div class="card">
-                {% if benefit.image %}
+                {% if mainpost.image %}
                 <div  class="card-img">
-                    <img class="store-img" src="{{benefit.image.url}}">
+                    <img class="store-img" src="{{mainpost.image.url}}">
                 </div>
                 {% endif %}
                 
                 <div class="card-head">
                     <div class="head-content">
-                        <div class="store-title">{{benefit.title}}</div>
+                        <div class="store-title">{{mainpost.title}}</div>
                         <hr class="title_hr">
                         <div class="stars">
                             <img src="{% static 'images/card/star.png' %}" height="12px" width="11px">
-                            <div class="grade">{{benefit.benefit_rate_average}}</div>
+                            <div class="grade">{{mainpost.mainpost_rate_average}}</div>
                         </div>
                         <img src="{% static 'images/card/pen.png' %}" height="13px" width="13px">
-                        <div class="grades"><a href="{% url 'benefits:review' benefit.id %}">평가하기/코멘트</a></div>
+                        <div class="grades"><a href="{% url 'main:review' mainpost.id %}">평가하기/코멘트</a></div>
                     </div>
-                    {% if user in benefit.benefit_like.all %}
-                        <a href="{% url 'benefits:detail_likes' benefit.id %}"><img class="heart" src="{% static 'images/card/heart.png' %}" height="21px" width="23px"></a>
+                    {% if user in mainpost.mainpost_like.all %}
+                        <a href="{% url 'main:detail_likes' mainpost.id %}"><img class="heart" src="{% static 'images/card/heart.png' %}" height="21px" width="23px"></a>
                     {% else %}
-                        <a href="{% url 'benefits:detail_likes' benefit.id %}"><img class="heart" src="{% static 'images/card/heart.png' %}" height="21px" width="23px"></a>
+                        <a href="{% url 'main:detail_likes' mainpost.id %}"><img class="heart" src="{% static 'images/card/heart.png' %}" height="21px" width="23px"></a>
                     {% endif %}
                 </div>
         
                 <div class="card-main">
                     <div class="time">
-                        {% if benefit.start_time and benefit.end_time %}
-                            {{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}
-                        {% elif benefit.start_time %}
-                            {{benefit.start_time|time:"H:i"}}~
-                        {% elif benefit.end_time %}
-                            ~{{benefit.end_time|time:"H:i"}}
+                        {% if mainpost.start_time and mainpost.end_time %}
+                            {{mainpost.start_time|time:"H:i"}}-{{mainpost.end_time|time:"H:i"}}
+                        {% elif mainpost.start_time %}
+                            {{mainpost.start_time|time:"H:i"}}~
+                        {% elif mainpost.end_time %}
+                            ~{{mainpost.end_time|time:"H:i"}}
                         {% endif %}
                     </div>
-                    <div class="address">{{benefit.address}}</div>
-                    <div class="benefit">{{benefit.body}}</div>
+                    <div class="address">{{mainpost.address}}</div>
+                    <div class="benefit">{{mainpost.body}}</div>
                     <div class="dates">
-                        <img src="{% static 'images/card/date.png' %}" height="10px" width="11px">
-                            {% if benefit.start_date and benefit.end_date %}
-                                {{benefit.start_date|date:'Y.m.d'}}~{{benefit.end_date|date:'Y.m.d'}}
-                            {% elif benefit.start_date %}
-                                {{benefit.start_date|date:'Y.m.d'}}부터
-                            {% elif benefit.end_date %}
-                                {{benefit.end_date|date:'Y.m.d'}}까지
-                            {% else %}
-                                상시적용
-                            {% endif %}
                     </div>
                 </div>
                 <hr class="comment-hr">
@@ -94,8 +84,8 @@
                             <img src="{% static 'images/card/user.png' %}" height="15px" width="15px">
                             <div class="nickname">{{comment.writer}}</div>
                             <img src="{% static 'images/card/star.png' %}" height="12px" width="11px">
-                            <div class="grade">{{comment.benefit_rate}}</div>
-                            <a href="{% url 'benefits:delete_comment' comment.id %}">삭제하기</a>
+                            <div class="grade">{{comment.mainpost_rate}}</div>
+                            <a href="{% url 'main:delete_comment' comment.id %}">삭제하기</a>
                         </div>
                         <div class="likes">
                             <img src="{% static 'images/card/like.png' %}" height="13px" width="13px">

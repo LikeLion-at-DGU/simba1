@@ -1,0 +1,213 @@
+.content_wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 상단 */
+.top {
+    display: flex;
+    margin-left: 47px;
+    margin-top: 35px;
+    align-items: center;
+}
+
+.top a {
+    text-decoration: none;
+}
+
+/* 이전 페이지 이동 버튼 */
+.top_move-selectpage-button {
+    display: flex;
+    margin-right: 102px;
+}
+
+/* 유저 승인 */
+.top_title {
+    color: #814E01;
+    font-size: 20px;
+    font-family: HancomMalangMalang;
+    font-weight: 700;
+}
+
+/* 유저 테이블 */
+table {
+    margin-top: 30px;
+    border: 1px solid #CCC9C9;
+    border-collapse: collapse;
+    color: #814E01;
+    font-size: 12px;
+    font-family: HancomMalangMalang;
+    font-weight: 700;
+    text-align: center;
+}
+
+th,
+td {
+    border: 1px solid #CCC9C9;
+    padding: 10px;
+}
+
+.approval,
+.refusal {
+    width: 35px;
+    height: 20px;
+
+    color: #FFF;
+    text-align: center;
+    font-size: 10px;
+    font-family: HancomMalangMalang;
+
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.approval {
+    background-color: rgba(90, 222, 10, 0.7);
+}
+
+.approval:hover {
+    background-color: rgba(64, 155, 7, 0.7);
+}
+
+/* 승인&삭제 모달창 */
+.approval_modal,
+.refusal_modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 390px;
+    height: 100%;
+    overflow: auto;
+    background: rgba(217, 217, 217, 0.70);
+}
+
+.approval_modal_content,
+.refusal_modal_content {
+    margin: auto;
+    display: block;
+    width: 237px;
+    height: 108px;
+    background-color: #FFF;
+    border-radius: 10px;
+    position: relative;
+    margin-top: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.approval_modal_content_line,
+.refusal_modal_content_line {
+    width: 237px;
+    height: 1px;
+    background-color: rgba(204, 204, 204, 1);
+    position: absolute;
+    top: 32px;
+}
+
+.approval_modal_content_img,
+.refusal_modal_content_img {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 47px;
+    left: 23px;
+}
+
+.approval_modal_content_message,
+.refusal_modal_content_message {
+    color: #000;
+    font-size: 10px;
+    font-family: Noto Sans KR;
+    position: absolute;
+    top: 55px;
+    left: 63px;
+}
+
+
+.refusal {
+    background-color: rgba(236, 97, 48, 1);
+}
+
+.refusal:hover {
+    background-color: rgb(169, 73, 35);
+}
+
+
+.image-button {
+    width: 80px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 1);
+
+    color: #CCC;
+    font-size: 12px;
+    font-family: NotoSansKR;
+    font-weight: 700;
+
+    border: 1px solid rgba(204, 201, 201, 1);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.image-button:hover {
+    background-color: rgb(228, 228, 228);
+}
+
+
+
+/* 이미지 모달창 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 390px;
+    height: 100%;
+    overflow: auto;
+    background: rgba(217, 217, 217, 0.70);
+}
+
+
+
+.modal_content {
+    margin: auto;
+    display: block;
+    width: 237px;
+    height: 250px;
+    background-color: #FFF;
+    border-radius: 10px;
+    position: relative;
+    margin-top: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal_content_img {
+    position: absolute;
+    width: 113px;
+    height: 201px;
+    top: 38px;
+    left: 62px;
+}
+
+.modal_content_title {
+    position: absolute;
+    left: 16px;
+    top: 8px;
+    color: #000;
+    text-align: center;
+    font-size: 11px;
+    font-family: NotoSansKR;
+}
+
+.modal_content_close {
+    color: rgba(0, 0, 0, 1);
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 11px;
+    right: 18px;
+    font-size: 28px;
+    cursor: pointer;
+}
