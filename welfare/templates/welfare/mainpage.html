@@ -3,10 +3,6 @@
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/welfare/welfare.css' %}">
-{% if user.is_staff %}
-<a href="{% url 'welfare:new' %}">글 쓰기</a>
-{% endif %}
-
     <div class="root">
         <!--단과대학 선택 페이지 이동 버튼-->
         <div class="move-selectpage-button">
@@ -22,7 +18,9 @@
         <div class="introduce">
             {{univ}} 학생복지 페이지입니다.
         </div>
-
+        <div class="total-benefit-content-top">
+            <button class="total-benefit-content__writingButton" onclick="location.href='{% url 'welfare:create' %}'"><img class="pencil" src="{% static 'images/pencil.png' %}">게시물 작성</button>
+        </div>
         <div class="line"></div>
 
         <div class="menu">

@@ -3,9 +3,6 @@
 
 {% block content %}
 <link rel = "stylesheet" href = "{% static 'css/welfare/choose.css' %}">
-{% if user.is_staff %}
-<a href="{% url 'welfare:new' %}">글쓰기</a>
-{% endif %}
 <div class="root">
     <div class="intro">
         <div class="benefits">
