@@ -63,6 +63,8 @@
     align-items: center;
     margin-bottom: 25px;
     text-align: center;
+    color: #814E01;
+    font-weight: bold;
 }
 
 .card:not(:last-child) {
