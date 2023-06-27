@@ -10,8 +10,8 @@ class Welfare(models.Model):
     start_time = models.TimeField(null = True) # 영업시간_시작
     end_time = models.TimeField(null = True) # 영업시간_끝
     address = models.CharField(max_length = 30) # 주소
-    start_date = models.DateTimeField(null=True, blank=True)
-    end_date = models.DateTimeField(null=True, blank=True)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
     category_univ = models.CharField(max_length=50, null = False, blank = True) # 게시판 선택
     category_type = models.CharField(max_length=50, null = False, blank = True) # 카테고리
     body = models.TextField()

@@ -35,15 +35,20 @@ def logout(request):
 def signup(request):
     if request.method == 'POST':
         if request.POST['password'] == request.POST['confirm']:
-
+            for user_username in CustomUser.objects.all():
+                if request.POST['username'] in user_username.username:
+                    return render(request, 'accounts/signup_no.html')
             user = CustomUser.objects.create_user(username=request.POST['username'], password=request.POST['password'],) #CustomUser 모델에 user 생성
             user.save() #저장
+            for user_profile in Profile.objects.all():
+                if request.POST['nickname'] in user_profile.nickname:
+                    user.delete()
+                    return render(request, 'accounts/signup_no.html')
             nickname = request.POST['nickname']
             univ = request.POST['univ']
             
             profile = Profile(user = user, nickname = nickname, univ = univ)
             profile.save()
-
 
             return redirect('accounts:image_verification', user.id) #유저 이미지 인증 페이지로 넘어감.
     return render(request, 'accounts/signup.html')
@@ -55,12 +60,12 @@ def signup_completed(request):
 # 유저 회원가입 시 이미지 인증
 def image_verification(request, user_id):
     user = get_object_or_404(CustomUser, pk = user_id)
-    if user.image:
+    if user.profile.image:
         return render(request, 'accounts/no_auth.html')
     elif request.method == 'POST':
-        user.image = request.FILES.get('image_verification')
-        if user.image:
-            user.save()
+        user.profile.image = request.FILES.get('image_verification')
+        if user.profile.image:
+            user.profile.save()
             return redirect('accounts:signup_completed')
         else:
             return redirect('accounts:image_verification', user.id) #이미지 없으면 다시 이미지 인증 페이지로 넘어감.
@@ -83,11 +88,8 @@ def approve_user(request, user_id):
 def delete_user(request, user_id):
     if request.user.is_superuser:
         user = CustomUser.objects.get(id=user_id)
-        posts = Benefit.objects.filter(benefit_like=user)
-        for post in posts: #이게 유저 삭제 시 좋아요 개수도 줄어들게 하는 건데 왜 안되는 지 모르겠뜸.
-            post.benefit_like.remove(user)
-            post.benefit_like_count -=1
-        user.image.delete() #유저 삭제시 인증할 때 받은 사진도 같이 삭제
+        profile = Profile.objects.get(user = user)
+        profile.image.delete() #유저 삭제시 인증할 때 받은 사진도 같이 삭제
         user.delete() #유저 삭제
         return redirect('adminpage:user_admin')
     else:

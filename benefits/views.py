@@ -2958,7 +2958,7 @@ def update(request, benefit_id):
                 return redirect('benefits:detail', update_benefit.id)
             
             elif request.method == 'GET':
-                edit_benefit = Benefit.objects.get(id = id)
+                edit_benefit = Benefit.objects.get(id = benefit_id)
                 return render(request, 'benefits/edit.html', {
                     'benefit':edit_benefit,
                     })
