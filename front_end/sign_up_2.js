@@ -23,8 +23,6 @@ fileInput.addEventListener("change", function () {
     nextButton.classList.add("active");
     nextButton.style.cursor = "pointer";
   } else {
-    console.log("이미지 파일을 선택해주세요.");
-
     // 이미지 파일이 선택되지 않은 경우 버튼 비활성화
     nextButton.classList.remove("active");
     nextButton.style.cursor = "not-allowed";

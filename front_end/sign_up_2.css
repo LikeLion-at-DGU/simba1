@@ -62,7 +62,7 @@ body {
     font-family: NotoSansKR;
     font-weight: 400;
     letter-spacing: -2px;
-    line-height: 1.5;
+    line-height: 1.2;
 }
 
 .sign-up_wrapper_img {
@@ -132,7 +132,8 @@ body {
     font-size: 8px;
     font-family: NotoSansKR;
     font-weight: 400;
-    letter-spacing: -2px;
+    letter-spacing: -1.2px;
+    line-height: 1.2;
     color: #404040;
 }
 
