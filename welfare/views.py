@@ -75,6 +75,64 @@ def create(request):
 def new(request):
     return render(request, 'welfare/new.html')
 
+def update(request, welfare_id):
+    if request.user.is_staff:
+        update_welfare = Welfare.objects.get(id = welfare_id)
+        if request.user == update_welfare.writer:
+            if request.method == 'POST':
+                update_welfare.title = request.POST['title']
+                update_welfare.writer = request.user
+                update_welfare.pub_date = timezone.now()
+                if request.POST['start_time']:
+                    update_welfare.start_time = request.POST['start_time']
+                if request.POST['end_time']:
+                    update_welfare.end_time = request.POST['end_time']
+                update_welfare.address = request.POST['address']
+                if request.POST['start_date']:
+                    update_welfare.start_date = request.POST['start_date']
+                if request.POST['end_date']:
+                    update_welfare.end_date = request.POST['end_date']
+                update_welfare.image = request.FILES.get('image', update_welfare.image)
+                update_welfare.body = request.POST['body']
+
+                update_welfare.save()
+
+                return redirect('welfare:detail', update_welfare.id)
+            
+            elif request.method == 'GET':
+                edit_welfare = Welfare.objects.get(id = welfare_id)
+                return render(request, 'welfare/edit.html', {
+                    'welfare' : edit_welfare,
+                    })
+        elif request.user.is_superuser:
+            if request.method == 'POST':
+                update_welfare.title = request.POST['title']
+                update_welfare.writer = request.user
+                if request.POST['start_time']:
+                    update_welfare.start_time = request.POST['start_time']
+                if request.POST['end_time']:
+                    update_welfare.end_time = request.POST['end_time']
+                update_welfare.address = request.POST['address']
+                if request.POST['start_date']:
+                    update_welfare.start_date = request.POST['start_date']
+                if request.POST['end_date']:
+                    update_welfare.end_date = request.POST['end_date']
+                update_welfare.image = request.FILES.get('image', update_welfare.image)
+                update_welfare.body = request.POST['body']
+
+                update_welfare.save()
+
+                return redirect('welfare:detail', update_welfare.id)
+            
+            elif request.method == 'GET':
+                edit_welfare = Welfare.objects.get(id = id)
+                return render(request, 'welfare/edit.html', {
+                    'welfare':edit_welfare,
+                    })
+        else:
+            return render(request, 'accounts/no_auth.html')
+    else:
+        return render(request, 'accounts/no_auth.html')
 
 def detail(request, welfare_id):
     welfare = get_object_or_404(Welfare, pk = welfare_id)

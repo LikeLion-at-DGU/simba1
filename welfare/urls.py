@@ -51,6 +51,7 @@ urlpatterns = [
     path('mainpage_likes/<int:welfare_id>', mainpage_likes, name="mainpage_likes"),
     path('likes/<int:welfare_id>', detail_likes, name="detail_likes"),
     path('review/<int:welfare_id>', review, name="review"),
+    path('update/<int:welfare_id>', update, name="update"),
     # 댓글
     path('comment_likes/<int:comment_id>', comment_likes, name="comment_likes"),
     path('delete_comment/<int:comment_id>', delete_comment, name="delete_comment"),

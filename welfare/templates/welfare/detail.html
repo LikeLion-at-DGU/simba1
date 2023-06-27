@@ -6,8 +6,10 @@
 <div class="root">
 {% if user == welfare.writer %}
 <a href="{% url 'welfare:delete' welfare.id %}">삭제하기</a>
+<div class="button_modify"><a href="{% url 'welfare:update' welfare.id %}">수정</a></div>
 {% elif user.is_superuser %}
 <a href="{% url 'welfare:delete' welfare.id %}">삭제하기</a>
+<div class="button_modify"><a href="{% url 'welfare:update' welfare.id %}">수정</a></div>
 {% endif %}
 
 <div class="item">
