@@ -2,79 +2,134 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/welfare/card.css' %}">
-<div class="root">
-{% if user == welfare.writer %}
-<a href="{% url 'welfare:delete' welfare.id %}">삭제하기</a>
-<div class="button_modify"><a href="{% url 'welfare:update' welfare.id %}">수정</a></div>
-{% elif user.is_superuser %}
-<a href="{% url 'welfare:delete' welfare.id %}">삭제하기</a>
-<div class="button_modify"><a href="{% url 'welfare:update' welfare.id %}">수정</a></div>
-{% endif %}
+<link rel="stylesheet" href="{% static 'css/benefits/card.css' %}">
 
-<div class="item">
-    <img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px">
-</div>
-
-<div class="item">
-    <div class="card">
-        {% if welfare.image %}
-        <div  class="card-img">
-            <img class="store-img" src="{{welfare.image.url}}">
-        </div>
-        {% endif %}
-        
-        <div class="card-head">
-            <div class="head-content">
-                <div class="store-title">{{welfare.title}}</div>
-                <hr class="title_hr">
-                <img src="{% static 'images/card/pen.png' %}" height="13px" width="13px">
-                <div class="grades"><a href="{% url 'welfare:review' welfare.id %}">코멘트</a></div>
-            </div>
-            {% if user in welfare.welfare_like.all %}
-                <a href="{% url 'welfare:detail_likes' welfare.id %}"><img class="heart" src="{% static 'images/card/fheart.png' %}" height="21px" width="23px"></a>
-            {% else %}
-                <a href="{% url 'welfare:detail_likes' welfare.id %}"><img class="heart" src="{% static 'images/card/heart.png' %}" height="21px" width="23px"></a>
+    <div class="root">
+        <div class="item">
+            {% if welfare.category_univ == "경영대학" %}
+            <a href="{% url 'welfare:business' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+            {% elif welfare.category_univ == "예술대학" %}
+            <a href="{% url 'welfare:art' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+            {% elif welfare.category_univ == "사회과학대학" %}
+            <a href="{% url 'welfare:social' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+            {% elif welfare.category_univ == "AI융합대학" %}
+            <a href="{% url 'welfare:ai' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+            {% elif welfare.category_univ == "공과대학" %}
+            <a href="{% url 'welfare:engineering' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+            {% elif welfare.category_univ == "불교대학" %}
+            <a href="{% url 'welfare:buddhism' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+            {% elif welfare.category_univ == "미래융합대학" %}
+            <a href="{% url 'welfare:future' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+            {% elif welfare.category_univ == "이과대학" %}
+            <a href="{% url 'welfare:science' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+            {% elif welfare.category_univ == "문과대학" %}
+            <a href="{% url 'welfare:liberal' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+            {% elif welfare.category_univ == "경찰사법대학" %}
+            <a href="{% url 'welfare:police' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+            {% elif welfare.category_univ == "사범대학" %}
+            <a href="{% url 'welfare:education' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+            {% elif welfare.category_univ == "법과대학" %}
+            <a href="{% url 'welfare:law' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
             {% endif %}
         </div>
 
-        <div class="card-main">
-            <div class="time">{{welfare.start_time|time:"H:i"}}-{{welfare.end_time|time:"H:i"}}</div>
-            <div class="address">{{welfare.address}}</div>
-            <div class="benefit">{{welfare.body}}</div>
-            <div class="dates">
-                <img src="{% static 'images/card/date.png' %}" height="10px" width="11px">
-                <div class="date">{{welfare.start_date.date}}~{{welfare.end_date.date}}</div>
-            </div>
-        </div>
-        <!-- 댓글 들어가는 부분 -->
-        <hr class="comment-hr">
-        
-        <div class="card-comment">
-            <div class="comment-count">코멘트 {{comments_count}}</div>
-            {% for comment in comments %}
-            <div class="comment">
-                <div class="users">
-                    <img src="{% static 'images/card/user.png' %}" height="15px" width="15px">
-                    <div class="nickname">{{comment.writer}}</div>
+        <div class="item">
+            <div class="card">
+                {% if welfare.image %}
+                <div  class="card-img">
+                    <img class="store-img" src="{{welfare.image.url}}">
                 </div>
-                <span href="#" class = "like1" name="{{comment.id}}" value="Like">
-                    <div class="likes">
-                        <img src="{% static 'images/card/like.png' %}" id="like-icon-{{comment.id}}" height="13px" width="13px">
-                        <div class="like">{{comment.comment_like_count}}</div>
+                {% endif %}
+                
+                <div class="card-head">
+                    <div class="head-content">
+                        <div class="store-title">{{welfare.title}}</div>
+                        <hr class="title_hr">
+                        <img src="{% static 'images/card/pen.png' %}" height="13px" width="13px">
+                        <div class="grades"><a href="{% url 'welfare:review' welfare.id %}">코멘트</a></div>
                     </div>
-                    </span>
+                    {% if user in welfare.welfare_like.all %}
+                        <a href="{% url 'welfare:detail_likes' welfare.id %}"><img class="heart" src="{% static 'images/card/fheart.png' %}" height="21px" width="23px"></a>
+                    {% else %}
+                        <a href="{% url 'welfare:detail_likes' welfare.id %}"><img class="heart" src="{% static 'images/card/heart.png' %}" height="21px" width="23px"></a>
+                    {% endif %}
+                </div>
+
+                <div class="card-main">
+                    <div class="time">
+                        {% if welfare.start_time and welfare.end_time %}
+                            {{welfare.start_time|time:"H:i"}}-{{welfare.end_time|time:"H:i"}}
+                        {% elif welfare.start_time %}
+                            {{welfare.start_time|time:"H:i"}}~
+                        {% elif welfare.end_time %}
+                            ~{{welfare.end_time|time:"H:i"}}
+                        {% endif %}
+                    </div>
+                    <div class="address">{{welfare.address}}</div>
+                    <div class="benefit">{{welfare.body}}</div>
+                    <div class="dates">
+                        <div class="date">
+                            <img src="{% static 'images/card/date.png' %}" height="10px" width="11px">
+                            {% if welfare.start_date and welfare.end_date %}
+                                {{welfare.start_date|date:'Y.m.d'}}~{{welfare.end_date|date:'Y.m.d'}}
+                            {% elif welfare.start_date %}
+                                {{welfare.start_date|date:'Y.m.d'}}부터
+                            {% elif welfare.end_date %}
+                                {{welfare.end_date|date:'Y.m.d'}}까지
+                            {% else %}
+                                상시적용
+                            {% endif %}
+                        </div>
+                        <div class="button">
+                            <div class="button_modify"><a href="{% url 'welfare:update' welfare.id %}">수정</a></div>
+                            <button class="button_delete" onclick = "location.href='{% url 'welfare:delete' welfare.id %}'">삭제</button>
+                            <div class="button_delete_modal">
+                                <div class="button_delete_modal_content">
+                                    <div class="button_delete_content_title">메시지</div>
+                                    <img class="button_delete_content_close" src="{% static 'images/close_button.png' %}"></img>
+                                    <div class="button_delete_modal_content_line"></div>
+                                    <img class="button_delete_modal_content_img" src="{% static 'images/wastebasket.png' %}"
+                                        alt="button_delete_img">
+                                    <div class="button_delete_modal_content_message">게시물이 정상적으로 삭제되었습니다.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 댓글 들어가는 부분 -->
+                <hr class="comment-hr">
+                
+                <div class="card-comment">
+                    <div class="comment-count">코멘트 {{comments_count}}</div>
+                    {% for comment in comments %}
+                    <div class="comment">
+                        <div class="users">
+                            <img src="{% static 'images/card/user.png' %}" height="15px" width="15px">
+                            <div class="nickname">{{comment.writer}}</div>
+                        </div>
+                        <span href="#" class = "like1" name="{{comment.id}}" value="Like">
+                        <div class="likes">
+                            <img src="{% static 'images/card/like.png' %}" id="like-icon-{{comment.id}}" height="13px" width="13px">
+                            <div class="like">{{comment.comment_like_count}}</div>
+                        </div>
+                        </span>
+                    </div>
+
+                    <div class="content">{{comment.content}}</div>
+                    <div class="comment-date">{{comment.pub_date|date:'Y/m/d H:i'}} {% if user == comment.writer %}<a href="{% url 'welfare:delete_comment' comment.id %}" style="font-size : 10px">삭제하기</a> <a href="{% url 'welfare:edit_comment' comment.id %}" style="font-size : 10px">수정하기</a></div>{% endif %}
+                    {% endfor %}
+                </div>
             </div>
-
-            <div class="content">{{comment.content}}</div>
-            <div class="comment-date">{{comment.pub_date|date:'Y/m/d H:i'}} {% if user == comment.writer %}<a href="{% url 'welfare:delete_comment' comment.id %}" style="font-size : 10px">삭제하기</a> <a href="{% url 'welfare:edit_comment' comment.id %}" style="font-size : 10px">수정하기</a></div>{% endif %}
-            {% endfor %}
         </div>
-    </div>
-</div>
 
-<div class="margin"></div>
-</div>
+            <div class="margin"></div>
+            <script src="{% static 'js/card.js' %}"></script>
+            <footer>
+                동국대학교 멋쟁이사자처럼 심바톤 1조<br>
+                @ likelion_dongguk<br>
+                ⓒ DGU Likelion. All rights reserved.
+            </footer>
+    </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
