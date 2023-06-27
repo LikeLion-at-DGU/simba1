@@ -13,7 +13,7 @@
 <form action="{% url 'welfare:create' %}" method="POST" enctype="multipart/form-data">
     {%csrf_token%}
     <div class="univ">
-    <div class="univ_choice">게시판을 선택: </div>
+    <div class="univ_choice">게시판 선택: </div>
         <select class="select_univ" name="category_univ" id="category_univ">
             <option value="경영대학">경영대학</option>
             <option value="예술대학">예술대학</option>
@@ -30,7 +30,7 @@
         </select>
     </div>
     <div class="type">
-        <div class="category_type" name="category_type">
+        <div class="benefit-text">카테고리:</div>
         <select class="category_type"name="category_type">
             <option value = "공간대여">공간대여</option>
             <option value = "물품대여">물품대여</option>
@@ -44,7 +44,7 @@
     </div>
     <div class="times">
         <div class="times-open">운영시간: </div>
-        <input class="time" type="time" name="start_time"> ~ <input class="time" type="time" name="end_time">
+        <input class="time" type="time" name="start_time"> &nbsp;&nbsp;  <input class="time" type="time" name="end_time">
         <input class="reset" type="reset">
     </div>
     <div class="gps">
