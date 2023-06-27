@@ -54,6 +54,17 @@
 
 }
 
+.dates {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 12px 5px 0px;
+}
+
+.date {
+    font-size: 6px;
+}
+
 .comment-button {
     display: flex;
     flex-direction: row;
@@ -333,24 +344,4 @@
     right: 18px;
     font-size: 28px;
     cursor: pointer;
-}
-
-a:link {
-    text-decoration: none;
-    color: #404040;
-}
-
-a:visited {
-    text-decoration: none;
-    color: #404040;
-}
-
-a:hover {
-    text-decoration: none;
-    color: #404040;
-}
-
-a:active {
-    text-decoration: none;
-    color: #404040;
 }

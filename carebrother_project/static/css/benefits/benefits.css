@@ -240,7 +240,7 @@
     height: 30px;
     width: 90px;
     margin-right: 60px;
-
+  
     font-family: "HancomMalangMalang";
     font-weight: weight;
     font-size: 12px;
@@ -253,25 +253,5 @@
   
   .pencil {
     padding: 0px 3px 0px 0px;
-}
-
-
-a:link {
-    text-decoration: none;
-    color: #404040;
-}
-
-a:visited {
-    text-decoration: none;
-    color: #404040;
-}
-
-a:hover {
-    text-decoration: none;
-    color: #404040;
-}
-
-a:active {
-    text-decoration: none;
-    color: #404040;
-}
+  }
+  
