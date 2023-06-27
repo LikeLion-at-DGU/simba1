@@ -251,8 +251,8 @@ body {
 .sign-up_wrapper_upload {
     display: flex;
     margin-top: 12px;
-    width: 219px;
-    height: 70px;
+    width: 260px;
+    height: 90px;
     background-color: rgba(64, 64, 64, 0.1);
     border-radius: 6px;
     cursor: pointer;
@@ -262,8 +262,8 @@ body {
 
 .sign-up_wrapper_upload_text {
     position: absolute;
-    left: 80px;
-    top: 36px;
+    left: 90px;
+    top: 46px;
     padding-top: 10px;
     color: #404040;
     text-align: center;
@@ -276,8 +276,8 @@ body {
     position: absolute;
     width: 25px;
     height: 20px;
-    top: 20px;
-    left: 101px;
+    top: 30px;
+    left: 110px;
 }
 
 .sign-up_wrapper_upload_file {
@@ -315,7 +315,7 @@ body {
 /* 등록 버튼 */
 .submit_button {
     display: flex;
-    padding: 70px 0px 100px 200px;
+    padding: 70px 0px 100px 250px;
 }
 
 .submit {
