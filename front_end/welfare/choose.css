@@ -2,7 +2,7 @@
     padding: 0;
 }
 
-.navbar__menu li:nth-child(2) a {
+.navbar__menu li:nth-child(1) a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,35 +23,37 @@
     align-items: center;
 }
 
-.benefits_banner {
+.welfare_banner {
     display: flex;
     flex-direction: row;
     text-align: left;
-    padding-left: 20px;
+    margin-left: 47px;
+    padding-top: 10px;
 }
 
 .vector {
-    padding-left: 20px;
+    padding-left: 47px;
 }
 
 .hr {
     height: 20px;
     width: 1px;
-    /* margin: 0px 0px 0px 0px; */
+    margin: 0px;
+    padding-bottom: 9px;
 }
 
-.benefits_title {
+.welfare_title {
     color: #EC6130;
     font-weight: bold;
-    padding: 12px 0px 0px 47px;
+    padding: 12px 0px 0px 48px;
     font-size: 20px;
 }
 
-.benefits_contents {
+.welfare_contents {
     font-family: 'NotoSans';
     color: #404040;
     font-size: 8px;
-    padding: 5px 0px 75px 5px;
+    padding: 5px 0px 75px 8px;
 }
 
 
@@ -63,6 +65,8 @@
     align-items: center;
     margin-bottom: 25px;
     text-align: center;
+    color: #814E01;
+    font-weight: bold;
 }
 
 .card:not(:last-child) {
