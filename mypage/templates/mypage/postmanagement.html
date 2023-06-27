@@ -14,7 +14,7 @@
         {% for benefit in benefits %}
         <div class="post-card">
             <div class="post-card-text">
-                <a href="{% url 'benefits:detail' benefit.id %}">
+                <a href="{% url 'mypage:staff_benefit_detail' benefit.id %}">
                 <div class="post-card-text-title">제목: {{benefit.title}}</div>
                 </a>
                 <div class="post-card-text-content">내용: {{benefit.body}}</div>
@@ -22,7 +22,7 @@
             </div>
             <div class="post-card-image">
                 {% if benefit.image %}
-                <a href="{% url 'benefits:detail' benefit.id %}"><img class="post-card-image-img" src="{{benefit.image.url}}"></a>
+                <a href="{% url 'mypage:staff_benefit_detail' benefit.id %}"><img class="post-card-image-img" src="{{benefit.image.url}}"></a>
                 {% endif %}
                 <div class="post-card-image-category">제휴혜택>{{benefit.category_type}}</div>
             </div>
@@ -32,15 +32,13 @@
         {% for welfare in welfares %}
         <div class="post-card">
             <div class="post-card-text">
-                <a href="{% url 'welfare:detail' welfare.id %}">
                 <div class="post-card-text-title">제목: {{welfare.title}}</div>
-                </a>
                 <div class="post-card-text-content">내용: {{welfare.body}}</div>
                 <div class="post-card-text-date">작성일: {{welfare.pub_date|date:'Y/m/d H:i'}}</div>
             </div>
             <div class="post-card-image">
                 {% if welfare.image %}
-                <a href="{% url 'welfare:detail' welfare.id %}"><img class="post-card-image-img" src="{{welfare.image.url}}"></a>
+                <img class="post-card-image-img" src="{{welfare.image.url}}">
                 {% endif %}
                 <div class="post-card-image-category">제휴혜택>{{welfare.category_type}}</div>
             </div>
@@ -50,7 +48,7 @@
         {% for mainpost in mainposts %}
         <div class="post-card">
             <div class="post-card-text">
-                <a href="{% url 'main:detail' mainpost.id %}">
+                <a href="{% url 'mypage:staff_main_detail' mainpost.id %}">
                 <div class="post-card-text-title">제목: {{mainpost.title}}</div>
                 </a>
                 <div class="post-card-text-content">내용: {{mainpost.body}}</div>
@@ -58,7 +56,7 @@
             </div>
             <div class="post-card-image">
                 {% if mainpost.image %}
-                <a href="{% url 'main:detail' mainpost.id %}"><img class="post-card-image-img" src="{{mainpost.image.url}}"></a>
+                <a href="{% url 'mypage:staff_main_detail' mainpost.id %}"><img class="post-card-image-img" src="{{mainpost.image.url}}"></a>
                 {% endif %}
                 <div class="post-card-image-category">제휴혜택>{{mainpost.category_type}}</div>
             </div>
