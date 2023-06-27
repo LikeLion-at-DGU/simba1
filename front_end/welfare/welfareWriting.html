@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benefit Writing</title>
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="welfareWriting.css">
+</head>
+<body>
+    <div class="writing">
+        <div class="writing-image"><img src="../image/choose/Vector.png"></div>
+        <div class="writing-title">학생복지 글 쓰기</div>
+    </div>
+    <!-- enctype="multipart/form-data"을 하는 이유는 이미지 파일만 받기 위함 -->
+    <form enctype="multipart/form-data">
+        <div class="univ">
+            <div class="univ_choice">게시판 선택: </div>
+            <select class="select_univ" name="category_univ">
+                <option value="none">--선택하세요--</option>
+                <option value = "경영대학">경영대학</option>
+                <option value = "예술대학">예술대학</option>
+                <option value = "사회과학대학">사회과학대학</option>
+                <option value = "AI융합대학">AI융합대학</option>
+                <option value = "공과대학">공과대학</option>
+                <option value = "불교대학">불교대학</option>
+                <option value = "미래융합대학">미래융합대학</option>
+                <option value = "이과대학">이과대학</option>
+                <option value = "문과대학">문과대학</option>
+                <option value = "경찰사법대학">경찰사법대학</option>
+                <option value = "사범대학">사범대학</option>
+                <option value = "법과대학">법과대학</option>
+            </select>
+        </div>
+        <div class="type">
+            <div class="type_category">카테고리</div>
+            <select class="category_type" name="category_type">
+                <option value="none">--선택하세요--</option>
+                <option value = "공간대여">식당</option>
+                <option value = "물품대여">주점</option>
+            </select>
+        </div>
+
+        <div class="benefit">
+            <div class="benefit-text">학생복지 제목: </div>
+            <input class="title" type="text" name="title">
+        </div>
+        <div class="times">
+            <div class="times-open">운영시간: </div>
+            <input class="time" type = "time" name = "start_time"> ~ <input class="time" type = "time" name = "end_time">
+            <input class="reset" type="reset">
+        </div>
+        <div class="gps">
+            <div class="gps_address">위치: </div> 
+            <input class="address" type="text" name="address">
+        </div>
+        <div class="content">
+            <div class="content-writing">복지 내용: </div> 
+            <textarea class="text" type="text" name="body" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div class="start">
+            <div class="start-date">시작 날짜: </div>
+            <input class="start_date" type="date" name="start_date">
+        </div>
+        <div class="end">
+            <div class="end-date">끝나는 날짜: </div>
+            <input class="end_date" type="date" name="end_date">
+        </div>
+        <label class="sign-up_wrapper_upload" for="chooseFile">
+            <div class="preview"></div>
+            <div class="sign-up_wrapper_upload_text">이미지 파일 업로드</div>
+        <img src="../image/image.png" class="img_upload">
+        <input class="sign-up_wrapper_upload_file" id="chooseFile" type="file" multiple>
+        
+        </label>
+
+        <div class="submit_button">
+            <button class="submit" type="submit">등록</button>
+        </div>
+    </form>
+    <script src="./welfareWriting.js"></script>
+</body>
+
+</html>
