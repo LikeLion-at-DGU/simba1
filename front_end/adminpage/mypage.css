@@ -51,23 +51,6 @@ body {
     border-radius: 50px;
 }
 
-/* 뒤로가기 */
-.vectors {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 20px 0px 0px 47px;
-}
-
-.vector {
-    width: 10px;
-    height: 15px;
-    padding-top: 30px;
-    display: flex;
-    align-items: flex-start;
-}
-
 /* profile */
 .profile {
     display: flex;
@@ -78,7 +61,7 @@ body {
 .profile-image {
     width: 50px;
     height: 50px;
-    padding-top: 30px;
+    padding-top: 54px;
 }
 
 .profile-title {
