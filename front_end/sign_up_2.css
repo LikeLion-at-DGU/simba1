@@ -156,3 +156,6 @@ body {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
+.next_button input[type="submit"].active{
+    background-color: rgba(255, 143, 11, 1);
+}
