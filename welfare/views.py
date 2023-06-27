@@ -54,29 +54,35 @@ def mainpage(request):
 
 def create(request):
     if request.user.is_authenticated:
-        new_welfare = Welfare()
-        new_welfare.title = request.POST['title']
-        new_welfare.writer = request.user
-        new_welfare.pub_date = timezone.now()
-        new_welfare.category_univ = request.POST['category_univ']
-        new_welfare.category_type = request.POST['category_type']
-        if request.POST['start_time']:
-            new_welfare.start_time = request.POST['start_time']
-        if request.POST['end_time']:
-            new_welfare.end_time = request.POST['end_time']
-        new_welfare.address = request.POST['address']
-        if request.POST['start_date']:
-            new_welfare.start_date = request.POST['start_date']
-        if request.POST['end_date']:
-            new_welfare.end_date = request.POST['end_date']
-        new_welfare.image = request.FILES.get('image')
-        new_welfare.body = request.POST['body']
+        if request.user.is_staff:
+            if request.method == 'POST':
+                new_welfare = Welfare()
+                new_welfare.title = request.POST['title']
+                new_welfare.writer = request.user
+                new_welfare.pub_date = timezone.now()
+                new_welfare.category_univ = request.POST['category_univ']
+                new_welfare.category_type = request.POST['category_type']
+                if request.POST['start_time']:
+                    new_welfare.start_time = request.POST['start_time']
+                if request.POST['end_time']:
+                    new_welfare.end_time = request.POST['end_time']
+                new_welfare.address = request.POST['address']
+                if request.POST['start_date']:
+                    new_welfare.start_date = request.POST['start_date']
+                if request.POST['end_date']:
+                    new_welfare.end_date = request.POST['end_date']
+                new_welfare.image = request.FILES.get('image')
+                new_welfare.body = request.POST['body']
 
-        new_welfare.save()
-        
-        return redirect('welfare:detail', new_welfare.id)
-    else:
-        return redirect('accounts:login')
+                new_welfare.save()
+                
+                return redirect('welfare:detail', new_welfare.id)
+            
+            elif request.method == 'GET':
+                return render(request, 'welfare/new.html')
+            
+        else:
+            return redirect('accounts:login')
 
 def new(request):
     return render(request, 'welfare/new.html')
