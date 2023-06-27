@@ -315,3 +315,23 @@ swiper-slide img {
   height: 100%;
   object-fit: cover;
 }
+
+a:link {
+  text-decoration: none;
+  color: #404040;
+}
+
+a:visited {
+  text-decoration: none;
+  color: #404040;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #404040;
+}
+
+a:active {
+  text-decoration: none;
+  color: #404040;
+}
