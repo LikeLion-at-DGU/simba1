@@ -50,28 +50,34 @@
 body {
     background: #fcfaf7;
     margin: 0;
+    min-height: 844px;
 }
 
 .root {
     display: flex;
     width: 390px;
-    min-height: 100vh;
+    /* min-height: 653px; */
     position: relative;
+    min-height: 100vh;
     flex-direction: column;
 }
 
 /* navbar */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    background-color: #ffdaaf;
-    padding: 8px 12px;
+    background-color: rgba(255, 218, 175, 0.5);
+    width: 390px;
+    padding: 18px 0px 18px 0px;
 }
+
+
 
 .navbar__logo img {
     width: 82px;
     height: 32px;
+    margin-left: 26px;
 }
 
 .navbar__menu {
@@ -96,8 +102,13 @@ body {
 
 .navbar__menu li {
     display: flex;
-    padding: 8px 30px;
+    padding-left: 28px;
     align-items: center;
+}
+
+
+.navbar__menu li:nth-child(4) {
+    padding-left: 37px;
 }
 
 .navbar__menu i::before {
@@ -110,6 +121,7 @@ footer {
     justify-content: center;
     align-items: center;
     text-align: center;
+    position: absolute;
     width: 390px;
     height: 100px;
     bottom: 0;
@@ -118,4 +130,32 @@ footer {
     font-family: 'NotoSansKR';
     background: rgba(255, 218, 175, 0.5);
     color: #404040;
+}
+
+/* 드롭다운 */
+.navbar li ul {
+    display:none;  /* 평상시에는 서브메뉴가 안보이게 하기 */
+    height:auto;
+
+    border:0px;
+    position:absolute;
+    right: 0px;
+    top: 72px;
+    height: 40px;
+    z-index:200;
+
+    color: #814E01;
+
+    font-size: 10px;
+    font-family: HancomMalangMalang;
+    font-weight: 700;
+}
+
+li .dropdown {
+    background: rgba(255, 218, 175, 0.5);
+    padding:5px;
+    width:60px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
 }
