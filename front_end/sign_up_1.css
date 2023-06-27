@@ -132,3 +132,14 @@ body {
     background-color: rgba(255, 143, 11, 1);
 }
 
+/*에러 메시지*/
+.error-message {
+    color: #EC6130;
+    font-size: 7px;
+    font-family: HancomMalangMalang;
+    visibility: hidden;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    margin-top: 3px;
+}
+

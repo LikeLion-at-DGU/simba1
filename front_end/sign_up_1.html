@@ -30,14 +30,14 @@
                         <input type="text" name="id" id="idInput" placeholder="예) 1234567890" required>
                         <i class="far fa-times-circle" id="clearId" style="color: #c6c4c4;"></i>
                     </div>
-
+                    <div id="IdErrorMessage" class="error-message">올바른 학번 10자리를 입력해주세요.</div>
 
                     <div class="sign-up_pwd">
                         <div class="sign-up_wrapper_title">비밀번호*</div>
                         <input type="password" name="password" placeholder="영문, 숫자 조합 8~16자" required>
                         <i class="far fa-eye" id="passwordToggle" style="color: #c6c4c4;"></i>
                     </div>
-
+                    <div id="passwordErrorMessage" class="error-message">영문, 숫자 조합 8~16자로 입력해주세요.</div>
                     
                     
                     <div class="sign-up_pwd-check">
@@ -45,7 +45,7 @@
                         <input type="password" name="password-check" placeholder="영문, 숫자 조합 8~16자" required>
                         <i class="far fa-eye" id="passwordCheckToggle" style="color: #c6c4c4;"></i>
                     </div>
-
+                    <div id="passwordCheckErrorMessage" class="error-message">비밀번호를 다시 확인해주세요.</div>
 
 
                     <div class="sign-up_nickname">
@@ -53,7 +53,7 @@
                         <input type="text" name="nickname" id="nicknameInput" placeholder="두 글자 이상 입력해주세요." required>
                         <i class="far fa-times-circle" id="clearNickname" style="color: #c6c4c4;"></i>
                     </div>
-
+                    <div id="nicknameErrorMessage" class="error-message">두 글자 이상 입력해주세요.</div>
                     
                     <div class="next_button">
                         <input type="submit" value="다음">
@@ -65,7 +65,7 @@
 
         </div>
     </div>
-
+    <script src="./sign_up_1.js"></script>
 </body>
 
 </html>
