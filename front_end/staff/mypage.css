@@ -3,6 +3,26 @@
     font-weight: normal;
 }
 
+a:link {
+    text-decoration: none;
+    color: #814E01;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #814E01;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #814E01;
+}
+
+a:active {
+    text-decoration: none;
+    color: #814E01;
+}
+
 body {
     background: #fcfaf7;
     margin: 0;
