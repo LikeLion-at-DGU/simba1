@@ -94,8 +94,7 @@ body {
 }
 
 /* 가입하기 버튼 */
-.login__no__sign a{
-    text-decoration: none;
+.login__no__sign {
     color: #FFA337;
 }
 

@@ -154,12 +154,8 @@ body {
   font-family: "HancomMalangMalang";
   font-weight: bold;
   font-size: 10px;
-  margin-right: 10%;
-}
-
-.name a{
-  text-decoration: none;
   color: #404040;
+  margin-right: 10%;
 }
 
 .star {

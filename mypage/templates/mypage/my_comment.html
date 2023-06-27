@@ -8,13 +8,13 @@
 
             <!-- 상단 -->
             <div class="top">
-                <div class="top_pencil"><img src="../image/comment_pencil.png"></div>
+                <div class="top_pencil"><img src="{% static 'images/comment_pencil.png' %}"></div>
                 <div class="top_title">내가 남긴 코멘트</div>
             </div>
 
             <!--이전 페이지 이동 버튼-->
             <div class="move-selectpage-button">
-                <i class="fas fa-chevron-left" style="color: #404040;"></i>
+                <a href="{% url 'mypage:information' %}"><i class="fas fa-chevron-left" style="color: #404040;"></i></a>
             </div>
 
 
