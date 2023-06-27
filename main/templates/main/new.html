@@ -2,24 +2,55 @@
 {% load static %}
 
 {% block content %}
+    <link rel="stylesheet" href="{% static 'css/benefits/adminWriting.css' %}">
+    <div class="writing">
+        <a href="{% url 'main:mainpage' %}"><div class="writing-image"><img src="{% static 'images/choose/Vector.png' %}"></div></a>
+        <div class="writing-title">글 쓰기</div>
+    </div>
+    <!-- enctype="multipart/form-data"을 하는 이유는 이미지 파일만 받기 위함 -->
+    <form action="{% url 'main:create' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="type">
+            <div class="type_category">카테고리</div>
+            <select class="category_type" name="category_type">
+                <option value="none">--선택하세요--</option>
+                <option value = "문화생활">문화생활</option>
+                <option value = "카페&식당">카페&식당</option>
+                <option value = "기타 서비스">기타 서비스</option>
+            </select>
+        </div>
 
-<form action="{%url 'main:create'%}" method="POST" enctype="multipart/form-data">
-    {%csrf_token%}
-    <p>제목 : <input type="text" name="title"></p>
-    <p>게시판을 선택해주세요: 
-        <select name="category_type">
-            <option value = "문화생활">문화생활</option>
-            <option value = "카페&식당">카페&식당</option>
-            <option value = "기타 서비스">기타 서비스</option>
-        </select>
-    </p>
-    <p>가게 운영 시간 : <input type = "time" name = "start_time"> ~ <input type = "time" name = "end_time"> <input type="reset"></p>
-    <p>주소 : <input type="text" name="address"></p>
-    <p>이미지: <input type="file" name="image"></p>
-    <p>내용 : <textarea type="text" name="body" id="" cols="30" rows="10"></textarea></p>
-    <button type="submit">제출</button>
-</form>
-
+        <div class="benefit">
+            <div class="benefit-text">제목: </div>
+            <input class="title" type="text" name="title">
+        </div>
+        <div class="times">
+            <div class="times-open">영업시간: </div>
+            <input class="time" type = "time" name = "start_time"> ~ <input class="time" type = "time" name = "end_time">
+            <input class="reset" type="reset">
+        </div>
+        <div class="gps">
+            <div class="gps_address">위치: </div> 
+            <input class="address" type="text" name="address">
+        </div>
+        <div class="content">
+            <div class="content-writing">내용: </div> 
+            <textarea class="text" type="text" name="body" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div class="image">
+            <div class="iamge-text">이미지</div>
+            <label class="sign-up_wrapper_upload" for="chooseFile">
+                <div class="preview"></div>
+                <div class="sign-up_wrapper_upload_text">이미지 파일 업로드</div>
+            <img src="{% static 'images/image.png' %}" class="img_upload">
+            <input class="sign-up_wrapper_upload_file" name="image" id="chooseFile" type="file" multiple>
+            
+            </label>
+        </div>
+        <div class="submit_button">
+            <button class="submit" type="submit">등록</button>
+        </div>
+    </form>
 {% endblock %}
 
 
