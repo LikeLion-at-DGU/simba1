@@ -57,7 +57,7 @@
     {% elif user.is_staff %}
     <link rel="stylesheet" href="{% static 'css/staff/mypage.css' %}">
     <div class="root">
-        <div class="vectors"><img class="vector" src="{% static 'images/choose/Vector.png' %}"></div>
+        <div class="vectors"><a href="{% url 'main:mainpage' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}"></a></div>
         <div class="profile">
             <img class="profile-image" src="{% static 'images/businessSchool.png' %}">
             <div class="profile-title">경영대학 학생회</div>
@@ -75,7 +75,7 @@
     {% else %}
     <link rel="stylesheet" href="{% static 'css/mypage/mypage.css' %}">
     <div class="root">
-        <div class="vectors"><img class="vector" src="{% static 'images/choose/Vector.png' %}"></div>
+        <div class="vectors"><a href="{% url 'main:mainpage' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}"></a></div>
         <div class="profile">
             <img class="profile-image" src="{% static 'images/user_profile.png' %}">
             <div class="profile-title">{{user.profile.nickname}}</div>

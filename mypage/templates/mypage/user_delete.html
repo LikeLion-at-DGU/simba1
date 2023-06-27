@@ -2,34 +2,20 @@
 {% load static %}
 
 {% block content %}
-<a href="{% url 'accounts:logout' %}">로그아웃</a>
-<!-- {% if user.is_superuser %}
-    <a href="{% url 'adminpage:user_admin' %}">유저 승인</a>
-    <a href="{% url 'adminpage:staff_admin' %}">스태프 승인</a>
-{% endif %}
-<a href="{% url 'accounts:logout' %}">로그아웃</a>
-<h1>{{user.profile.nickname}}님 안녕하세요!!</h1>
-<p>단과대: {{user.profile.univ}}</p>
-<a href="{% url 'mypage:scrap' %}">스크랩</a>
-<a href="{% url 'mypage:my_comment' %}">내가 남긴 코멘트</a> -->
-    <link rel="stylesheet" href="{% static 'css/admin/mypage.css' %}">
-    <div class="root">
-        <div class="vectors"><a href="{% url 'main:mainpage' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}"></a></div>
-        <div class="profile">
-            <img class="profile-image" src="{% static 'images/admin_profile.png' %}">
-            <form action="{% url 'mypage:user_delete' %}" method="POST">
-                {% csrf_token %}
-            <div class="profile-title"><input type="password" name="confirm_password"></div>
-            <button type="submit">제출</button>
-            </form>
-            <hr class="profile-hr">
-        </div>
+    <link rel="stylesheet" href="{% static 'css/mypage/userDelete.css' %}">
+    <div class="title">
+        <div class="title-image"><img src="{% static 'images/nicknameChange.png' %}"></div>
+        <div class="title-content">회원 탈퇴</div>
     </div>
-
-    <footer>
-        동국대학교 멋쟁이사자처럼 심바톤 1조<br>
-        @ likelion_dongguk<br>
-        ⓒ DGU Likelion. All rights reserved.
-    </footer>
-
+    <a href="{% url 'mypage:information' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}"></a>
+    <div class="password">
+        <div class="password-title">계정 비밀번호</div>
+        <form action="{% url 'mypage:user_delete' %}" method="POST">
+            {% csrf_token %}
+        <input class="password-input" type="password" name="confirm_password">
+        <div class="button">
+            <button class="submit" type="submit">회원 탈퇴</button>
+        </div>
+        </form>
+    </div>
 {% endblock %}
