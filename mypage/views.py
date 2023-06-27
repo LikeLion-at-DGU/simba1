@@ -14,7 +14,17 @@ def information(request):
         return render(request, 'accounts/no_auth.html')
     
 def postmanagement(request):
-    if request.user.is_staff:
+    if request.user.is_superuser:
+        benefits = Benefit.objects.filter(writer__is_staff = True)
+        welfares = Welfare.objects.filter(writer__is_staff = True)
+        mainposts = MainPost.objects.filter(writer__is_staff = True)
+        
+        return render(request, 'mypage/postmanagement.html', {
+            'benefits' : benefits,
+            'welfares' : welfares,
+            'mainposts' : mainposts,
+        })
+    elif request.user.is_staff:
         user = request.user
         benefits = Benefit.objects.filter(writer = user) #게시물 작성자가 현재 로그인한 유저와 같은 것들만 가져옴
         welfares = Welfare.objects.filter(writer = user)
