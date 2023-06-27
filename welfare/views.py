@@ -151,10 +151,17 @@ def detail(request, welfare_id):
         })
 
 
-def delete(request, id):
-    delete_welfare = Welfare.objects.get(id = id)
-    delete_welfare.delete()
-    return redirect('welfare:mainpage')
+def delete(request, welfare_id):
+    if request.user.is_staff:
+        delete_welfares = Welfare.objects.get(id = welfare_id)
+        if request.user == delete_welfares.writer:
+            delete_welfares.delete()
+            return redirect('benefits:choose')
+        elif request.user.is_superuser:
+            delete_welfares.delete()
+            return redirect('benefits:choose')
+        else:
+            return render(request, 'accounts/no_auth.html')
 
 def comment_likes(request, comment_id):
     if request.user.is_authenticated: 
