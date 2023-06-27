@@ -20,9 +20,9 @@ p {
 }
 
 .highlight_circle {
-    position: relative;
-    left: 98px;
-    top: -62px;
+    position: absolute;
+    left: 147px;
+    top: -4px;
     display: flex;
     justify-content: center;
     align-items: center;

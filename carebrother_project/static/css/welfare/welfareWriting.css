@@ -20,23 +20,21 @@ body {
     flex-direction: row;
     align-items: center;
     width: 390px;
-    margin: 50px 0px 50px 0px;
+    justify-content: center;
+    padding: 50px 0px 50px 0px;
 }
 
 .writing-image {
-    display: flex;
-    justify-content: flex-start;
     width: 15px;
     height: 10px;
-    margin-left: 46px;
-    margin-right: 69px;
+    padding-right: 350px;
+    padding-left: 56px;
 }
 
 .writing-title {
     position: absolute;
     font-size: 20px;
     text-align: center;
-    margin-left: 135px;
 }
 
 /* 게시판을 선택해주세요 */
@@ -45,8 +43,9 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    width: 100%;
     padding-bottom: 10px;
-    margin-left: 56px;
+    padding-left: 56px;
 }
 
 .univ_choice {
@@ -60,8 +59,6 @@ body {
     border: none;
     width: 195px;
     height: 30px;
-    border: 1px solid rgba(204, 201, 201, 1);
-    border-radius: 10px;
 }
 
 /* 카테고리 */
@@ -70,8 +67,9 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    width: 100%;
     padding-bottom: 10px;
-    margin-left: 56px;
+    padding-left: 56px;
 }
 
 .type_category {
@@ -85,8 +83,6 @@ body {
     border: none;
     width: 195px;
     height: 30px;
-    border: 1px solid rgba(204, 201, 201, 1);
-    border-radius: 10px;
 }
 
 /* 제휴혜택 제목 */
@@ -95,8 +91,9 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    width: 100%;
     padding-bottom: 10px;
-    margin-left: 56px;
+    padding-left: 56px;
 }
 
 .benefit-text {
@@ -110,7 +107,6 @@ body {
     border: none;
     width: 195px;
     height: 30px;
-    border-bottom: 1px solid rgba(204, 201, 201, 1);
 }
 
 
@@ -120,8 +116,9 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    width: 100%;
     padding-bottom: 10px;
-    margin-left: 56px;
+    padding-left: 56px;
 }
 
 .times-open {
@@ -136,8 +133,6 @@ body {
     border: none;
     width: 76px;
     height: 30px;
-    border: 1px solid rgba(204, 201, 201, 1);
-    border-radius: 10px;
 }
 
 .reset {
@@ -154,8 +149,9 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    width: 100%;
     padding-bottom: 10px;
-    margin-left: 56px;
+    padding-left: 56px;
 }
 
 .gps_address {
@@ -170,7 +166,6 @@ body {
     border: none;
     width: 195px;
     height: 30px;
-    border-bottom: 1px solid rgba(204, 201, 201, 1);
 }
 
 /* 내용 */
@@ -179,8 +174,9 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    width: 100%;
     padding-bottom: 10px;
-    margin-left: 56px;
+    padding-left: 56px;
 }
 
 .content-writing {
@@ -195,8 +191,6 @@ body {
     border: none;
     width: 200px;
     height: 90px;
-    border: 1px solid rgba(204, 201, 201, 1);
-    border-radius: 10px;
 }
 
 
@@ -206,8 +200,9 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    width: 100%;
     padding-bottom: 10px;
-    margin-left: 56px;
+    padding-left: 56px;
 }
 
 .start-date {
@@ -222,8 +217,6 @@ body {
     border: none;
     width: 195px;
     height: 30px;
-    border: 1px solid rgba(204, 201, 201, 1);
-    border-radius: 10px;
 }
 
 /* 끝나는 날짜 */
@@ -232,8 +225,9 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    width: 100%;
     padding-bottom: 10px;
-    margin-left: 56px;
+    padding-left: 56px;
 }
 
 .end-date {
@@ -248,18 +242,15 @@ body {
     border: none;
     width: 195px;
     height: 30px;
-    border: 1px solid rgba(204, 201, 201, 1);
-    border-radius: 10px;
 }
 
 /* 이미지 업로드 */
 .image {
-    margin-left: 56px;
+    padding-left: 56px;
 }
 .sign-up_wrapper_upload {
     display: flex;
     margin-top: 12px;
-    margin-left: 56px;
     width: 260px;
     height: 90px;
     background-color: rgba(64, 64, 64, 0.1);
