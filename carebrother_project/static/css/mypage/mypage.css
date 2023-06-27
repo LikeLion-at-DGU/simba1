@@ -3,6 +3,26 @@
     font-weight: normal;
 }
 
+a:link {
+    text-decoration: none;
+    color: #814E01;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #814E01;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #814E01;
+}
+
+a:active {
+    text-decoration: none;
+    color: #814E01;
+}
+
 body {
     background: #fcfaf7;
     margin: 0;
@@ -120,6 +140,48 @@ body {
 }
 
 .profile-content-postManagement-title {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* 닉네임 변경 */
+.profile-content-nicknameChange {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0px 0px 20px 120px;
+}
+
+.profile-content-nicknameChange-image {
+    width: 20px;
+    height: 20px;
+    padding-right: 20px;
+}
+
+.profile-content-nicknameChange-title {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* 회원 탈퇴 */
+.profile-content-userDelete {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0px 0px 20px 120px;
+}
+
+.profile-content-userDelete-image {
+    width: 22px;
+    height: 20px;
+    padding-right: 20px;
+}
+
+.profile-content-userDelete-title {
     font-size: 15px;
     font-weight: bold;
 }

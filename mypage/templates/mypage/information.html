@@ -3,17 +3,6 @@
 
 {% block content %}
 <a href="{% url 'accounts:logout' %}">로그아웃</a>
-<!-- {% if user.is_superuser %}
-    <a href="{% url 'adminpage:user_admin' %}">유저 승인</a>
-    <a href="{% url 'adminpage:staff_admin' %}">스태프 승인</a>
-{% endif %}
-<a href="{% url 'accounts:logout' %}">로그아웃</a>
-<h1>{{user.profile.nickname}}님 안녕하세요!!</h1>
-<p>단과대: {{user.profile.univ}}</p>
-<a href="{% url 'mypage:scrap' %}">스크랩</a>
-<a href="{% url 'mypage:my_comment' %}">내가 남긴 코멘트</a> -->
-<a href="{% url 'mypage:change_nickname' %}">닉네임 변경</a>
-<a href="{% url 'mypage:user_delete' %}">탈퇴</a>
     {% if request.user.is_superuser %}
     <link rel="stylesheet" href="{% static 'css/admin/mypage.css' %}">
     <div class="root">
@@ -24,34 +13,18 @@
             <hr class="profile-hr">
         </div>
         <div class="profile-content">
-            <a href="{% url 'mypage:postmanagement' %}">
-            <div class="profile-content-postManagment">
+            <a href="{% url 'mypage:postmanagement' %}"><div class="profile-content-postManagment">
                 <img class="profile-content-postManagement-image" src="{% static 'images/mypagePencil.png' %}">
                 <div class="profile-content-postManagement-title">게시물 작성 관리</div>
-            </div>
-            </a>
-            <a href="{% url 'adminpage:user_admin' %}">
-            <div class="profile-content-userPlus">
+            </div></a>
+            <a href="{% url 'adminpage:user_admin' %}"><div class="profile-content-userPlus">
                 <img class="profile-content-userPlus-image" src="{% static 'images/user_profile.png' %}">
                 <div class="profile-content-userPlus-title">유저 승인</div>
-            </div>
-            </a>
-            <a href="{% url 'adminpage:staff_admin' %}">
-            <div class="profile-content-staffPlus">
-                <img class="profile-content-staffPlus-image" src="{% static 'images/staff_plus.png' %}">
-                <div class="profile-content-staffPlus-title">단과대 스태프 승인</div>
-            </div>
-            </a>
-            <div class="profile-content-staffManagement">
-                <img class="profile-content-staffManagement-image" src="{% static 'images/staffManagement.png' %}">
-                <div class="profile-content-staffManagement-title">스태프 관리</div>
-            </div>
-            <a href="{% url 'mypage:staff_postmanagement' %}">
-            <div class="profile-content-staffPostManagement">
+            </div></a>
+            <a href="{% url 'mypage:staff_postmanagement' %}"><div class="profile-content-staffPostManagement">
                 <img class="profile-content-staffPostManagement-image" src="{% static 'images/staffPostManagement.png' %}">
                 <div class="profile-content-staffPostManagement-title">스태프 게시물 작성 관리</div>
-            </div>
-            </a>
+            </div></a>
         </div>
     </div>
     {% elif user.is_staff %}
@@ -59,49 +32,51 @@
     <div class="root">
         <div class="vectors"><a href="{% url 'main:mainpage' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}"></a></div>
         <div class="profile">
-            <img class="profile-image" src="{{user.profile.image.url}}">
+            <img class="profile-image" src="{% static 'images/businessSchool.png' %}">
             <div class="profile-title">{{user.profile.nickname}}</div>
             <hr class="profile-hr">
         </div>
         <div class="profile-content">
-            <a href="{% url 'mypage:postmanagement' %}">
-            <div class="profile-content-postManagment">
+            <a href="{% url 'mypage:postmanagement' %}"><div class="profile-content-postManagment">
                 <img class="profile-content-postManagement-image" src="{% static 'images/mypagePencil.png' %}">
                 <div class="profile-content-postManagement-title">게시물 작성 관리</div>
-            </div>
-            </a>
+            </div></a>
         </div>
     </div>
     {% else %}
     <link rel="stylesheet" href="{% static 'css/mypage/mypage.css' %}">
     <div class="root">
-        <div class="vectors"><a href="{% url 'main:mainpage' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}"></a></div>
+        <div class="vectors"><img class="vector" src="{% static 'images/choose/Vector.png' %}"></div>
         <div class="profile">
             <img class="profile-image" src="{% static 'images/user_profile.png' %}">
             <div class="profile-title">{{user.profile.nickname}}</div>
             <hr class="profile-hr">
         </div>
         <div class="profile-content">
-            <a href="{% url 'mypage:scrap' %}">
-            <div class="profile-content-scrap">
+            <a href="{% url 'mypage:scrap' %}"><div class="profile-content-scrap">
                 <img class="profile-content-scrap-image" src="{% static 'images/scrap_heart_noshadow.png' %}">
                 <div class="profile-content-scrap-title">스크랩</div>
-            </div>
-            </a>
-            <a href="{% url 'mypage:my_comment' %}">
-            <div class="profile-content-postManagment">
+            </div></a>
+            <a href="{% url 'mypage:my_comment' %}"><div class="profile-content-postManagment">
                 <img class="profile-content-postManagement-image" src="{% static 'images/mypagePencil.png' %}">
                 <div class="profile-content-postManagement-title">내가 남긴 코멘트</div>
-            </div>
-            </a>
+            </div></a>
+            <a href="{% url 'mypage:change_nickname' %}"><div class="profile-content-nicknameChange">
+                <img class="profile-content-nicknameChange-image" src="{% static 'images/nicknameChange.png' %}">
+                <div class="profile-content-nicknameChange-title">닉네임 변경</div>
+            </div></a>
+            <a href="{% url 'mypage:user_delete' %}"><div class="profile-content-userDelete">
+                <img class="profile-content-userDelete-image" src="{% static 'images/userDelete.png' %}">
+                <div class="profile-content-userDelete-title">회원 탈퇴</div>
+            </div></a>
         </div>
     </div>
+    {% endif %}
 
     <footer>
         동국대학교 멋쟁이사자처럼 심바톤 1조<br>
         @ likelion_dongguk<br>
         ⓒ DGU Likelion. All rights reserved.
-    </footer>
-    {% endif %}
+    </footer>   
 
 {% endblock %}
