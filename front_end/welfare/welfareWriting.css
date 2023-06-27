@@ -1,0 +1,321 @@
+* {
+    font-family: 'HancomMalangMalang';
+    font-weight: bold;
+    font-size: 18px;
+    color: #814E01;
+}
+
+body {
+    background: #fcfaf7;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: 56px;
+}
+
+
+/* title */
+.writing {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 390px;
+    justify-content: center;
+    padding: 50px 0px 50px 0px;
+}
+
+.writing-image {
+    width: 15px;
+    height: 10px;
+    padding-right: 400px;
+}
+
+.writing-title {
+    position: absolute;
+    padding-right: 100px;
+    font-size: 20px;
+    text-align: center;
+}
+
+/* 게시판을 선택해주세요 */
+.univ {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.univ_choice {
+    padding-right: 10px;
+}
+
+.select_univ {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 195px;
+    height: 30px;
+}
+
+/* 카테고리 */
+.type {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.type_category {
+    padding-right: 10px;
+}
+
+.category_type {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 195px;
+    height: 30px;
+}
+
+/* 제휴혜택 제목 */
+.benefit {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.benefit-text {
+    padding-right: 10px;
+}
+
+.title {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 195px;
+    height: 30px;
+}
+
+
+/* 영업시간 */
+.times {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.times-open {
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.time {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 76px;
+    height: 30px;
+}
+
+.reset {
+    border: none;
+    font-size: 9px;
+    background-color: #FFDAAF;
+    border-radius: 10px;
+    opacity: 0.5;
+}
+
+/* 위치 */
+.gps {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.gps_address {
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.address {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 195px;
+    height: 30px;
+}
+
+/* 내용 */
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.content-writing {
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.text {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 200px;
+    height: 90px;
+}
+
+
+/* 시작 날짜 */
+.start {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.start-date {
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.start_date {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 195px;
+    height: 30px;
+}
+
+/* 끝나는 날짜 */
+.end {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.end-date {
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.end_date {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 195px;
+    height: 30px;
+}
+
+/* 이미지 업로드 */
+.sign-up_wrapper_upload {
+    display: flex;
+    margin-top: 12px;
+    width: 219px;
+    height: 70px;
+    background-color: rgba(64, 64, 64, 0.1);
+
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px dotted rgba(64, 64, 64, 0.3);
+    position: relative;
+}
+
+.sign-up_wrapper_upload_text {
+    position: absolute;
+    left: 80px;
+    top: 36px;
+    padding-top: 10px;
+    color: #404040;
+    text-align: center;
+    font-size: 6px;
+    font-family: NotoSansKR;
+    letter-spacing: -1px;
+}
+
+.img_upload {
+    position: absolute;
+    width: 25px;
+    height: 20px;
+    top: 20px;
+    left: 101px;
+}
+
+.sign-up_wrapper_upload_file {
+    display: none;
+}
+
+.preview img {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 219px;
+    height: 70px;
+    z-index: 5;
+    border-radius: 6px;
+}
+
+.sign-up_wrapper_guidance_title {
+    display: flex;
+    color: #EC6130;
+    font-size: 8px;
+    font-family: NotoSansKR;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.sign-up_wrapper_guidance_content {
+    font-size: 8px;
+    font-family: NotoSansKR;
+    font-weight: 400;
+    letter-spacing: -2px;
+    color: #404040;
+}
+
+
+/* 등록 버튼 */
+.submit_button {
+    display: flex;
+    padding: 70px 0px 100px 200px;
+}
+
+.submit {
+    width: 66px;
+    height: 33px;
+    background-color: #FF8F0B;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: Regular;
+    border: none;
+    border-radius: 10px;
+}
