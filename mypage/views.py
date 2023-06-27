@@ -13,6 +13,18 @@ def information(request):
     else:
         return render(request, 'accounts/no_auth.html')
     
+def change_nickname(request):
+    if request.method == 'GET':
+        edit_user = request.user
+        return render(request, 'mypage/change_nickname.html', {
+            'edit_user' : edit_user,
+        })
+    elif request.method == 'POST':
+        edit_user = request.user
+        edit_user.profile.nickname = request.POST['nickname']
+        edit_user.profile.save()
+        return redirect('mypage:information')
+    
 def postmanagement(request):
     if request.user.is_superuser:
         benefits = Benefit.objects.filter(writer__is_staff = True)

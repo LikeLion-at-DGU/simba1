@@ -39,7 +39,9 @@
                                 <div class="modal_content">
                                     <div class="modal_content_title">이미지 파일</div>
                                     <img class="modal_content_close" src="{% static 'images/close_button.png' %}"></img>
-                                    <img class="modal_content_img" src="{{user.image.url}}" alt="approval_img">
+                                    {% if user.profile.image %}
+                                    <img class="modal_content_img" src="{{user.profile.image.url}}" alt="approval_img">
+                                    {% endif %}
                                 </div>
                             </div>
                         </td>

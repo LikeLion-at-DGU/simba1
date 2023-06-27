@@ -152,7 +152,7 @@ def mainpage(request):
 
 def create(request):
     if request.user.is_authenticated:
-        if request.user.is_staff:
+        if request.user.is_superuser:
             if request.method == 'POST':
                 new_mainpost = MainPost()
 
@@ -218,66 +218,36 @@ def review(request, mainpost_id):#댓글 작성하는 칸
         return redirect('accounts:login')
 
 def update(request, mainpost_id):
-    if request.user.is_staff:
+    if request.user.is_superuser:
         update_mainpost = MainPost.objects.get(id = mainpost_id)
-        if request.user == update_mainpost.writer:
-            if request.method == 'POST':
-                update_mainpost.title = request.POST['title']
-                update_mainpost.writer = request.user
-                if request.POST['start_time']:
-                    update_mainpost.start_time = request.POST['start_time']
-                if request.POST['end_time']:
-                    update_mainpost.end_time = request.POST['end_time']
-                update_mainpost.address = request.POST['address']
-                update_mainpost.image = request.FILES.get('image', update_mainpost.image)
-                update_mainpost.body = request.POST['body']
+        if request.method == 'POST':
+            update_mainpost.title = request.POST['title']
+            update_mainpost.writer = request.user
+            if request.POST['start_time']:
+                update_mainpost.start_time = request.POST['start_time']
+            if request.POST['end_time']:
+                update_mainpost.end_time = request.POST['end_time']
+            update_mainpost.address = request.POST['address']
+            update_mainpost.image = request.FILES.get('image', update_mainpost.image)
+            update_mainpost.body = request.POST['body']
 
-                update_mainpost.save()
+            update_mainpost.save()
 
-                return redirect('main:detail', update_mainpost.id)
+            return redirect('main:detail', update_mainpost.id)
             
-            elif request.method == 'GET':
-                edit_mainpost = MainPost.objects.get(id = mainpost_id)
-                return render(request, 'main/edit.html', {
-                    'mainpost' : edit_mainpost,
-                    })
-        elif request.user.is_superuser:
-            if request.method == 'POST':
-                update_mainpost.title = request.POST['title']
-                update_mainpost.writer = request.user
-                if request.POST['start_time']:
-                    update_mainpost.start_time = request.POST['start_time']
-                if request.POST['end_time']:
-                    update_mainpost.end_time = request.POST['end_time']
-                update_mainpost.address = request.POST['address']
-                update_mainpost.image = request.FILES.get('image', update_mainpost.image)
-                update_mainpost.body = request.POST['body']
-
-                update_mainpost.save()
-
-                return redirect('main:detail', update_mainpost.id)
-            
-            elif request.method == 'GET':
-                edit_mainpost = MainPost.objects.get(id = id)
-                return render(request, 'main/edit.html', {
-                    'mainpost':edit_mainpost,
-                    })
-        else:
-            return render(request, 'accounts/no_auth.html')
+        elif request.method == 'GET':
+            edit_mainpost = MainPost.objects.get(id = mainpost_id)
+            return render(request, 'main/edit.html', {
+                'mainpost' : edit_mainpost,
+                })
     else:
         return render(request, 'accounts/no_auth.html')
 
 def delete(request, mainpost_id):
-    if request.user.is_staff:
+    if request.user.is_superuser:
         delete_mainpost = MainPost.objects.get(id = mainpost_id)
-        if request.user == delete_mainpost.writer:
-            delete_mainpost.delete()
-            return redirect('main:mainpage')
-        elif request.user.is_superuser:
-            delete_mainpost.delete()
-            return redirect('main:mainpage')
-        else:
-            return render(request, 'accounts/no_auth.html')
+        delete_mainpost.delete()
+        return redirect('main:mainpage')
     else:
         return render(request, 'accounts/no_auth.html')
 
