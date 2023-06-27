@@ -2534,12 +2534,21 @@ def create(request):
         if request.user.is_staff:
             if request.method == 'POST':
                 new_benefit = Benefit()
-
-                new_benefit.title = request.POST['title']
+                
+                if request.POST['title']:
+                    new_benefit.title = request.POST['title']
+                else:
+                    return render(request, 'benefits/new.html')
                 new_benefit.writer = request.user
                 new_benefit.pub_date = timezone.now()
-                new_benefit.category_univ = request.POST['category_univ']
-                new_benefit.category_type = request.POST['category_type']
+                if request.POST['category_univ'] == "none":
+                    new_benefit.category_univ = request.POST['category_univ']
+                else:
+                    return render(request, 'benefits/new.html')
+                if request.POST['category_type'] == "none":
+                    new_benefit.category_type = request.POST['category_type']
+                else:
+                    return render(request, 'benefits/new.html')
                 if request.POST['start_time']:
                     new_benefit.start_time = request.POST['start_time']
                 if request.POST['end_time']:
@@ -2549,8 +2558,14 @@ def create(request):
                     new_benefit.start_date = request.POST['start_date']
                 if request.POST['end_date']:
                     new_benefit.end_date = request.POST['end_date']
-                new_benefit.image = request.FILES.get('image')
-                new_benefit.body = request.POST['body']
+                if request.FILES.get('image'):
+                    new_benefit.image = request.FILES.get('image')
+                else:
+                    return render(request, 'benefits/new.html')
+                if request.POST['body']:
+                    new_benefit.body = request.POST['body']
+                else:
+                    return render(request, 'benefits/new.html')
 
                 new_benefit.save()
                 
@@ -2683,9 +2698,20 @@ def update(request, benefit_id):
         update_benefit = Benefit.objects.get(id = benefit_id)
         if request.user == update_benefit.writer:
             if request.method == 'POST':
-                update_benefit.title = request.POST['title']
+                if request.POST['title']:
+                    update_benefit.title = request.POST['title']
+                else:
+                    return render(request, 'benefits/edit.html')
                 update_benefit.writer = request.user
                 update_benefit.pub_date = timezone.now()
+                if request.POST['category_univ'] == "none":
+                    update_benefit.category_univ = request.POST['category_univ']
+                else:
+                    return render(request, 'benefits/edit.html')
+                if request.POST['category_type'] == "none":
+                    update_benefit.category_type = request.POST['category_type']
+                else:
+                    return render(request, 'benefits/edit.html')
                 if request.POST['start_time']:
                     update_benefit.start_time = request.POST['start_time']
                 if request.POST['end_time']:
@@ -2695,11 +2721,17 @@ def update(request, benefit_id):
                     update_benefit.start_date = request.POST['start_date']
                 if request.POST['end_date']:
                     update_benefit.end_date = request.POST['end_date']
-                update_benefit.image = request.FILES.get('image', update_benefit.image)
-                update_benefit.body = request.POST['body']
+                if request.FILES.get('image'):
+                    update_benefit.image = request.FILES.get('image')
+                else:
+                    return render(request, 'benefits/edit.html')
+                if request.POST['body']:
+                    update_benefit.body = request.POST['body']
+                else:
+                    return render(request, 'benefits/edit.html')
 
                 update_benefit.save()
-
+                
                 return redirect('benefits:detail', update_benefit.id)
             
             elif request.method == 'GET':
@@ -2709,8 +2741,20 @@ def update(request, benefit_id):
                     })
         elif request.user.is_superuser:
             if request.method == 'POST':
-                update_benefit.title = request.POST['title']
+                if request.POST['title']:
+                    update_benefit.title = request.POST['title']
+                else:
+                    return render(request, 'benefits/edit.html')
                 update_benefit.writer = request.user
+                update_benefit.pub_date = timezone.now()
+                if request.POST['category_univ'] == "none":
+                    update_benefit.category_univ = request.POST['category_univ']
+                else:
+                    return render(request, 'benefits/edit.html')
+                if request.POST['category_type'] == "none":
+                    update_benefit.category_type = request.POST['category_type']
+                else:
+                    return render(request, 'benefits/edit.html')
                 if request.POST['start_time']:
                     update_benefit.start_time = request.POST['start_time']
                 if request.POST['end_time']:
@@ -2720,11 +2764,17 @@ def update(request, benefit_id):
                     update_benefit.start_date = request.POST['start_date']
                 if request.POST['end_date']:
                     update_benefit.end_date = request.POST['end_date']
-                update_benefit.image = request.FILES.get('image', update_benefit.image)
-                update_benefit.body = request.POST['body']
+                if request.FILES.get('image'):
+                    update_benefit.image = request.FILES.get('image')
+                else:
+                    return render(request, 'benefits/edit.html')
+                if request.POST['body']:
+                    update_benefit.body = request.POST['body']
+                else:
+                    return render(request, 'benefits/edit.html')
 
                 update_benefit.save()
-
+                
                 return redirect('benefits:detail', update_benefit.id)
             
             elif request.method == 'GET':

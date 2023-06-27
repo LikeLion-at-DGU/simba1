@@ -155,18 +155,33 @@ def create(request):
         if request.user.is_superuser:
             if request.method == 'POST':
                 new_mainpost = MainPost()
-
-                new_mainpost.title = request.POST['title']
+                
+                if request.POST['title']:
+                    new_mainpost.title = request.POST['title']
+                else:
+                    return render(request, 'main/new.html')
                 new_mainpost.writer = request.user
                 new_mainpost.pub_date = timezone.now()
-                new_mainpost.category_type = request.POST['category_type']
+                if request.POST['category_type']=="none":
+                    new_mainpost.category_type = request.POST['category_type']
+                else:
+                    return render(request, 'main/new.html')
                 if request.POST['start_time']:
                     new_mainpost.start_time = request.POST['start_time']
                 if request.POST['end_time']:
                     new_mainpost.end_time = request.POST['end_time']
-                new_mainpost.address = request.POST['address']
-                new_mainpost.image = request.FILES.get('image')
-                new_mainpost.body = request.POST['body']
+                if request.POST['address']:
+                    new_mainpost.address = request.POST['address']
+                else:
+                    return render(request, 'main/new.html')
+                if request.FILES.get('image'):
+                    new_mainpost.image = request.FILES.get('image')
+                else:
+                    return render(request, 'main/new.html')
+                if request.POST['body']:
+                    new_mainpost.body = request.POST['body']
+                else:
+                    return render(request, 'main/new.html')
 
                 new_mainpost.save()
                 
@@ -221,18 +236,35 @@ def update(request, mainpost_id):
     if request.user.is_superuser:
         update_mainpost = MainPost.objects.get(id = mainpost_id)
         if request.method == 'POST':
-            update_mainpost.title = request.POST['title']
+            if request.POST['title']:
+                update_mainpost.title = request.POST['title']
+            else:
+                return render(request, 'main/edit.html')
             update_mainpost.writer = request.user
+            update_mainpost.pub_date = timezone.now()
+            if request.POST['category_type']=="none":
+                update_mainpost.category_type = request.POST['category_type']
+            else:
+                return render(request, 'main/edit.html')
             if request.POST['start_time']:
                 update_mainpost.start_time = request.POST['start_time']
             if request.POST['end_time']:
                 update_mainpost.end_time = request.POST['end_time']
-            update_mainpost.address = request.POST['address']
-            update_mainpost.image = request.FILES.get('image', update_mainpost.image)
-            update_mainpost.body = request.POST['body']
+            if request.POST['address']:
+                update_mainpost.address = request.POST['address']
+            else:
+                return render(request, 'main/edit.html')
+            if request.FILES.get('image'):
+                update_mainpost.image = request.FILES.get('image')
+            else:
+                return render(request, 'main/edit.html')
+            if request.POST['body']:
+                update_mainpost.body = request.POST['body']
+            else:
+                return render(request, 'main/edit.html')
 
             update_mainpost.save()
-
+                
             return redirect('main:detail', update_mainpost.id)
             
         elif request.method == 'GET':
