@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="./global.css">
+    <link rel="stylesheet" href="./sign_up_2.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+</head>
+
+<body>
+    <div class="root">
+        <div class="sign-up">
+            <div class="sign-up_top">
+                <div class="sign-up_top_back-button">
+                    <i class="fas fa-chevron-left" style="color: #404040;"></i>
+                </div>
+                <div class="sign-up_top_title">회원가입</div>
+            </div> 
+
+            <div class="sign-up_wrapper">
+                <form action="#" id="sign-up-form">
+                    <div class="sign-up_wrapper_title">학교 인증*</div>
+                    <div class="sign-up_wrapper_content">
+                        <p>
+                        <b>실물 학생증, 동국패스, 동국대 열람증</b> 등<br>
+                        대학교, 이름, 학번, 학과 정보가 필수적으로 기입되이 있어야 하며,<br>
+                        유효하지 않은 학생증을 첨부하실 경우 인증이 취소됩니다.
+                        </p>
+                    </div>
+                    <div class="sign-up_wrapper_img">
+                        <img src="./image/signup.png">
+                    </div>
+                    <label class="sign-up_wrapper_upload" for="chooseFile">
+                        <div class="preview"></div>
+                        <div class="sign-up_wrapper_upload_text">이미지 파일 업로드</div>
+                    <img src="./image/img_upload.png" class="img_upload">
+                    <input class="sign-up_wrapper_upload_file" id="chooseFile" type="file" multiple>
+                    
+                    </label>
+
+                    <div class="sign-up_wrapper_guidance">
+                        <div class="sign-up_wrapper_guidance_title">※ 안내사항</div>
+                        <div class="sign-up_wrapper_guidance_content">
+                            ⦁ 학생증 확인 시, 해당 학교의 재학생인지만을 확인합니다.<br>
+                            ⦁ 제출하신 자료는 개인정보처리방침에 따라 안전하게 처리되며<br> 
+                            &nbsp;&nbsp;&nbsp;3개월 이후 파기됩니다.
+                        </div>
+                    </div>
+
+                    
+                    <div class="next_button">
+                        <input type="submit" value="다음">
+                    </div>
+                </form>
+            </div>
+
+            
+
+        </div>
+    </div>
+    <script src="./sign_up_2.js"></script>
+</body>
+
+</html>

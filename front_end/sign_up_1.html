@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="./global.css">
+    <link rel="stylesheet" href="./sign_up_1.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+</head>
+
+<body>
+    <div class="root">
+        <div class="sign-up">
+            <div class="sign-up_top">
+                <div class="sign-up_top_back-button">
+                    <i class="fas fa-chevron-left" style="color: #404040;"></i>
+                </div>
+                <div class="sign-up_top_title">회원가입</div>
+            </div> 
+
+            <div class="sign-up_wrapper">
+                <form action="#" id="sign-up-form">
+                    <div class="sign-up_id">
+                    <div class="sign-up_wrapper_title">학번*</div>
+                        <input type="text" name="id" id="idInput" placeholder="예) 1234567890" required>
+                        <i class="far fa-times-circle" id="clearId" style="color: #c6c4c4;"></i>
+                    </div>
+                    <div id="IdErrorMessage" class="error-message">올바른 학번 10자리를 입력해주세요.</div>
+
+                    <div class="sign-up_pwd">
+                        <div class="sign-up_wrapper_title">비밀번호*</div>
+                        <input type="password" name="password" placeholder="영문, 숫자 조합 8~16자" required>
+                        <i class="far fa-eye" id="passwordToggle" style="color: #c6c4c4;"></i>
+                    </div>
+                    <div id="passwordErrorMessage" class="error-message">영문, 숫자 조합 8~16자로 입력해주세요.</div>
+                    
+                    
+                    <div class="sign-up_pwd-check">
+                        <div class="sign-up_wrapper_title">비밀번호 확인*</div>
+                        <input type="password" name="password-check" placeholder="영문, 숫자 조합 8~16자" required>
+                        <i class="far fa-eye" id="passwordCheckToggle" style="color: #c6c4c4;"></i>
+                    </div>
+                    <div id="passwordCheckErrorMessage" class="error-message">비밀번호를 다시 확인해주세요.</div>
+
+
+                    <div class="sign-up_nickname">
+                        <div class="sign-up_wrapper_title">닉네임*</div>
+                        <input type="text" name="nickname" id="nicknameInput" placeholder="두 글자 이상 입력해주세요." required>
+                        <i class="far fa-times-circle" id="clearNickname" style="color: #c6c4c4;"></i>
+                    </div>
+                    <div id="nicknameErrorMessage" class="error-message">두 글자 이상 입력해주세요.</div>
+                    
+                    <div class="next_button">
+                        <input type="submit" value="다음">
+                    </div>
+                </form>
+            </div>
+
+            
+
+        </div>
+    </div>
+    <script src="./sign_up_1.js"></script>
+</body>
+
+</html>

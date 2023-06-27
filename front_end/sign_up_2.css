@@ -1,0 +1,161 @@
+body {
+    background: rgba(255, 218, 175, 0.7);
+}
+
+.root {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 회원가입 박스 */
+.sign-up {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 310px;
+    height: 490px;
+    background: #FCFAF7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+}
+
+.sign-up_top {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 30px;
+    align-items: center;
+}
+
+.sign-up_top_back-button {
+    display: flex;
+    margin-left: 50px;
+    margin-right: 64px;
+}
+
+.sign-up_top_title {
+    display: flex;
+    color: #404040;
+    text-align: center;
+    font-size: 15px;
+    font-family: HancomMalangMalang;
+    font-weight: 700;
+}
+
+/* 회원가입 input */
+.sign-up_wrapper {
+    margin-top: 16px;
+    color: #404040;
+    font-size: 12px;
+    font-family: HancomMalangMalang;
+    margin-left: 10px;
+}
+
+.sign-up_wrapper_content {
+    display: flex;
+
+    color: #EC6130;
+    font-size: 8px;
+    font-family: NotoSansKR;
+    font-weight: 400;
+    letter-spacing: -2px;
+    line-height: 1.5;
+}
+
+.sign-up_wrapper_img {
+    display: flex;
+    width: 219px;
+    height: 124px;
+    margin-top: 5px;
+}
+
+/* 이미지 업로드 */
+.sign-up_wrapper_upload {
+    display: flex;
+    margin-top: 12px;
+    width: 219px;
+    height: 70px;
+    background-color: rgba(64, 64, 64, 0.1);
+
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px dotted rgba(64, 64, 64, 0.3);
+    position: relative;
+}
+
+.sign-up_wrapper_upload_text {
+    position: absolute;
+    left: 70px;
+    top: 36px;
+    color: #404040;
+    text-align: center;
+    font-size: 6px;
+    font-family: NotoSansKR;
+    letter-spacing: -1px;
+}
+
+.img_upload {
+    position: absolute;
+    width: 14px;
+    height: 11px;
+    top: 20px;
+    left: 101px;
+}
+
+.sign-up_wrapper_upload_file {
+    display: none;
+}
+
+.preview img {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 219px;
+    height: 70px;
+    z-index: 5;
+    border-radius: 6px;
+}
+
+.sign-up_wrapper_guidance_title {
+    display: flex;
+    color: #EC6130;
+    font-size: 8px;
+    font-family: NotoSansKR;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.sign-up_wrapper_guidance_content {
+    font-size: 8px;
+    font-family: NotoSansKR;
+    font-weight: 400;
+    letter-spacing: -2px;
+    color: #404040;
+}
+
+.next_button input[type="submit"]{
+    background-color: rgba(64, 64, 64, 0.2);
+    border: none;
+    width: 220px;
+    height: 35px;
+    margin-top: 10px;
+    border-radius: 30px;
+
+    display: flex;
+    justify-content: center;
+    
+    color: #FFF;
+    text-align: center;
+    font-size: 12px;
+    font-family: HancomMalangMalang;
+
+
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.next_button input[type="submit"].active{
+    background-color: rgba(255, 143, 11, 1);
+}
