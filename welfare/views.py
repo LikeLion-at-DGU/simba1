@@ -60,11 +60,15 @@ def create(request):
         new_welfare.pub_date = timezone.now()
         new_welfare.category_univ = request.POST['category_univ']
         new_welfare.category_type = request.POST['category_type']
-        new_welfare.start_time = request.POST['start_time']
-        new_welfare.end_time = request.POST['end_time']
+        if request.POST['start_time']:
+            new_welfare.start_time = request.POST['start_time']
+        if request.POST['end_time']:
+            new_welfare.end_time = request.POST['end_time']
         new_welfare.address = request.POST['address']
-        new_welfare.start_date = request.POST['start_date']
-        new_welfare.end_date = request.POST['end_date']
+        if request.POST['start_date']:
+            new_welfare.start_date = request.POST['start_date']
+        if request.POST['end_date']:
+            new_welfare.end_date = request.POST['end_date']
         new_welfare.image = request.FILES.get('image')
         new_welfare.body = request.POST['body']
 
@@ -147,10 +151,17 @@ def detail(request, welfare_id):
         })
 
 
-def delete(request, id):
-    delete_welfare = Welfare.objects.get(id = id)
-    delete_welfare.delete()
-    return redirect('welfare:mainpage')
+def delete(request, welfare_id):
+    if request.user.is_staff:
+        delete_welfares = Welfare.objects.get(id = welfare_id)
+        if request.user == delete_welfares.writer:
+            delete_welfares.delete()
+            return redirect('benefits:choose')
+        elif request.user.is_superuser:
+            delete_welfares.delete()
+            return redirect('benefits:choose')
+        else:
+            return render(request, 'accounts/no_auth.html')
 
 def comment_likes(request, comment_id):
     if request.user.is_authenticated: 
