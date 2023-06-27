@@ -37,13 +37,13 @@ def signup(request):
         if request.POST['password'] == request.POST['password-check']:
             for user_username in CustomUser.objects.all():
                 if request.POST['id'] in user_username.username:
-                    return render(request, 'accounts/signup_no.html')
+                    return render(request, 'accounts/signup_no_id.html')
             user = CustomUser.objects.create_user(username=request.POST['id'], password=request.POST['password'],) #CustomUser 모델에 user 생성
             user.save() #저장
             for user_profile in Profile.objects.all():
                 if request.POST['nickname'] in user_profile.nickname:
                     user.delete()
-                    return render(request, 'accounts/signup_no.html')
+                    return render(request, 'accounts/signup_no_nickname.html')
             nickname = request.POST['nickname']
             
             profile = Profile(user = user, nickname = nickname)
