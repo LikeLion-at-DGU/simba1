@@ -69,18 +69,19 @@
             <div class="end-date">끝나는 날짜: </div>
             <input class="end_date" type="date" name="end_date">
         </div>
-        <div class="image_title">
-            <div class="image">이미지</div>
-            <div class="image_upload">
-                <img class="image_vector" src="../image/image.png" width="25px" height="20px">
-                <label for="chooseFile">이미지 파일 업로드</label>
-                <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
-            </div>
-        </div>
+        <label class="sign-up_wrapper_upload" for="chooseFile">
+            <div class="preview"></div>
+            <div class="sign-up_wrapper_upload_text">이미지 파일 업로드</div>
+        <img src="../image/image.png" class="img_upload">
+        <input class="sign-up_wrapper_upload_file" id="chooseFile" type="file" multiple>
+        
+        </label>
+
         <div class="submit_button">
             <button class="submit" type="submit">등록</button>
         </div>
     </form>
+    <script src="./adminWriting.js"></script>
 </body>
 
 </html>
