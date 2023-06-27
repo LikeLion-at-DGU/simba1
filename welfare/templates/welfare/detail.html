@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/benefits/card.css' %}">
+<link rel="stylesheet" href="{% static 'css/welfare/card.css' %}">
 
     <div class="root">
         <div class="item">
@@ -80,17 +80,20 @@
                                 상시적용
                             {% endif %}
                         </div>
-                        <div class="button">
-                            <div class="button_modify"><a href="{% url 'welfare:update' welfare.id %}">수정</a></div>
-                            <button class="button_delete" onclick = "location.href='{% url 'welfare:delete' welfare.id %}'">삭제</button>
-                            <div class="button_delete_modal">
-                                <div class="button_delete_modal_content">
-                                    <div class="button_delete_content_title">메시지</div>
-                                    <img class="button_delete_content_close" src="{% static 'images/close_button.png' %}"></img>
-                                    <div class="button_delete_modal_content_line"></div>
-                                    <img class="button_delete_modal_content_img" src="{% static 'images/wastebasket.png' %}"
-                                        alt="button_delete_img">
-                                    <div class="button_delete_modal_content_message">게시물이 정상적으로 삭제되었습니다.</div>
+                        <div class="wrap">
+                            <div class="benefit">경영대학 비즈마루 대관 방법</div>
+                            <div class="button">
+                                <div class="button_modify"><a href="{% url 'welfare:update' welfare.id %}">수정</a></div>
+                                <button class="button_delete" onclick = "location.href='{% url 'welfare:delete' welfare.id %}'">삭제</button>
+                                <div class="button_delete_modal">
+                                    <div class="button_delete_modal_content">
+                                        <div class="button_delete_content_title">메시지</div>
+                                        <img class="button_delete_content_close" src="{% static 'images/close_button.png' %}"></img>
+                                        <div class="button_delete_modal_content_line"></div>
+                                        <img class="button_delete_modal_content_img" src="{% static 'images/wastebasket.png' %}"
+                                            alt="button_delete_img">
+                                        <div class="button_delete_modal_content_message">게시물이 정상적으로 삭제되었습니다.</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
