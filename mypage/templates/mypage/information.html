@@ -13,6 +13,7 @@
 <a href="{% url 'mypage:scrap' %}">스크랩</a>
 <a href="{% url 'mypage:my_comment' %}">내가 남긴 코멘트</a> -->
 <a href="{% url 'mypage:change_nickname' %}">닉네임 변경</a>
+<a href="{% url 'mypage:user_delete' %}">탈퇴</a>
     {% if request.user.is_superuser %}
     <link rel="stylesheet" href="{% static 'css/admin/mypage.css' %}">
     <div class="root">

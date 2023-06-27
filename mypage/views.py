@@ -25,6 +25,16 @@ def change_nickname(request):
         edit_user.profile.save()
         return redirect('mypage:information')
     
+def user_delete(request):
+    if request.method == 'POST':
+        password = request.POST['confirm_password']
+        if request.user.check_password(password):
+            request.user.delete()
+            return redirect('main:mainpage')
+        else:
+            return render(request, 'mypage/user_delete.html')
+    return render(request, 'mypage/user_delete.html')
+    
 def postmanagement(request):
     if request.user.is_superuser:
         benefits = Benefit.objects.filter(writer__is_staff = True)
