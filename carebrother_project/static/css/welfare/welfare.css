@@ -220,3 +220,34 @@ a:active {
     text-decoration: none;
     color: #404040;
 }
+
+.total-benefit-content-top {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+  }
+  
+  /* 게시물 작성 버튼 */
+  .total-benefit-content__writingButton {
+    position: relative;
+    top: 93px;
+    left: 249px;
+
+    align-items: center;
+    height: 30px;
+    width: 90px;
+    margin-right: 60px;
+  
+    font-family: "HancomMalangMalang";
+    font-weight: weight;
+    font-size: 12px;
+    border-radius: 10px;
+    background-color: #FF8F0B;
+    color: white;
+    border: none;
+    line-height: 20px; 
+  }
+  
+  .pencil {
+    padding: 0px 3px 0px 0px;
+  }
