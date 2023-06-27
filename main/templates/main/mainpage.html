@@ -21,7 +21,7 @@
                 <div class="total-benefit-content__item">
                     <div class="total-benefit-content-top">
                         <div class="total-benefit-content__item__category">문화생활</div>
-                        {% if request.user.is_staff %}
+                        {% if request.user.is_superuser %}
                         <button class="total-benefit-content__writingButton" onclick = "location.href='{% url 'main:create' %}'"><img class="pencil" src="{% static 'images/pencil.png' %}">게시물 작성</button>
                         {% endif %}
                     </div>
@@ -170,125 +170,9 @@
                         {% endfor %}
                     </swiper-slide>
 
-                    <swiper-slide>Slide 3</swiper-slide>
-                    <swiper-slide>Slide 4</swiper-slide>
-                    <swiper-slide>Slide 5</swiper-slide>
-
-                </swiper-container>
-
-
-                <!--카페&식당-->
-                <div class="total-benefit-content__item">
-                    <div class="total-benefit-content__item__category">카페&식당</div>
-                </div>
-
-                <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true"
-                    space-between="30" loop="true">
-                    
                     <swiper-slide>
-
-                        {% for post in cafe_posts %}
+                        {% for post in culture_posts_5 %}
                         <div class="total-benefit-content__item__slide__background1">
-                            {% if post.image %}
-                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
-                            {% endif %}
-                            <div class="slide-content">
-                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
-                                <div class="star">
-                                    <i class="far fa-star" style="color: #ffd66b;"></i>
-                                </div>
-                                <div class="star-count">{{post.mainpost_rate_average}}</div>
-                            </div>
-                            <div class="heart">
-                                <span href="#" class = "like" name="{{post.id}}" value="Like">
-                                    {% if user in post.mainpost_like.all %}
-                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
-                                    {% else %}
-                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
-                                    {% endif %}
-                                </span>
-                            </div>
-                            <div class="time">
-                            {% if post.start_time and post.end_time %}
-                                {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
-                            {% elif post.start_time %}
-                                {{post.start_time|time:"H:i"}}-
-                            {% elif post.end_time %}
-                                ~{{post.end_time|time:"H:i"}}
-                            {% endif %}
-                            </div>
-                            <div class="benefit">{{post.body}}</div>
-                        </div>
-
-                        <div class="total-benefit-content__item__slide__background2">
-                            {% if post.image %}
-                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
-                            {% endif %}
-                            <div class="slide-content">
-                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
-                                <div class="star">
-                                    <i class="far fa-star" style="color: #ffd66b;"></i>
-                                </div>
-                                <div class="star-count">{{post.mainpost_rate_average}}</div>
-                            </div>
-                            <div class="heart">
-                                <span href="#" class = "like" name="{{post.id}}" value="Like">
-                                    {% if user in post.mainpost_like.all %}
-                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
-                                    {% else %}
-                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
-                                    {% endif %}
-                                </span>
-                            </div>
-                            <div class="time">
-                                {% if post.start_time and post.end_time %}
-                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
-                                {% elif post.start_time %}
-                                    {{post.start_time|time:"H:i"}}-
-                                {% elif post.end_time %}
-                                    ~{{post.end_time|time:"H:i"}}
-                                {% endif %}
-                            </div>
-                            <div class="benefit">{{post.body}}</div>
-                        </div>
-                        
-                    </swiper-slide>
-
-                    <swiper-slide>
-
-                        <div class="total-benefit-content__item__slide__background1">
-                            {% if post.image %}
-                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
-                            {% endif %}
-                            <div class="slide-content">
-                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
-                                <div class="star">
-                                    <i class="far fa-star" style="color: #ffd66b;"></i>
-                                </div>
-                                <div class="star-count">{{post.mainpost_rate_average}}</div>
-                            </div>
-                            <div class="heart">
-                                <span href="#" class = "like" name="{{post.id}}" value="Like">
-                                    {% if user in post.mainpost_like.all %}
-                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
-                                    {% else %}
-                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
-                                    {% endif %}
-                                </span>
-                            </div>
-                            <div class="time">
-                            {% if post.start_time and post.end_time %}
-                                {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
-                            {% elif post.start_time %}
-                                {{post.start_time|time:"H:i"}}-
-                            {% elif post.end_time %}
-                                ~{{post.end_time|time:"H:i"}}
-                            {% endif %}
-                            </div>
-                            <div class="benefit">{{post.body}}</div>
-                        </div>
-
-                        <div class="total-benefit-content__item__slide__background2">
                             {% if post.image %}
                             <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
                             {% endif %}
@@ -321,11 +205,541 @@
                         </div>
                         {% endfor %}
 
+                        {% for post in culture_posts_6 %}
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
                     </swiper-slide>
 
-                    <swiper-slide>Slide 3</swiper-slide>
-                    <swiper-slide>Slide 4</swiper-slide>
-                    <swiper-slide>Slide 5</swiper-slide>
+                    <swiper-slide>
+                        {% for post in culture_posts_7 %}
+                        <div class="total-benefit-content__item__slide__background1">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+
+                        {% for post in culture_posts_8 %}
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+                    </swiper-slide>
+                    <swiper-slide>
+                        {% for post in culture_posts_9 %}
+                        <div class="total-benefit-content__item__slide__background1">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+
+                        {% for post in culture_posts_10 %}
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+                    </swiper-slide>
+
+                </swiper-container>
+
+
+                <!--카페&식당-->
+                <div class="total-benefit-content__item">
+                    <div class="total-benefit-content__item__category">카페&식당</div>
+                </div>
+
+                <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true"
+                    space-between="30" loop="true">
+                    
+                    <swiper-slide>
+                        {% for post in cafe_posts_1 %}
+                        <div class="total-benefit-content__item__slide__background1">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                            {% if post.start_time and post.end_time %}
+                                {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                            {% elif post.start_time %}
+                                {{post.start_time|time:"H:i"}}-
+                            {% elif post.end_time %}
+                                ~{{post.end_time|time:"H:i"}}
+                            {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+
+                        {% for post in cafe_posts_2 %}
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+                        
+                    </swiper-slide>
+
+                    <swiper-slide>
+
+                        {% for post in cafe_posts_3 %}
+                        <div class="total-benefit-content__item__slide__background1">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                            {% if post.start_time and post.end_time %}
+                                {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                            {% elif post.start_time %}
+                                {{post.start_time|time:"H:i"}}-
+                            {% elif post.end_time %}
+                                ~{{post.end_time|time:"H:i"}}
+                            {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+
+                        {% for post in cafe_posts_4 %}
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+                    </swiper-slide>
+
+                    <swiper-slide>
+                        {% for post in cafe_posts_5 %}
+                        <div class="total-benefit-content__item__slide__background1">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+
+                        {% for post in cafe_posts_6 %}
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+                    </swiper-slide>
+
+                    <swiper-slide>
+                        {% for post in cafe_posts_7 %}
+                        <div class="total-benefit-content__item__slide__background1">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+
+                        {% for post in cafe_posts_8 %}
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+                    </swiper-slide>
+                    <swiper-slide>
+                        {% for post in cafe_posts_9 %}
+                        <div class="total-benefit-content__item__slide__background1">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+
+                        {% for post in cafe_posts_10 %}
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+                    </swiper-slide>
 
                 </swiper-container>
 
@@ -341,8 +755,7 @@
                     space-between="30" loop="true">
 
                     <swiper-slide>
-
-                        {% for post in etc_posts %}
+                        {% for post in etc_posts_1 %}
                         <div class="total-benefit-content__item__slide__background1">
                             {% if post.image %}
                             <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
@@ -374,7 +787,9 @@
                             </div>
                             <div class="benefit">{{post.body}}</div>
                         </div>
+                        {% endfor %}
 
+                        {% for post in etc_posts_2 %}
                         <div class="total-benefit-content__item__slide__background2">
                             {% if post.image %}
                             <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
@@ -406,11 +821,13 @@
                             </div>
                             <div class="benefit">{{post.body}}</div>
                         </div>
+                        {% endfor %}
                         
                     </swiper-slide>
 
                     <swiper-slide>
 
+                        {% for post in etc_posts_3 %}
                         <div class="total-benefit-content__item__slide__background1">
                             {% if post.image %}
                             <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
@@ -442,13 +859,15 @@
                             </div>
                             <div class="benefit">{{post.body}}</div>
                         </div>
+                        {% endfor %}
 
+                        {% for post in etc_posts_4 %}
                         <div class="total-benefit-content__item__slide__background2">
                             {% if post.image %}
                             <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
                             {% endif %}
                             <div class="slide-content">
-                                <div class="name">{{post.title}}</div>
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
                                 <div class="star">
                                     <i class="far fa-star" style="color: #ffd66b;"></i>
                                 </div>
@@ -477,9 +896,214 @@
                         {% endfor %}
                     </swiper-slide>
 
-                    <swiper-slide>Slide 3</swiper-slide>
-                    <swiper-slide>Slide 4</swiper-slide>
-                    <swiper-slide>Slide 5</swiper-slide>
+                    <swiper-slide>
+                        {% for post in etc_posts_5 %}
+                        <div class="total-benefit-content__item__slide__background1">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+
+                        {% for post in etc_posts_6 %}
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+                    </swiper-slide>
+
+                    <swiper-slide>
+                        {% for post in etc_posts_7 %}
+                        <div class="total-benefit-content__item__slide__background1">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+
+                        {% for post in etc_posts_8 %}
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+                    </swiper-slide>
+                    <swiper-slide>
+                        {% for post in etc_posts_9 %}
+                        <div class="total-benefit-content__item__slide__background1">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+
+                        {% for post in etc_posts_10 %}
+                        <div class="total-benefit-content__item__slide__background2">
+                            {% if post.image %}
+                            <a href="{% url 'main:detail' post.id %}"><img class="taegeukdang" src="{{post.image.url}}"></a>
+                            {% endif %}
+                            <div class="slide-content">
+                                <div class="name"><a href="{% url 'main:detail' post.id %}">{{post.title}}</a></div>
+                                <div class="star">
+                                    <i class="far fa-star" style="color: #ffd66b;"></i>
+                                </div>
+                                <div class="star-count">{{post.mainpost_rate_average}}</div>
+                            </div>
+                            <div class="heart">
+                                <span href="#" class = "like" name="{{post.id}}" value="Like">
+                                    {% if user in post.mainpost_like.all %}
+                                        <i class="fas fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% else %}
+                                        <i class="far fa-heart" id = "like-icon-{{post.id}}" style="color: #ff8f0b;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="time">
+                                {% if post.start_time and post.end_time %}
+                                    {{post.start_time|time:"H:i"}}-{{post.end_time|time:"H:i"}}
+                                {% elif post.start_time %}
+                                    {{post.start_time|time:"H:i"}}-
+                                {% elif post.end_time %}
+                                    ~{{post.end_time|time:"H:i"}}
+                                {% endif %}
+                            </div>
+                            <div class="benefit">{{post.body}}</div>
+                        </div>
+                        {% endfor %}
+                    </swiper-slide>
 
                 </swiper-container>
 

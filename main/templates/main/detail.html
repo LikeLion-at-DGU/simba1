@@ -29,7 +29,7 @@
                         <div class="grades"><a href="{% url 'main:review' mainpost.id %}">평가하기/코멘트</a></div>
                     </div>
                     {% if user in mainpost.mainpost_like.all %}
-                        <a href="{% url 'main:detail_likes' mainpost.id %}"><img class="heart" src="{% static 'images/card/fheart.png' %}" height="21px" width="23px"></a>
+                        <a href="{% url 'main:detail_likes' mainpost.id %}"><img class="heart" src="{% static 'images/scrap_heart_noshadow.png' %}" height="21px" width="23px"></a>
                     {% else %}
                         <a href="{% url 'main:detail_likes' mainpost.id %}"><img class="heart" src="{% static 'images/card/heart.png' %}" height="21px" width="23px"></a>
                     {% endif %}

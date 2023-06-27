@@ -19,20 +19,98 @@ def mainpage(request):
     culture_posts_4 = []
     culture_posts_5 = []
     culture_posts_6 = []
+    culture_posts_7 = []
+    culture_posts_8 = []
+    culture_posts_9 = []
+    culture_posts_10 = []
+
+    cafe_posts_1 = []
+    cafe_posts_2 = []
+    cafe_posts_3 = []
+    cafe_posts_4 = []
+    cafe_posts_5 = []
+    cafe_posts_6 = []
+    cafe_posts_7 = []
+    cafe_posts_8 = []
+    cafe_posts_9 = []
+    cafe_posts_10 = []
+
+    etc_posts_1 = []
+    etc_posts_2 = []
+    etc_posts_3 = []
+    etc_posts_4 = []
+    etc_posts_5 = []
+    etc_posts_6 = []
+    etc_posts_7 = []
+    etc_posts_8 = []
+    etc_posts_9 = []
+    etc_posts_10 = []
 
     for index, culture_post in enumerate(culture_posts):
-        if (index+1)%6 == 1:
+        if (index+1)%11 == 1:
             culture_posts_1.append(culture_post)
-        elif (index+1)%6 == 2:
+        elif (index+1)%11 == 2:
             culture_posts_2.append(culture_post)
-        elif (index+1)%6 == 3:
+        elif (index+1)%11 == 3:
             culture_posts_3.append(culture_post)
-        elif (index+1)%6 == 4:
+        elif (index+1)%11 == 4:
             culture_posts_4.append(culture_post)
-        elif (index+1)%6 == 5:
+        elif (index+1)%11 == 5:
             culture_posts_5.append(culture_post)
-        elif (index+1)%6 == 6:
+        elif (index+1)%11 == 6:
             culture_posts_6.append(culture_post)
+        elif (index+1)%11 == 7:
+            culture_posts_7.append(culture_post)
+        elif (index+1)%11 == 8:
+            culture_posts_8.append(culture_post)
+        elif (index+1)%11 == 9:
+            culture_posts_9.append(culture_post)
+        elif (index+1)%11 == 10:
+            culture_posts_10.append(culture_post)
+
+    for index, cafe_post in enumerate(cafe_posts):
+        if (index+1)%11 == 1:
+            cafe_posts_1.append(cafe_post)
+        elif (index+1)%11 == 2:
+            cafe_posts_2.append(cafe_post)
+        elif (index+1)%11 == 3:
+            cafe_posts_3.append(cafe_post)
+        elif (index+1)%11 == 4:
+            cafe_posts_4.append(cafe_post)
+        elif (index+1)%11 == 5:
+            cafe_posts_5.append(cafe_post)
+        elif (index+1)%11 == 6:
+            cafe_posts_6.append(cafe_post)
+        elif (index+1)%11 == 7:
+            cafe_posts_7.append(cafe_post)
+        elif (index+1)%11 == 8:
+            cafe_posts_8.append(cafe_post)
+        elif (index+1)%11 == 9:
+            cafe_posts_9.append(cafe_post)
+        elif (index+1)%11 == 10:
+            cafe_posts_10.append(cafe_post)
+
+    for index, etc_post in enumerate(etc_posts):
+        if (index+1)%11 == 1:
+            etc_posts_1.append(etc_post)
+        elif (index+1)%11 == 2:
+            etc_posts_2.append(etc_post)
+        elif (index+1)%11 == 3:
+            etc_posts_3.append(etc_post)
+        elif (index+1)%11 == 4:
+            etc_posts_4.append(etc_post)
+        elif (index+1)%11 == 5:
+            etc_posts_5.append(etc_post)
+        elif (index+1)%11 == 6:
+            etc_posts_6.append(etc_post)
+        elif (index+1)%11 == 7:
+            etc_posts_7.append(etc_post)
+        elif (index+1)%11 == 8:
+            etc_posts_8.append(etc_post)
+        elif (index+1)%11 == 9:
+            etc_posts_9.append(etc_post)
+        elif (index+1)%11 == 10:
+            etc_posts_10.append(etc_post)
 
     # for index, first_culture_post in enumerate(cultureposts)
 
@@ -46,6 +124,30 @@ def mainpage(request):
         'culture_posts_4' : culture_posts_4,
         'culture_posts_5' : culture_posts_5,
         'culture_posts_6' : culture_posts_6,
+        'culture_posts_7' : culture_posts_7,
+        'culture_posts_8' : culture_posts_8,
+        'culture_posts_9' : culture_posts_9,
+        'culture_posts_10' : culture_posts_10,
+        'cafe_posts_1' : cafe_posts_1,
+        'cafe_posts_2' : cafe_posts_2,
+        'cafe_posts_3' : cafe_posts_3,
+        'cafe_posts_4' : cafe_posts_4,
+        'cafe_posts_5' : cafe_posts_5,
+        'cafe_posts_6' : cafe_posts_6,
+        'cafe_posts_7' : cafe_posts_7,
+        'cafe_posts_8' : cafe_posts_8,
+        'cafe_posts_9' : cafe_posts_9,
+        'cafe_posts_10' : cafe_posts_10,
+        'etc_posts_1' : etc_posts_1,
+        'etc_posts_2' : etc_posts_2,
+        'etc_posts_3' : etc_posts_3,
+        'etc_posts_4' : etc_posts_4,
+        'etc_posts_5' : etc_posts_5,
+        'etc_posts_6' : etc_posts_6,
+        'etc_posts_7' : etc_posts_7,
+        'etc_posts_8' : etc_posts_8,
+        'etc_posts_9' : etc_posts_9,
+        'etc_posts_10' : etc_posts_10,
     })
 
 def create(request):
@@ -170,10 +272,10 @@ def delete(request, mainpost_id):
         delete_mainpost = MainPost.objects.get(id = mainpost_id)
         if request.user == delete_mainpost.writer:
             delete_mainpost.delete()
-            return redirect('main:choose')
+            return redirect('main:mainpage')
         elif request.user.is_superuser:
             delete_mainpost.delete()
-            return redirect('main:choose')
+            return redirect('main:mainpage')
         else:
             return render(request, 'accounts/no_auth.html')
     else:
