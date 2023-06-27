@@ -22,12 +22,3 @@ def staff_admin(request):
         })
     else:
         return render(request, 'accounts/no_auth.html')
-
-def user_image(request, user_id):
-    if request.user.is_superuser:
-        user = CustomUser.objects.get(id = user_id)
-        return render(request, 'adminpage/user_image.html', {
-            'user' : user,
-        })
-    else:
-        return render(request, 'accounts/no_auth.html')

@@ -36,17 +36,7 @@ def user_delete(request):
     return render(request, 'mypage/user_delete.html')
     
 def postmanagement(request):
-    if request.user.is_superuser:
-        benefits = Benefit.objects.filter(writer__is_staff = True)
-        welfares = Welfare.objects.filter(writer__is_staff = True)
-        mainposts = MainPost.objects.filter(writer__is_staff = True)
-        
-        return render(request, 'mypage/postmanagement.html', {
-            'benefits' : benefits,
-            'welfares' : welfares,
-            'mainposts' : mainposts,
-        })
-    elif request.user.is_staff:
+    if request.user.is_staff:
         user = request.user
         benefits = Benefit.objects.filter(writer = user) #게시물 작성자가 현재 로그인한 유저와 같은 것들만 가져옴
         welfares = Welfare.objects.filter(writer = user)
@@ -62,10 +52,14 @@ def postmanagement(request):
     
 def staff_postmanagement(request):
     if request.user.is_superuser:
-        staff_posts = Benefit.objects.filter(writer__is_staff = True)
-
-        return render(request, 'mypage/postmanagement.html', {
-            'staff_posts' : staff_posts,
+        benefits = Benefit.objects.filter(writer__is_staff = True, writer__is_superuser = False)
+        welfares = Welfare.objects.filter(writer__is_staff = True, writer__is_superuser = False)
+        mainposts = MainPost.objects.filter(writer__is_staff = True, writer__is_superuser = False)
+        
+        return render(request, 'mypage/staffpostmanagement.html', {
+            'benefits' : benefits,
+            'welfares' : welfares,
+            'mainposts' : mainposts,
         })
 
 def scrap(request): #스크랩 기능
@@ -184,3 +178,43 @@ def mainpost_delete_comment(request, comment_id):
         return redirect('mypage:my_comment')
     else:
         return render(request, 'accounts/no_auth.html')
+    
+def super_benefit_detail(request, benefit_id):
+    benefit = get_object_or_404(Benefit, pk = benefit_id)
+    comments = BComment.objects.filter(benefit = benefit)
+    comments_count = len(comments)
+    return render(request, 'mypage/super_benefit_detail.html',{
+        'benefit' : benefit,
+        'comments' : comments,
+        'comments_count' : comments_count,
+        })
+
+def super_main_detail(request, mainpost_id):
+    mainpost = get_object_or_404(MainPost, pk = mainpost_id)
+    comments = MainComment.objects.filter(mainpost = mainpost)
+    comments_count = len(comments)
+    return render(request, 'mypage/super_main_detail.html',{
+        'mainpost' : mainpost,
+        'comments' : comments,
+        'comments_count' : comments_count,
+        })
+
+def staff_benefit_detail(request, benefit_id):
+    benefit = get_object_or_404(Benefit, pk = benefit_id)
+    comments = BComment.objects.filter(benefit = benefit)
+    comments_count = len(comments)
+    return render(request, 'mypage/staff_benefit_detail.html',{
+        'benefit' : benefit,
+        'comments' : comments,
+        'comments_count' : comments_count,
+        })
+
+def staff_main_detail(request, mainpost_id):
+    mainpost = get_object_or_404(MainPost, pk = mainpost_id)
+    comments = MainComment.objects.filter(mainpost = mainpost)
+    comments_count = len(comments)
+    return render(request, 'mypage/staff_main_detail.html',{
+        'mainpost' : mainpost,
+        'comments' : comments,
+        'comments_count' : comments_count,
+        })

@@ -20,7 +20,7 @@
         <div class="vectors"><a href="{% url 'main:mainpage' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}"></a></div>
         <div class="profile">
             <img class="profile-image" src="{% static 'images/admin_profile.png' %}">
-            <div class="profile-title">관리자</div>
+            <div class="profile-title">{{user.profile.nickname}}</div>
             <hr class="profile-hr">
         </div>
         <div class="profile-content">
@@ -59,8 +59,8 @@
     <div class="root">
         <div class="vectors"><a href="{% url 'main:mainpage' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}"></a></div>
         <div class="profile">
-            <img class="profile-image" src="{% static 'images/businessSchool.png' %}">
-            <div class="profile-title">경영대학 학생회</div>
+            <img class="profile-image" src="{{user.profile.image.url}}">
+            <div class="profile-title">{{user.profile.nickname}}</div>
             <hr class="profile-hr">
         </div>
         <div class="profile-content">

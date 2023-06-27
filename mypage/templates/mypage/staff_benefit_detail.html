@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/benefits/card.css' %}">
+
+    <div class="root">
+        <div class="item">
+            <a href="{% url 'mypage:postmanagement' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
+        </div>
+
+        <div class="item">
+            <div class="card">
+                {% if benefit.image %}
+                <div class="card-img">
+                    <img class="store-img" src="{{benefit.image.url}}">
+                </div>
+                {% endif %}
+
+                <div class="card-head">
+                    <div class="head-content">
+                        <div class="store-title">{{benefit.title}}</div>
+                        <hr class="title_hr">
+                        <div class="stars">
+                            <img src="{% static 'images/card/star.png' %}" height="12px" width="11px">
+                            <div class="grade">{{benefit.benefit_rate_average}}</div>
+                        </div>
+                        <img src="{% static 'images/card/pen.png' %}" height="13px" width="13px">
+                        <div class="grades"><a href="{% url 'benefits:review' benefit.id %}">평가하기/코멘트</a></div>
+                    </div>
+                    {% if user in benefit.benefit_like.all %}
+                        <a href="{% url 'benefits:detail_likes' benefit.id %}"><img class="heart" src="{% static 'images/scrap_heart_noshadow.png' %}" height="21px" width="23px"></a>
+                    {% else %}
+                        <a href="{% url 'benefits:detail_likes' benefit.id %}"><img class="heart" src="{% static 'images/card/heart.png' %}" height="21px" width="23px"></a>
+                    {% endif %}
+                </div>
+
+                <div class="card-main">
+                    <div class="time">
+                        {% if benefit.start_time and benefit.end_time %}
+                            {{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}
+                        {% elif benefit.start_time %}
+                            {{benefit.start_time|time:"H:i"}}~
+                        {% elif benefit.end_time %}
+                            ~{{benefit.end_time|time:"H:i"}}
+                        {% endif %}
+                    </div>
+                    <div class="address">{{benefit.address}}</div>
+                    <div class="benefit">{{benefit.body}}</div>
+                    <div class="dates">
+                        <div class="date">
+                            <img src="{% static 'images/card/date.png' %}" height="10px" width="11px">
+                            {% if benefit.start_date and benefit.end_date %}
+                                {{benefit.start_date|date:'Y.m.d'}}~{{benefit.end_date|date:'Y.m.d'}}
+                            {% elif benefit.start_date %}
+                                {{benefit.start_date|date:'Y.m.d'}}부터
+                            {% elif benefit.end_date %}
+                                {{benefit.end_date|date:'Y.m.d'}}까지
+                            {% else %}
+                                상시적용
+                            {% endif %}
+                        </div>
+                        <div class="button">
+                            <div class="button_modify"><a href="{% url 'benefits:update' benefit.id %}">수정</a></div>
+                            <button class="button_delete" onclick = "location.href='{% url 'benefits:delete' benefit.id %}'">삭제</button>
+                            <div class="button_delete_modal">
+                                <div class="button_delete_modal_content">
+                                    <div class="button_delete_content_title">메시지</div>
+                                    <img class="button_delete_content_close" src="{% static 'images/close_button.png' %}"></img>
+                                    <div class="button_delete_modal_content_line"></div>
+                                    <img class="button_delete_modal_content_img" src="{% static 'images/wastebasket.png' %}"
+                                        alt="button_delete_img">
+                                    <div class="button_delete_modal_content_message">게시물이 정상적으로 삭제되었습니다.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="comment-hr">
+
+                <div class="card-comment">
+                    <div class="comment-count">코멘트 {{comments_count}}</div>
+                    {% for comment in comments %}
+                    <!-- 1번째 댓글 -->
+                    <div class="comment">
+                        <div class="users">
+                            <img src="{% static 'images/card/user.png' %}" height="15px" width="15px">
+                            <div class="nickname">{{comment.writer}}</div>
+                            <img src="{% static 'images/card/star.png' %}" height="12px" width="11px">
+                            <div class="grade">{{comment.benefit_rate}}</div>
+                        </div>
+                        <span href="#" class = "like1" name="{{comment.id}}" value="Like">
+                        <div class="likes">
+                            <img src="{% static 'images/card/like.png' %}" id="like-icon-{{comment.id}}" height="13px" width="13px">
+                            <div class="like">{{comment.comment_like_count}}</div>
+                        </div>
+                        </span>
+                    </div>
+
+                    <div class="content">{{comment.content}}</div>
+                    <div class="comment-date">{{comment.pub_date|date:'Y/m/d H:i'}}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="margin"></div>
+        <script src="{% static 'js/card.js' %}"></script>
+        <footer>
+            동국대학교 멋쟁이사자처럼 심바톤 1조<br>
+            @ likelion_dongguk<br>
+            ⓒ DGU Likelion. All rights reserved.
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(".like1").click(function(){
+            var pk = $(this).attr('name')
+            $.ajax({
+                method : 'GET',
+                url:"{% url 'benefits:comment_like_toggle' %}",
+                data:{'pk':pk, 'csrfmiddlewaretoken':'{{csrf_token}}'},
+                dataType:'json',
+                success:function(response){
+                    if(response.comment_like_count == null){
+                        alert('로그인이 필요합니다.');
+                        window.location.replace('/accounts/login/');
+                    }
+                    else{
+                        $('#count-{{comment.id}}').html('좋아요'+response.comment_like_count+"개");
+                    }
+                },
+                error:function(request, status, error){
+                    alert("로그인이 필요합니다.");
+                },
+            })
+        })
+    </script>
+{% endblock %}
