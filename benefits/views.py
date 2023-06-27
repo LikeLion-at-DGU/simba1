@@ -2542,13 +2542,15 @@ def create(request):
                 new_benefit.writer = request.user
                 new_benefit.pub_date = timezone.now()
                 if request.POST['category_univ'] == "none":
+                    return render(request, 'benefits/new.html')
+                    
+                else:
                     new_benefit.category_univ = request.POST['category_univ']
-                else:
-                    return render(request, 'benefits/new.html')
                 if request.POST['category_type'] == "none":
-                    new_benefit.category_type = request.POST['category_type']
-                else:
                     return render(request, 'benefits/new.html')
+                    
+                else:
+                    new_benefit.category_type = request.POST['category_type']
                 if request.POST['start_time']:
                     new_benefit.start_time = request.POST['start_time']
                 if request.POST['end_time']:
@@ -2694,24 +2696,35 @@ def edit_comment(request, comment_id):
         return redirect('accounts:login')
 
 def update(request, benefit_id):
+    update_benefit = Benefit.objects.get(id = benefit_id)
     if request.user.is_staff:
-        update_benefit = Benefit.objects.get(id = benefit_id)
         if request.user == update_benefit.writer:
             if request.method == 'POST':
                 if request.POST['title']:
                     update_benefit.title = request.POST['title']
                 else:
-                    return render(request, 'benefits/edit.html')
+                    edit_benefit = Benefit.objects.get(id = benefit_id)
+                    return render(request, 'benefits/edit.html', {
+                        'benefit':edit_benefit,
+                        })
                 update_benefit.writer = request.user
                 update_benefit.pub_date = timezone.now()
                 if request.POST['category_univ'] == "none":
+                    edit_benefit = Benefit.objects.get(id = benefit_id)
+                    return render(request, 'benefits/edit.html', {
+                        'benefit':edit_benefit,
+                        })
+                    
+                else:
                     update_benefit.category_univ = request.POST['category_univ']
-                else:
-                    return render(request, 'benefits/edit.html')
                 if request.POST['category_type'] == "none":
-                    update_benefit.category_type = request.POST['category_type']
+                    edit_benefit = Benefit.objects.get(id = benefit_id)
+                    return render(request, 'benefits/edit.html', {
+                        'benefit':edit_benefit,
+                        })
+                    
                 else:
-                    return render(request, 'benefits/edit.html')
+                    update_benefit.category_type = request.POST['category_type']
                 if request.POST['start_time']:
                     update_benefit.start_time = request.POST['start_time']
                 if request.POST['end_time']:
@@ -2721,14 +2734,20 @@ def update(request, benefit_id):
                     update_benefit.start_date = request.POST['start_date']
                 if request.POST['end_date']:
                     update_benefit.end_date = request.POST['end_date']
-                if request.FILES.get('image'):
-                    update_benefit.image = request.FILES.get('image')
+                if request.FILES.get('image', update_benefit.image):
+                    update_benefit.image = request.FILES.get('image', update_benefit.image)
                 else:
-                    return render(request, 'benefits/edit.html')
+                    edit_benefit = Benefit.objects.get(id = benefit_id)
+                    return render(request, 'benefits/edit.html', {
+                        'benefit':edit_benefit,
+                        })
                 if request.POST['body']:
                     update_benefit.body = request.POST['body']
                 else:
-                    return render(request, 'benefits/edit.html')
+                    edit_benefit = Benefit.objects.get(id = benefit_id)
+                    return render(request, 'benefits/edit.html', {
+                        'benefit':edit_benefit,
+                        })
 
                 update_benefit.save()
                 
@@ -2744,17 +2763,28 @@ def update(request, benefit_id):
                 if request.POST['title']:
                     update_benefit.title = request.POST['title']
                 else:
-                    return render(request, 'benefits/edit.html')
+                    edit_benefit = Benefit.objects.get(id = benefit_id)
+                    return render(request, 'benefits/edit.html', {
+                        'benefit':edit_benefit,
+                        })
                 update_benefit.writer = request.user
                 update_benefit.pub_date = timezone.now()
                 if request.POST['category_univ'] == "none":
+                    edit_benefit = Benefit.objects.get(id = benefit_id)
+                    return render(request, 'benefits/edit.html', {
+                        'benefit':edit_benefit,
+                        })
+                    
+                else:
                     update_benefit.category_univ = request.POST['category_univ']
-                else:
-                    return render(request, 'benefits/edit.html')
                 if request.POST['category_type'] == "none":
-                    update_benefit.category_type = request.POST['category_type']
+                    edit_benefit = Benefit.objects.get(id = benefit_id)
+                    return render(request, 'benefits/edit.html', {
+                        'benefit':edit_benefit,
+                        })
+                    
                 else:
-                    return render(request, 'benefits/edit.html')
+                    update_benefit.category_type = request.POST['category_type']
                 if request.POST['start_time']:
                     update_benefit.start_time = request.POST['start_time']
                 if request.POST['end_time']:
@@ -2764,14 +2794,20 @@ def update(request, benefit_id):
                     update_benefit.start_date = request.POST['start_date']
                 if request.POST['end_date']:
                     update_benefit.end_date = request.POST['end_date']
-                if request.FILES.get('image'):
-                    update_benefit.image = request.FILES.get('image')
+                if request.FILES.get('image', update_benefit.image):
+                    update_benefit.image = request.FILES.get('image', update_benefit.image)
                 else:
-                    return render(request, 'benefits/edit.html')
+                    edit_benefit = Benefit.objects.get(id = benefit_id)
+                    return render(request, 'benefits/edit.html', {
+                        'benefit':edit_benefit,
+                        })
                 if request.POST['body']:
                     update_benefit.body = request.POST['body']
                 else:
-                    return render(request, 'benefits/edit.html')
+                    edit_benefit = Benefit.objects.get(id = benefit_id)
+                    return render(request, 'benefits/edit.html', {
+                        'benefit':edit_benefit,
+                        })
 
                 update_benefit.save()
                 
@@ -2780,7 +2816,7 @@ def update(request, benefit_id):
             elif request.method == 'GET':
                 edit_benefit = Benefit.objects.get(id = benefit_id)
                 return render(request, 'benefits/edit.html', {
-                    'benefit':edit_benefit,
+                    'benefit' : edit_benefit,
                     })
         else:
             return render(request, 'accounts/no_auth.html')
