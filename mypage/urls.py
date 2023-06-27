@@ -12,4 +12,5 @@ urlpatterns = [
     path('welfare_delete_comment/<int:comment_id>', welfare_delete_comment, name="welfare_delete_comment"),
     path('mainpost_delete_comment/<int:comment_id>', mainpost_delete_comment, name="mainpost_delete_comment"),
     path('change_nickname/', change_nickname, name="change_nickname"),
+    path('user_delete/', user_delete, name="user_delete"),
 ]
