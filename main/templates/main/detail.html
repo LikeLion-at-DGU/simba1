@@ -74,8 +74,14 @@
                     <!-- 1번째 댓글 -->
                     <div class="comment">
                         <div class="users">
+                            {% if comment.writer.is_superuser %}
+                            <img src="{% static 'images/admin_profile.png' %}" height="15px" width="15px">
+                            {% elif comment.writer.is_staff %}
+                            <img src="{{comment.writer.profile.image.url}}" height="15px" width="15px">
+                            {% else %}
                             <img src="{% static 'images/card/user.png' %}" height="15px" width="15px">
-                            <div class="nickname">{{comment.writer}}</div>
+                            {% endif %}
+                            <div class="nickname">{{comment.writer.profile.nickname}}</div>
                             <img src="{% static 'images/card/star.png' %}" height="12px" width="11px">
                             <div class="grade">{{comment.mainpost_rate}}</div>
                         </div>

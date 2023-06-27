@@ -239,13 +239,20 @@ def update(request, mainpost_id):
             if request.POST['title']:
                 update_mainpost.title = request.POST['title']
             else:
-                return render(request, 'main/edit.html')
+                edit_mainpost = MainPost.objects.get(id = mainpost_id)
+                return render(request, 'main/edit.html', {
+                    'mainpost' : edit_mainpost,
+                    })
             update_mainpost.writer = request.user
             update_mainpost.pub_date = timezone.now()
             if request.POST['category_type']=="none":
-                update_mainpost.category_type = request.POST['category_type']
+                edit_mainpost = MainPost.objects.get(id = mainpost_id)
+                return render(request, 'main/edit.html', {
+                    'mainpost' : edit_mainpost,
+                    })
+                
             else:
-                return render(request, 'main/edit.html')
+                update_mainpost.category_type = request.POST['category_type']
             if request.POST['start_time']:
                 update_mainpost.start_time = request.POST['start_time']
             if request.POST['end_time']:
@@ -253,15 +260,24 @@ def update(request, mainpost_id):
             if request.POST['address']:
                 update_mainpost.address = request.POST['address']
             else:
-                return render(request, 'main/edit.html')
-            if request.FILES.get('image'):
-                update_mainpost.image = request.FILES.get('image')
+                edit_mainpost = MainPost.objects.get(id = mainpost_id)
+                return render(request, 'main/edit.html', {
+                    'mainpost' : edit_mainpost,
+                    })
+            if request.FILES.get('image', update_mainpost.image):
+                update_mainpost.image = request.FILES.get('image', update_mainpost.image)
             else:
-                return render(request, 'main/edit.html')
+                edit_mainpost = MainPost.objects.get(id = mainpost_id)
+                return render(request, 'main/edit.html', {
+                    'mainpost' : edit_mainpost,
+                    })
             if request.POST['body']:
                 update_mainpost.body = request.POST['body']
             else:
-                return render(request, 'main/edit.html')
+                edit_mainpost = MainPost.objects.get(id = mainpost_id)
+                return render(request, 'main/edit.html', {
+                    'mainpost' : edit_mainpost,
+                    })
 
             update_mainpost.save()
                 
