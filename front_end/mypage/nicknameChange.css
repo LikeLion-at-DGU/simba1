@@ -1,0 +1,71 @@
+* {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+body {
+    background: #fcfaf7;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 390px;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+    color: #814E01;
+}
+
+.title-content {
+    font-family: Hancom MalangMalang;
+    font-size: 20px;
+    padding-left: 20px;
+}
+.vector {
+    width: 10px;
+    height: 15px;
+    padding: 70px 300px 20px 0px;
+}
+
+.nickname {
+    display: flex;
+    flex-direction: column;
+    font-family: NotoSansKR;
+}
+
+.nickname-title {
+    padding: 10px;
+    font-size: 13px;
+}
+
+.nickname-input {
+    width: 268px;
+    height: 50px;
+    background-color: #D9D9D9;
+    border: 0;
+    border-radius: 20px;
+    font-size: 15px;
+    padding-left: 20px;
+}
+
+/* 닉네임 변경 버튼 */
+.button {
+    padding-top: 20px;
+}
+
+.submit {
+    width: 288px;
+    height: 50px;
+    background-color: #FF8F0B;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: Regular;
+    border: none;
+    border-radius: 10px;
+}
