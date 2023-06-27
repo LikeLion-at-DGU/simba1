@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/intro.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
     <div class="root">
         <!--웹 사이트 설명-->
         <div class="intro">
@@ -33,10 +34,6 @@
             </div>
         </div>
 
-        <a href="{% url 'main:mainpage' %}" class="move-mainpage-button">
-            메인페이지로 이동
-        </a>
-
         <div class="team">
             <div class="team__name">
                 심바톤 1조 team '동혜물과'
@@ -51,7 +48,6 @@
             @ likelion_dongguk<br>
             ⓒ DGU Likelion. All rights reserved.
         </footer>
-
     </div>
-
+    
 {% endblock %}

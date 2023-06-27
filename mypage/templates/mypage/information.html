@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block content %}
-<a href="{% url 'accounts:logout' %}">로그아웃</a>
     {% if request.user.is_superuser %}
     <link rel="stylesheet" href="{% static 'css/admin/mypage.css' %}">
     <div class="root">

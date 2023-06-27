@@ -5,8 +5,8 @@ from django.http import HttpResponse
 import json
 
 
-def intro(request):
-    return render(request, 'main/intro.html')
+def about(request):
+    return render(request, 'main/about.html')
 
 def mainpage(request):
     culture_posts = MainPost.objects.filter(category_type = "문화생활")
