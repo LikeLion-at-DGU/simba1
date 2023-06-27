@@ -100,21 +100,17 @@
                     <div class="card__item__end">
                         <p>혜택 기간이 지난<br> 게시물입니다</p>
                     </div>
-                    {% if first.image %}
-                    <a href="{% url 'welfare:detail' first.id %}"><img class="card__item__img" src="{{first.image.url}}"></a>
-                    {% endif %}
-                    <div class="card__content">
-                        <div class="name">{{first.title}}</div>
-                    </div>
-                    {% if user in first.welfare_like.all %}
-                    <div class="heart">
-                        <a href="{% url 'welfare:mainpage_likes' first.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
-                    </div>
-                    {% else %}
-                    <div class="heart">
-                        <a href="{% url 'welfare:mainpage_likes' first.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
-                    </div>
-                    {% endif %}
+                    <span href="#" class = "like" name="{{first.id}}" value="Like">
+                        {% if user in first.welfare_like.all %}
+                        <div class="heart">
+                            <i class="fas fa-heart" id = "like-icon-{{first.id}}" style="color: #ff8f0b;"></i>
+                        </div>
+                        {% else %}
+                        <div class="heart">
+                            <i class="far fa-heart" id = "like-icon-{{first.id}}" style="color: #ff8f0b;"></i>
+                        </div>
+                        {% endif %}
+                        </span>
                     <div class="time">{{first.start_time|time:"H:i"}}-{{first.end_time|time:"H:i"}}</div>
                     <div class="benefit">{{first.body}}</div>
                 </div>
@@ -131,15 +127,17 @@
                     <div class="card__content">
                         <div class="name">{{second.title}}</div>
                     </div>
-                    {% if user in second.welfare_like.all %}
-                    <div class="heart">
-                        <a href="{% url 'welfare:mainpage_likes' second.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
-                    </div>
-                    {% else %}
-                    <div class="heart">
-                        <a href="{% url 'welfare:mainpage_likes' second.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
-                    </div>
-                    {% endif %}
+                    <span href="#" class = "like" name="{{second.id}}" value="Like">
+                        {% if user in second.welfare_like.all %}
+                        <div class="heart">
+                            <i class="fas fa-heart" id = "like-icon-{{second.id}}" style="color: #ff8f0b;"></i>
+                        </div>
+                        {% else %}
+                        <div class="heart">
+                            <i class="far fa-heart" id = "like-icon-{{second.id}}" style="color: #ff8f0b;"></i>
+                        </div>
+                        {% endif %}
+                    </span>
                     <div class="time">{{second.start_time|time:"H:i"}}-{{second.end_time|time:"H:i"}}</div>
                     <div class="benefit">{{second.body}}</div>
                 </div>
@@ -157,15 +155,17 @@
                     <div class="card__content">
                         <div class="name">{{second.title}}</div>
                     </div>
-                    {% if user in second.welfare_like.all %}
-                    <div class="heart">
-                        <a href="{% url 'welfare:mainpage_likes' second.id %}"><i class="fas fa-heart" style="color: #ff8f0b;"></i></a>
-                    </div>
-                    {% else %}
-                    <div class="heart">
-                        <a href="{% url 'welfare:mainpage_likes' second.id %}"><i class="far fa-heart" style="color: #ff8f0b;"></i></a>
-                    </div>
-                    {% endif %}
+                    <span href="#" class = "like" name="{{second.id}}" value="Like">
+                        {% if user in second.welfare_like.all %}
+                        <div class="heart">
+                            <i class="fas fa-heart" id = "like-icon-{{second.id}}" style="color: #ff8f0b;"></i>
+                        </div>
+                        {% else %}
+                        <div class="heart">
+                            <i class="far fa-heart" id = "like-icon-{{second.id}}" style="color: #ff8f0b;"></i>
+                        </div>
+                        {% endif %}
+                    </span>
                     <div class="time">{{second.start_time|time:"H:i"}}-{{second.end_time|time:"H:i"}}</div>
                     <div class="benefit">{{second.body}}</div>
                 </div>
