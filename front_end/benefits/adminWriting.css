@@ -1,0 +1,310 @@
+* {
+    font-family: 'HancomMalangMalang';
+    font-weight: bold;
+    font-size: 18px;
+    color: #814E01;
+}
+
+body {
+    background: #fcfaf7;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: 56px;
+}
+
+
+/* title */
+.writing {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0px 50px 0px;
+}
+
+.writing-image {
+    width: 15px;
+    height: 10px;
+    padding-right: 300px;
+}
+
+.writing-title {
+    position: absolute;
+    padding-right: 50px;
+    font-size: 20px;
+    text-align: center;
+}
+
+/* 게시판을 선택해주세요 */
+.univ {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.univ_choice {
+    padding-right: 10px;
+}
+
+.select_univ {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 195px;
+    height: 30px;
+}
+
+/* 카테고리 */
+.type {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.type_category {
+    padding-right: 10px;
+}
+
+.category_type {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 195px;
+    height: 30px;
+}
+
+/* 제휴혜택 제목 */
+.benefit {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.benefit-text {
+    padding-right: 10px;
+}
+
+.title {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 195px;
+    height: 30px;
+}
+
+
+/* 영업시간 */
+.times {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.times-open {
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.time {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 76px;
+    height: 30px;
+}
+
+.reset {
+    border: none;
+    font-size: 9px;
+    background-color: #FFDAAF;
+    border-radius: 10px;
+    opacity: 0.5;
+}
+
+/* 위치 */
+.gps {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.gps_address {
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.address {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 195px;
+    height: 30px;
+}
+
+/* 내용 */
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.content-writing {
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.text {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 200px;
+    height: 90px;
+}
+
+
+/* 시작 날짜 */
+.start {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.start-date {
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.start_date {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 195px;
+    height: 30px;
+}
+
+/* 끝나는 날짜 */
+.end {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.end-date {
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.end_date {
+    font-family: NotoSansKR;
+    font-weight: bold;
+    color: #CCCCCC;
+    border: none;
+    width: 195px;
+    height: 30px;
+}
+
+/* 이미지 */
+.image {
+    padding-bottom: 10px;
+}
+
+.image_upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 247px;
+    height: 90px;
+    position: relative;
+    border-width: 1px;
+    border-radius: 10px;
+    border-style: dotted;
+    border-color: #404040, 0.3;
+}
+
+.image_upload::before{
+    content: "";
+    background-color: #404040;
+    opacity: 0.1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 10px;
+}
+
+.image_vector {
+    padding-top: 20px;
+    padding-bottom: 5px;
+}
+
+/* 이미지 기본 디자인 없애기 */
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+label {
+    display: inline-block;
+    cursor: pointer;
+    color: #404040;
+    font-size: 10px;
+    font-family: NotoSansKR;
+}
+
+/* 못생긴 기존 input 숨기기 */
+#chooseFile {
+    visibility: hidden;
+}
+
+
+/* 등록 버튼 */
+.submit_button {
+    display: flex;
+    padding: 70px 0px 100px 200px;
+}
+
+.submit {
+    width: 66px;
+    height: 33px;
+    background-color: #FF8F0B;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: Regular;
+    border: none;
+    border-radius: 10px;
+}
