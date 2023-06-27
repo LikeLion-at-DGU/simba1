@@ -49,7 +49,7 @@
                         <div class="grades"><a href="{% url 'welfare:review' welfare.id %}">코멘트</a></div>
                     </div>
                     {% if user in welfare.welfare_like.all %}
-                        <a href="{% url 'welfare:detail_likes' welfare.id %}"><img class="heart" src="{% static 'images/card/fheart.png' %}" height="21px" width="23px"></a>
+                        <a href="{% url 'welfare:detail_likes' welfare.id %}"><img class="heart" src="{% static 'images/scrap_heart_noshadow.png' %}" height="21px" width="23px"></a>
                     {% else %}
                         <a href="{% url 'welfare:detail_likes' welfare.id %}"><img class="heart" src="{% static 'images/card/heart.png' %}" height="21px" width="23px"></a>
                     {% endif %}
