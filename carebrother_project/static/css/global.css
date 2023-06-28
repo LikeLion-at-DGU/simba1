@@ -84,6 +84,7 @@ body {
     margin: 0;
     padding-left: 0;
     font-size: 10px;
+    position: relative;
 }
 
 .navbar__menu a {
@@ -94,7 +95,6 @@ body {
     font-size: 12px;
     line-height: 15px;
     text-align: center;
-
     color: #814e01;
 }
 
@@ -137,8 +137,8 @@ footer {
 
     border:0px;
     position:absolute;
-    right: 0px;
-    top: 72px;
+    right: -24px;
+    top: 46px;
     height: 40px;
     z-index:200;
 
@@ -156,4 +156,8 @@ li .dropdown {
     height: 25px;
     display: flex;
     justify-content: center;
+}
+
+.dropdown_click {
+    position: relative;
 }
