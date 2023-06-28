@@ -181,7 +181,15 @@
                             </div>
                             {% endif %}
                         </span>
-                        <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
+                        <div class="time">
+                            {% if benefit.start_time and benefit.end_time %}
+                                {{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}
+                            {% elif benefit.start_time %}
+                                {{benefit.start_time|time:"H:i"}}-
+                            {% elif benefit.end_time %}
+                                ~{{benefit.end_time|time:"H:i"}}
+                            {% endif %}
+                        </div>
                         <div class="benefit">{{benefit.body}}</div>
                     </div>
                 {% endfor %}
@@ -211,7 +219,15 @@
                         </div>
                         {% endif %}
                     </span>
-                    <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
+                    <div class="time">
+                        {% if benefit.start_time and benefit.end_time %}
+                            {{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}
+                        {% elif benefit.start_time %}
+                            {{benefit.start_time|time:"H:i"}}-
+                        {% elif benefit.end_time %}
+                            ~{{benefit.end_time|time:"H:i"}}
+                        {% endif %}
+                    </div>
                     <div class="benefit">{{benefit.body}}</div>
                 </div>
                 {% endfor %}
@@ -243,7 +259,15 @@
                             </div>
                             {% endif %}
                         </span>
-                        <div class="time">{{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}</div>
+                        <div class="time">
+                            {% if benefit.start_time and benefit.end_time %}
+                                {{benefit.start_time|time:"H:i"}}-{{benefit.end_time|time:"H:i"}}
+                            {% elif benefit.start_time %}
+                                {{benefit.start_time|time:"H:i"}}-
+                            {% elif benefit.end_time %}
+                                ~{{benefit.end_time|time:"H:i"}}
+                            {% endif %}
+                        </div>
                         <div class="benefit">{{benefit.body}}</div>
                     </div>
                 {% endfor %}
