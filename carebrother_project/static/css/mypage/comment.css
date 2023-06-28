@@ -69,6 +69,12 @@
     align-items: center;
 }
 
+.content_item_first_left a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
 .content_item_first_left_title {
     color: #404040;
     font-size: 13px;
@@ -76,6 +82,7 @@
     font-weight: bold;
 
     margin-right: 4px;
+
 }
 
 .content_item_first_left_star-img {
@@ -188,5 +195,10 @@
     color: rgba(0, 0, 0, 0.50);
     font-size: 10px;
     font-family: NotoSansKR;
+}
+
+.content_item_fourth_left a {
+    text-decoration: none;
+    color: inherit;
 }
 

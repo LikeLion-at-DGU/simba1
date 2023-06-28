@@ -376,3 +376,11 @@ body {
     z-index: 5;
     border-radius: 6px;
 }
+
+.post-card-text a {
+    text-decoration: none;
+    color: #404040;
+    font-size: 13px;
+    font-family: NotoSansKR;
+    font-weight: 700;
+}

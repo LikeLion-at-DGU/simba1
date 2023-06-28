@@ -255,3 +255,8 @@
     border-radius: 50px;
     z-index: 0;
 }
+
+.name a {
+    text-decoration: none;
+    color: #404040;
+}

@@ -94,6 +94,11 @@
     margin-right: 10%;
 }
 
+.card_item_content_name a {
+    text-decoration: none;
+    color: #404040;
+}
+
 .card_item_content_star {
     font-size: 10px;
     margin-right: 3%;
