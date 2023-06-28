@@ -82,8 +82,13 @@
                         </div>
                         <div class="wrap">
                             <div class="button">
+                                {% if user == welfare.writer %}
                                 <div class="button_modify"><a href="{% url 'welfare:update' welfare.id %}">수정</a></div>
                                 <button class="button_delete" onclick = "location.href='{% url 'welfare:delete' welfare.id %}'">삭제</button>
+                                {% elif user.is_superuser %}
+                                <div class="button_modify"><a href="{% url 'welfare:update' welfare.id %}">수정</a></div>
+                                <button class="button_delete" onclick = "location.href='{% url 'welfare:delete' welfare.id %}'">삭제</button>
+                                {% endif %}
                                 <div class="button_delete_modal">
                                     <div class="button_delete_modal_content">
                                         <div class="button_delete_content_title">메시지</div>
