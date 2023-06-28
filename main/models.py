@@ -18,7 +18,7 @@ class MainPost(models.Model):
 
     
     def __str__(self):
-        return self.title
+        return self.title[:3]
     
     def summary(self):
         return self.body[:20]

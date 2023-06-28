@@ -15,31 +15,37 @@ def information(request):
         return render(request, 'accounts/no_auth.html')
     
 def change_nickname(request):
-    if request.method == 'GET':
-        edit_user = request.user
-        return render(request, 'mypage/change_nickname.html', {
-            'edit_user' : edit_user,
-        })
-    elif request.method == 'POST':
-        edit_user = request.user
-        for user_profile in Profile.objects.all():
-            if request.POST['nickname'] == user_profile.nickname:
-                return render(request, 'mypage/change_nickname.html',{
-                    'edit_user' : edit_user,
-                })
-        edit_user.profile.nickname = request.POST['nickname']
-        edit_user.profile.save()
-        return redirect('mypage:information')
+    if request.user.is_authenticated:
+        if request.method == 'GET':
+            edit_user = request.user
+            return render(request, 'mypage/change_nickname.html', {
+                'edit_user' : edit_user,
+            })
+        elif request.method == 'POST':
+            edit_user = request.user
+            for user_profile in Profile.objects.all():
+                if request.POST['nickname'] == user_profile.nickname:
+                    return render(request, 'mypage/change_nickname.html',{
+                        'edit_user' : edit_user,
+                    })
+            edit_user.profile.nickname = request.POST['nickname']
+            edit_user.profile.save()
+            return redirect('mypage:information')
+    else:
+        return render(request, 'accounts/no_auth.html')
     
 def user_delete(request):
-    if request.method == 'POST':
-        password = request.POST['confirm_password']
-        if request.user.check_password(password):
-            request.user.delete()
-            return redirect('main:mainpage')
-        else:
-            return render(request, 'mypage/user_delete.html')
-    return render(request, 'mypage/user_delete.html')
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            password = request.POST['confirm_password']
+            if request.user.check_password(password):
+                request.user.delete()
+                return redirect('main:mainpage')
+            else:
+                return render(request, 'mypage/user_delete.html')
+        return render(request, 'mypage/user_delete.html')
+    else:
+        return render(request, 'accounts/no_auth.html')
     
 def postmanagement(request):
     if request.user.is_staff:

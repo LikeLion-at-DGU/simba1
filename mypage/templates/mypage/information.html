@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="{% static 'css/staff/mypage.css' %}">
     <div class="root">
         <div class="profile">
-            <img class="profile-image" src="{% static 'images/businessSchool.png' %}">
+            <img class="profile-image" src="{{user.profile.image.url}}">
             <div class="profile-title">{{user.profile.nickname}}</div>
             <hr class="profile-hr">
         </div>
