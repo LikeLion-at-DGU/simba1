@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/benefits/card.css' %}">
 
     <div class="root">
+        <div class="highlight_circle"></div>
         <div class="item">
             {% if benefit.category_univ == "경영대학" %}
             <a href="{% url 'benefits:business' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
