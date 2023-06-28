@@ -108,6 +108,9 @@
                     <div class="card__item__end">
                         <p>혜택 기간이 지난<br> 게시물입니다</p>
                     </div>
+                    {% if first.image %}
+                        <a href="{% url 'welfare:detail' first.id %}"><img class="card__item__img" src={{first.image.url}}></a>
+                    {% endif %}
                     <span href="#" class = "like" name="{{first.id}}" value="Like">
                         {% if user in first.welfare_like.all %}
                         <div class="heart">
@@ -158,6 +161,9 @@
                     <div class="card__item__end">
                         <p>혜택 기간이 지난<br> 게시물입니다</p>
                     </div>
+                    {% if second.image %}
+                        <a href="{% url 'welfare:detail' second.id %}"><img class="card__item__img" src={{second.image.url}}></a>
+                    {% endif %}
                     <a href="{% url 'welfare:detail' second.id %}"><img class="card__item__img" src="{{second.image.url}}"></a>
                     {% endif %}
                     <div class="card__content">
