@@ -2,16 +2,16 @@
 {% load static %}
 
 {% block content %}
-<link rel = "stylesheet" href = "{% static 'css/welfare/choose.css' %}">
-<div class="root">
+    <link rel="stylesheet" href="{% static 'css/welfare/choose.css' %}">
+    <div class="root">
     <div class="intro">
-        <div class="benefits">
+        <div class="welfare">
             <a href="{% url 'main:mainpage' %}"><img class="vector" src="{% static 'images/choose/Vector.png' %}" width="10px" height="15px"></a>
-            <div class="benefits_title">학생복지</div>
-            <div class="benefits_banner">
+            <div class="welfare_title">학생복지</div>
+            <div class="welfare_banner">
                 <hr class="hr" color="#EC6130">
-                <div class="benefits_contents">단과대 별로 단과대 복지, 과 학생회 등 다양한 학생복지가 있습니다.<br>
-                    공간 대여, 시험기간 대여 사업 등 받을 수 있는 다양한 혜택이 있습니다!</div>
+                <div class="welfare_contents">단과대 별로 단과대 복지, 과 학생회 등 다양한 학생복지가 있습니다.<br>
+                공간 대여, 시험기간 대여 사업 등 받을 수 있는 다양한 혜택이 있습니다!</div>
             </div>
         </div>
     </div>
@@ -68,12 +68,13 @@
             </div>
         </div>
     </div>
+</div>
     <footer>
         동국대학교 멋쟁이사자처럼 심바톤 1조<br>
         @ likelion_dongguk<br>
         ⓒ DGU Likelion. All rights reserved.
     </footer>
-</div>
+
 
 
 
