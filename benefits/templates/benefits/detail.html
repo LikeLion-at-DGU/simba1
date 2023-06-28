@@ -85,8 +85,13 @@
                             {% endif %}
                         </div>
                         <div class="button">
+                            {% if user == benefit.writer %}
                             <div class="button_modify"><a href="{% url 'benefits:update' benefit.id %}">수정</a></div>
                             <button class="button_delete" onclick = "location.href='{% url 'benefits:delete' benefit.id %}'">삭제</button>
+                            {% elif user.is_superuser %}
+                            <div class="button_modify"><a href="{% url 'benefits:update' benefit.id %}">수정</a></div>
+                            <button class="button_delete" onclick = "location.href='{% url 'benefits:delete' benefit.id %}'">삭제</button>
+                            {% endif %}
                             <div class="button_delete_modal">
                                 <div class="button_delete_modal_content">
                                     <div class="button_delete_content_title">메시지</div>
