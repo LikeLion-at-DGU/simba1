@@ -67,7 +67,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 20px 0px 0px 0px;
+    padding: 20px 0px 350px 0px;
     width: 100%;
 }
 
@@ -78,7 +78,6 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
     padding: 0px 0px 20px 128px;
 }
 
@@ -119,7 +118,6 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
     padding: 0px 0px 20px 120px;
 }
 .profile-content-staffPostManagement-image {
