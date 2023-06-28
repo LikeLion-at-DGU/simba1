@@ -50,6 +50,11 @@ def signup(request):
             profile.save()
 
             return redirect('accounts:image_verification', user.id) #유저 이미지 인증 페이지로 넘어감.
+    if request.method == 'GET':
+        deleted_users = CustomUser.objects.all()
+        for user in deleted_users:
+            if user.profile.image == "":
+                user.delete()
     return render(request, 'accounts/signup.html')
 
 # 유저 회원가입 완료
