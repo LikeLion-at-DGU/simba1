@@ -163,9 +163,9 @@ def create(request):
                 new_mainpost.writer = request.user
                 new_mainpost.pub_date = timezone.now()
                 if request.POST['category_type']=="none":
-                    new_mainpost.category_type = request.POST['category_type']
-                else:
                     return render(request, 'main/new.html')
+                else:
+                    new_mainpost.category_type = request.POST['category_type']
                 if request.POST['start_time']:
                     new_mainpost.start_time = request.POST['start_time']
                 if request.POST['end_time']:

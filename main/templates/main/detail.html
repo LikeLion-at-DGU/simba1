@@ -52,11 +52,11 @@
                         </div>
                         <div class="button">
                             {% if user == benefit.writer %}
-                            <div class="button_modify"><a href="{% url 'benefits:update' benefit.id %}">수정</a></div>
-                            <button class="button_delete" onclick = "location.href='{% url 'benefits:delete' benefit.id %}'">삭제</button>
+                            <div class="button_modify"><a href="{% url 'main:update' mainpost.id %}">수정</a></div>
+                            <button class="button_delete" onclick = "location.href='{% url 'main:delete' mainpost.id %}'">삭제</button>
                             {% elif user.is_superuser %}
-                            <div class="button_modify"><a href="{% url 'benefits:update' benefit.id %}">수정</a></div>
-                            <button class="button_delete" onclick = "location.href='{% url 'benefits:delete' benefit.id %}'">삭제</button>
+                            <div class="button_modify"><a href="{% url 'main:update' mainpost.id %}">수정</a></div>
+                            <button class="button_delete" onclick = "location.href='{% url 'main:delete' mainpost.id %}'">삭제</button>
                             {% endif %}
                             <div class="button_delete_modal">
                                 <div class="button_delete_modal_content">
