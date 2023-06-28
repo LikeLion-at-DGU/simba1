@@ -3,6 +3,26 @@
     font-weight: normal;
 }
 
+a:link {
+    text-decoration: none;
+    color: #814E01;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #814E01;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #814E01;
+}
+
+a:active {
+    text-decoration: none;
+    color: #814E01;
+}
+
 body {
     background: #fcfaf7;
     margin: 0;
@@ -31,23 +51,6 @@ body {
     border-radius: 50px;
 }
 
-/* 뒤로가기 */
-.vectors {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 20px 0px 0px 47px;
-}
-
-.vector {
-    width: 10px;
-    height: 15px;
-    padding-top: 30px;
-    display: flex;
-    align-items: flex-start;
-}
-
 /* profile */
 .profile {
     display: flex;
@@ -58,7 +61,7 @@ body {
 .profile-image {
     width: 50px;
     height: 50px;
-    padding-top: 30px;
+    padding-top: 54px;
 }
 
 .profile-title {
@@ -124,47 +127,6 @@ body {
     font-size: 15px;
     font-weight: bold;
 }
-
-/* 단과대 스태프 승인 */
-.profile-content-staffPlus {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 0px 0px 20px 120px;
-}
-.profile-content-staffPlus-image {
-    width: 30px;
-    height: 23px;
-    padding-right: 20px;
-}
-
-.profile-content-staffPlus-title{
-    font-size: 15px;
-    font-weight: bold;
-}
-
-/* 스태프 관리 */
-.profile-content-staffManagement {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 0px 0px 20px 125px;
-}
-.profile-content-staffManagement-image {
-    width: 25px;
-    height: 30px;
-    padding-right: 20px;
-}
-
-.profile-content-staffManagement-title{
-    font-size: 15px;
-    font-weight: bold;
-}
-
 
 /* 스태프 게시물 작성 관리 */
 .profile-content-staffPostManagement {
