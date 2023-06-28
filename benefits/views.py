@@ -2579,7 +2579,7 @@ def create(request):
         else:
             return render(request, 'accounts/no_auth.html')
     else:
-        return redirect('accounts:login')
+        return render(request, 'accounts/no_auth.html')
 
 def detail(request, benefit_id):
     benefit = get_object_or_404(Benefit, pk = benefit_id)
@@ -2616,7 +2616,7 @@ def review(request, benefit_id):#댓글 작성하는 칸
                 'comments_count' : comments_count,
                 })
     else:
-        return redirect('accounts:login')
+        return render(request, 'accounts/no_auth.html')
     
 def comment_likes(request, comment_id):
     if request.user.is_authenticated: 
@@ -2693,7 +2693,7 @@ def edit_comment(request, comment_id):
         else:
             return render(request, 'accounts/no_auth.html')
     else:
-        return redirect('accounts:login')
+        return render(request, 'accounts/no_auth.html')
 
 def update(request, benefit_id):
     update_benefit = Benefit.objects.get(id = benefit_id)

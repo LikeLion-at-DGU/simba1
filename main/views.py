@@ -193,7 +193,7 @@ def create(request):
         else:
             return render(request, 'accounts/no_auth.html')
     else:
-        return redirect('accounts:login')
+        return render(request, 'accounts/no_auth.html')
 
 def detail(request, mainpost_id):
     mainpost = get_object_or_404(MainPost, pk = mainpost_id)
@@ -230,7 +230,7 @@ def review(request, mainpost_id):#댓글 작성하는 칸
                 'comments_count' : comments_count,
                 })
     else:
-        return redirect('accounts:login')
+        return render(request, 'accounts/no_auth.html')
 
 def update(request, mainpost_id):
     if request.user.is_superuser:
@@ -407,7 +407,7 @@ def edit_comment(request, comment_id):
         else:
             return render(request, 'accounts/no_auth.html')
     else:
-        return redirect('accounts:login')
+        return render(request, 'accounts/no_auth.html')
     
 def detail_likes(request, mainpost_id): # 게시물 안에서 좋아요 누를 때
     if request.user.is_authenticated: #위와 동일
