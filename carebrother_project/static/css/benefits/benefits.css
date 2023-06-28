@@ -88,6 +88,7 @@
 /* 제휴혜택 card */
 .content {
     display: flex;
+    min-height: 487px;
 }
 
 .card {
