@@ -92,3 +92,7 @@
     opacity: 0.5;
     text-align: center;
 }
+
+.wrap {
+    min-height: 565px;
+}

@@ -3,7 +3,8 @@
 .content_wrap {
     display: flex;
     flex-direction: column;
-    padding: 47px 47px 0px 47px;
+    margin: 47px 47px 0px 47px;
+    min-height: 625px;
 }
 
 

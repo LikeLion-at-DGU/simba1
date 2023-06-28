@@ -1,6 +1,7 @@
 .content_wrap {
     display: flex;
     flex-direction: column;
+    min-height: 670px;
 }
 
 /* 상단 */

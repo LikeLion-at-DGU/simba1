@@ -3,26 +3,30 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/admin/postManagement.css' %}">
-    
-    <div class="root">
-        <div class="post-management">
-            <div class="post-management-vector"><a href="{% url 'mypage:information' %}"><img src="{% static 'images/choose/Vector.png' %}"></a></div>
-            <div class="post-management-title-wrapper">
-                <div class="post-management-title">게시물 작성 관리</div>
-            </div>
+
+<div class="root">
+    <div class="post-management">
+        <div class="post-management-vector"><a href="{% url 'mypage:information' %}"><img
+                    src="{% static 'images/choose/Vector.png' %}"></a></div>
+        <div class="post-management-title-wrapper">
+            <div class="post-management-title">게시물 작성 관리</div>
         </div>
+    </div>
+
+    <div class="wrap">
         {% for benefit in benefits %}
         <div class="post-card">
             <div class="post-card-text">
                 <a href="{% url 'mypage:staff_benefit_detail' benefit.id %}">
-                <div class="post-card-text-title">제목: {{benefit.title}}</div>
+                    <div class="post-card-text-title">제목: {{benefit.title}}</div>
                 </a>
                 <div class="post-card-text-content">내용: {{benefit.body}}</div>
                 <div class="post-card-text-date">작성일: {{benefit.pub_date|date:'Y/m/d H:i'}}</div>
             </div>
             <div class="post-card-image">
                 {% if benefit.image %}
-                <a href="{% url 'mypage:staff_benefit_detail' benefit.id %}"><img class="post-card-image-img" src="{{benefit.image.url}}"></a>
+                <a href="{% url 'mypage:staff_benefit_detail' benefit.id %}"><img class="post-card-image-img"
+                        src="{{benefit.image.url}}"></a>
                 {% endif %}
                 <div class="post-card-image-category">제휴혜택>{{benefit.category_type}}</div>
             </div>
@@ -51,25 +55,26 @@
         <div class="post-card">
             <div class="post-card-text">
                 <a href="{% url 'mypage:staff_main_detail' mainpost.id %}">
-                <div class="post-card-text-title">제목: {{mainpost.title}}</div>
+                    <div class="post-card-text-title">제목: {{mainpost.title}}</div>
                 </a>
                 <div class="post-card-text-content">내용: {{mainpost.body}}</div>
                 <div class="post-card-text-date">작성일: {{mainpost.pub_date|date:'Y/m/d H:i'}}</div>
             </div>
             <div class="post-card-image">
                 {% if mainpost.image %}
-                <a href="{% url 'mypage:staff_main_detail' mainpost.id %}"><img class="post-card-image-img" src="{{mainpost.image.url}}"></a>
+                <a href="{% url 'mypage:staff_main_detail' mainpost.id %}"><img class="post-card-image-img"
+                        src="{{mainpost.image.url}}"></a>
                 {% endif %}
                 <div class="post-card-image-category">제휴혜택>{{mainpost.category_type}}</div>
             </div>
         </div>
         {% endfor %}
-
-        <!-- footer -->
-        <footer>
-        동국대학교 멋쟁이사자처럼 심바톤 1조<br>
-            @ likelion_dongguk<br>
-            ⓒ DGU Likelion. All rights reserved.
-        </footer>
     </div>
+    <!-- footer -->
+    <footer>
+        동국대학교 멋쟁이사자처럼 심바톤 1조<br>
+        @ likelion_dongguk<br>
+        ⓒ DGU Likelion. All rights reserved.
+    </footer>
+</div>
 {% endblock %}
