@@ -55,6 +55,11 @@
     padding: 0px 0px 0px 5px;
 }
 
+.grades a {
+    text-decoration: none;
+    color: #404040;
+}
+
 .heart {
     padding: 0px 15px 0px 0px;
 }
@@ -330,4 +335,9 @@
     background: rgba(255, 143, 11, 0.5);
     border-radius: 50px;
     z-index: 0;
+}
+
+.button_modify a {
+    text-decoration: none;
+    color: #404040;
 }

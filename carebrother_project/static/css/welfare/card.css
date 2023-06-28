@@ -345,3 +345,13 @@
     border-radius: 50px;
     z-index: 0;
 }
+
+.grades a {
+    text-decoration: none;
+    color: #404040;
+}
+
+.button_modify a {
+    text-decoration: none;
+    color: #404040;
+}
