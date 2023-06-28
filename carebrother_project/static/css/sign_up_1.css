@@ -4,7 +4,7 @@ body {
 
 .root {
     display: flex;
-    height: 100vh; 
+    height: 100vh;
     justify-content: center;
     align-items: center;
 }
@@ -53,7 +53,7 @@ body {
     font-family: HancomMalangMalang;
 }
 
-.sign-up_wrapper input{
+.sign-up_wrapper input {
     background: none;
     border: none;
     width: 220px;
@@ -75,7 +75,7 @@ body {
     margin-left: 10px;
 }
 
-.sign-up_button input{
+.sign-up_button input {
     display: flex;
     margin-top: 20px;
     border: none;
@@ -104,21 +104,27 @@ body {
 
 /* 아이콘 */
 /* 비밀번호 보이게/안보이게 하기 */
-.sign-up_id, .sign-up_pwd, .sign-up_pwd-check, .sign-up_nickname {
+.sign-up_id,
+.sign-up_pwd,
+.sign-up_pwd-check,
+.sign-up_nickname {
     position: relative;
 }
 
-.sign-up_id i, .sign-up_pwd i, .sign-up_pwd-check i, .sign-up_nickname i{
+.sign-up_id i,
+.sign-up_pwd i,
+.sign-up_pwd-check i,
+.sign-up_nickname i {
     position: absolute;
     right: 7%;
     top: 62%;
 }
 
-.next_button input[type="submit"]{
+.next_button input[type="submit"] {
     background-color: rgba(64, 64, 64, 0.2);
     display: flex;
     justify-content: center;
-    
+
     color: #FFF;
     text-align: center;
     font-size: 12px;
@@ -128,7 +134,7 @@ body {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-.next_button input[type="submit"].active{
+.next_button input[type="submit"].active {
     background-color: rgba(255, 143, 11, 1);
 }
 
@@ -143,3 +149,11 @@ body {
     margin-top: 3px;
 }
 
+input[type='number'] {
+    -moz-appearance:textfield;
+    }
+    
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    }
