@@ -129,4 +129,3 @@ def cancel_staff(request, user_id):
         return redirect('adminpage:staff_admin')
     else:
         return render(request, 'accounts/no_auth.html')
-

@@ -17,7 +17,7 @@
                     {% csrf_token %}
                     <div class="sign-up_id">
                     <div class="sign-up_wrapper_title">학번*</div>
-                        <input type="text" name="id" id="idInput" placeholder="예) 1234567890" required>
+                        <input type="number" name="id" id="idInput" placeholder="예) 1234567890" required>
                         <i class="far fa-times-circle" id="clearId" style="color: #c6c4c4;"></i>
                     </div>
                     <div id="IdErrorMessage" class="error-message">올바른 학번 10자리를 입력해주세요.</div>

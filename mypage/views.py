@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from benefits.models import Benefit, BComment
 from welfare.models import Welfare, WComment
 from main.models import MainPost, MainComment
+from .models import Profile
 from django.http import HttpResponse
 import json
 
@@ -21,6 +22,11 @@ def change_nickname(request):
         })
     elif request.method == 'POST':
         edit_user = request.user
+        for user_profile in Profile.objects.all():
+            if request.POST['nickname'] == user_profile.nickname:
+                return render(request, 'mypage/change_nickname.html',{
+                    'edit_user' : edit_user,
+                })
         edit_user.profile.nickname = request.POST['nickname']
         edit_user.profile.save()
         return redirect('mypage:information')

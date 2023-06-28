@@ -163,7 +163,6 @@ p {
     height: 196px;
 }
 
-.navbar li ul {
-    right: -24px;
-    top: 46px;
+.footer-div {
+    padding-top: 20px;
 }
