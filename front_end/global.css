@@ -58,7 +58,7 @@ body {
     width: 390px;
     /* min-height: 653px; */
     position: relative;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     flex-direction: column;
 }
 
@@ -121,7 +121,7 @@ footer {
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 390px;
+    /* width: 390px; */
     height: 100px;
     bottom: 0;
     left: 0px;
