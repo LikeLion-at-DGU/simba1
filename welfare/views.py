@@ -57,11 +57,21 @@ def create(request):
         if request.user.is_staff:
             if request.method == 'POST':
                 new_welfare = Welfare()
-                new_welfare.title = request.POST['title']
+
+                if request.POST['title']:
+                    new_welfare.title = request.POST['title']
+                else:
+                    return render(request, 'welfare/new.html')
                 new_welfare.writer = request.user
                 new_welfare.pub_date = timezone.now()
-                new_welfare.category_univ = request.POST['category_univ']
-                new_welfare.category_type = request.POST['category_type']
+                if request.POST['category_univ'] == "none":
+                    return render(request, 'welfare/new.html')
+                else:
+                    new_welfare.category_univ = request.POST['category_univ']
+                if request.POST['category_type'] == "none":
+                    return render(request, 'welfare/new.html')
+                else:
+                    new_welfare.category_type = request.POST['category_type']
                 if request.POST['start_time']:
                     new_welfare.start_time = request.POST['start_time']
                 if request.POST['end_time']:
@@ -71,8 +81,14 @@ def create(request):
                     new_welfare.start_date = request.POST['start_date']
                 if request.POST['end_date']:
                     new_welfare.end_date = request.POST['end_date']
-                new_welfare.image = request.FILES.get('image')
-                new_welfare.body = request.POST['body']
+                if request.FILES.get('image'):
+                    new_welfare.image = request.FILES.get('image')
+                else:
+                    return render(request, 'welfare/new.html')
+                if request.POST['body']:
+                    new_welfare.body = request.POST['body']
+                else:
+                    return render(request, 'welfare/new.html')
 
                 new_welfare.save()
                 
@@ -82,7 +98,10 @@ def create(request):
                 return render(request, 'welfare/new.html')
             
         else:
-            return redirect('accounts:login')
+            return render(request, 'accounts/no_auth.html')
+    else:
+        return redirect('accounts:login')
+
 
 def new(request):
     return render(request, 'welfare/new.html')
@@ -162,10 +181,10 @@ def delete(request, welfare_id):
         delete_welfares = Welfare.objects.get(id = welfare_id)
         if request.user == delete_welfares.writer:
             delete_welfares.delete()
-            return redirect('benefits:choose')
+            return redirect('welfare:choose')
         elif request.user.is_superuser:
             delete_welfares.delete()
-            return redirect('benefits:choose')
+            return redirect('welfare:choose')
         else:
             return render(request, 'accounts/no_auth.html')
 
