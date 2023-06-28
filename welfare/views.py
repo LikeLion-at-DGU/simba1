@@ -107,13 +107,35 @@ def new(request):
     return render(request, 'welfare/new.html')
 
 def update(request, welfare_id):
+    update_welfare = Welfare.objects.get(id = welfare_id)
     if request.user.is_staff:
-        update_welfare = Welfare.objects.get(id = welfare_id)
         if request.user == update_welfare.writer:
             if request.method == 'POST':
-                update_welfare.title = request.POST['title']
+                if request.POST['title']:
+                    update_welfare.title = request.POST['title']
+                else:
+                    edit_welfare = Welfare.objects.get(id = welfare_id)
+                    return render(request, 'welfare/edit.html', {
+                        'welfare':edit_welfare,
+                        })
                 update_welfare.writer = request.user
                 update_welfare.pub_date = timezone.now()
+                if request.POST['category_univ'] == "none":
+                    edit_welfare = Welfare.objects.get(id = welfare_id)
+                    return render(request, 'welfare/edit.html', {
+                        'welfare':edit_welfare,
+                        })
+                    
+                else:
+                    update_welfare.category_univ = request.POST['category_univ']
+                if request.POST['category_type'] == "none":
+                    edit_welfare = Welfare.objects.get(id = welfare_id)
+                    return render(request, 'welfare/edit.html', {
+                        'welfare':edit_welfare,
+                        })
+                    
+                else:
+                    update_welfare.category_type = request.POST['category_type']
                 if request.POST['start_time']:
                     update_welfare.start_time = request.POST['start_time']
                 if request.POST['end_time']:
@@ -123,11 +145,23 @@ def update(request, welfare_id):
                     update_welfare.start_date = request.POST['start_date']
                 if request.POST['end_date']:
                     update_welfare.end_date = request.POST['end_date']
-                update_welfare.image = request.FILES.get('image', update_welfare.image)
-                update_welfare.body = request.POST['body']
+                if request.FILES.get('image', update_welfare.image):
+                    update_welfare.image = request.FILES.get('image', update_welfare.image)
+                else:
+                    edit_welfare = Welfare.objects.get(id = welfare_id)
+                    return render(request, 'welfare/edit.html', {
+                        'welfare':edit_welfare,
+                        })
+                if request.POST['body']:
+                    update_welfare.body = request.POST['body']
+                else:
+                    edit_welfare = Welfare.objects.get(id = welfare_id)
+                    return render(request, 'welfare/edit.html', {
+                        'welfare':edit_welfare,
+                        })
 
                 update_welfare.save()
-
+                
                 return redirect('welfare:detail', update_welfare.id)
             
             elif request.method == 'GET':
@@ -137,8 +171,31 @@ def update(request, welfare_id):
                     })
         elif request.user.is_superuser:
             if request.method == 'POST':
-                update_welfare.title = request.POST['title']
+                if request.POST['title']:
+                    update_welfare.title = request.POST['title']
+                else:
+                    edit_welfare = Welfare.objects.get(id = welfare_id)
+                    return render(request, 'welfare/edit.html', {
+                        'welfare':edit_welfare,
+                        })
                 update_welfare.writer = request.user
+                update_welfare.pub_date = timezone.now()
+                if request.POST['category_univ'] == "none":
+                    edit_welfare = Welfare.objects.get(id = welfare_id)
+                    return render(request, 'welfare/edit.html', {
+                        'welfare':edit_welfare,
+                        })
+                    
+                else:
+                    update_welfare.category_univ = request.POST['category_univ']
+                if request.POST['category_type'] == "none":
+                    edit_welfare = Welfare.objects.get(id = welfare_id)
+                    return render(request, 'welfare/edit.html', {
+                        'welfare':edit_welfare,
+                        })
+                    
+                else:
+                    update_welfare.category_type = request.POST['category_type']
                 if request.POST['start_time']:
                     update_welfare.start_time = request.POST['start_time']
                 if request.POST['end_time']:
@@ -148,17 +205,29 @@ def update(request, welfare_id):
                     update_welfare.start_date = request.POST['start_date']
                 if request.POST['end_date']:
                     update_welfare.end_date = request.POST['end_date']
-                update_welfare.image = request.FILES.get('image', update_welfare.image)
-                update_welfare.body = request.POST['body']
+                if request.FILES.get('image', update_welfare.image):
+                    update_welfare.image = request.FILES.get('image', update_welfare.image)
+                else:
+                    edit_welfare = Welfare.objects.get(id = welfare_id)
+                    return render(request, 'welfare/edit.html', {
+                        'welfare':edit_welfare,
+                        })
+                if request.POST['body']:
+                    update_welfare.body = request.POST['body']
+                else:
+                    edit_welfare = Welfare.objects.get(id = welfare_id)
+                    return render(request, 'welfare/edit.html', {
+                        'welfare':edit_welfare,
+                        })
 
                 update_welfare.save()
-
+                
                 return redirect('welfare:detail', update_welfare.id)
             
             elif request.method == 'GET':
-                edit_welfare = Welfare.objects.get(id = id)
+                edit_welfare = Welfare.objects.get(id = welfare_id)
                 return render(request, 'welfare/edit.html', {
-                    'welfare':edit_welfare,
+                    'welfare' : edit_welfare,
                     })
         else:
             return render(request, 'accounts/no_auth.html')
@@ -187,6 +256,8 @@ def delete(request, welfare_id):
             return redirect('welfare:choose')
         else:
             return render(request, 'accounts/no_auth.html')
+    else:
+        return render(request, 'accounts/no_auth.html')
 
 def comment_likes(request, comment_id):
     if request.user.is_authenticated: 
