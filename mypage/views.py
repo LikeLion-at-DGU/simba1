@@ -195,6 +195,18 @@ def super_benefit_detail(request, benefit_id):
         'comments_count' : comments_count,
         })
 
+
+def super_welfare_detail(request, welfare_id):
+    welfare = get_object_or_404(Welfare, pk = welfare_id)
+    comments = WComment.objects.filter(welfare = welfare)
+    comments_count = len(comments)
+    return render(request, 'mypage/super_welfare_detail.html',{
+        'welfare' : welfare,
+        'comments' : comments,
+        'comments_count' : comments_count,
+        })
+
+
 def super_main_detail(request, mainpost_id):
     mainpost = get_object_or_404(MainPost, pk = mainpost_id)
     comments = MainComment.objects.filter(mainpost = mainpost)
@@ -214,6 +226,17 @@ def staff_benefit_detail(request, benefit_id):
         'comments' : comments,
         'comments_count' : comments_count,
         })
+
+def staff_welfare_detail(request, welfare_id):
+    welfare = get_object_or_404(Welfare, pk = welfare_id)
+    comments = WComment.objects.filter(welfare = welfare)
+    comments_count = len(comments)
+    return render(request, 'mypage/staff_welfare_detail.html',{
+        'welfare' : welfare,
+        'comments' : comments,
+        'comments_count' : comments_count,
+        })
+
 
 def staff_main_detail(request, mainpost_id):
     mainpost = get_object_or_404(MainPost, pk = mainpost_id)
