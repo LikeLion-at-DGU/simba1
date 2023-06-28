@@ -21,8 +21,8 @@ p {
 
 .highlight_circle {
     position: absolute;
-    left: 147px;
-    top: -4px;
+    left: 255px;
+    top: -50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -161,4 +161,9 @@ p {
 .team__member img {
     width: 283px;
     height: 196px;
+}
+
+.navbar li ul {
+    right: -24px;
+    top: 46px;
 }
