@@ -104,10 +104,17 @@
                 <div class="card-comment">
                     <div class="comment-count">코멘트 {{comments_count}}</div>
                     {% for comment in comments %}
+
                     <div class="comment">
                         <div class="users">
+                            {% if comment.writer.is_superuser %}
+                            <img src="{% static 'images/admin_profile.png' %}" height="15px" width="15px">
+                            {% elif comment.writer.is_staff %}
+                            <img src="{{comment.writer.profile.image.url}}" height="15px" width="15px">
+                            {% else %}
                             <img src="{% static 'images/card/user.png' %}" height="15px" width="15px">
-                            <div class="nickname">{{comment.writer}}</div>
+                            {% endif %}
+                            <div class="nickname">{{comment.writer.profile.nickname}}</div>
                         </div>
                         <span href="#" class = "like1" name="{{comment.id}}" value="Like">
                         <div class="likes">
