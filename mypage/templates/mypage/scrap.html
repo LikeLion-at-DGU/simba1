@@ -27,7 +27,7 @@
                         <a href="{% url 'benefits:detail' benefit.id %}"><img class="card_item_img" src="{{benefit.image.url}}"></a>
                         {% endif %}
                         <div class="card_item_content">
-                            <div class="card_item_content_name"><a href="{% url 'benefits:detail' benefit.id %}">{{benefit.title}}</a></div>
+                            <div class="card_item_content_name"><a href="{% url 'benefits:detail' benefit.id %}">{{benefit.title_summary}}...</a></div>
                             <div class="card_item_content_star">
                                 <i class="far fa-star" style="color: #ffd66b;"></i>
                             </div>
@@ -62,7 +62,7 @@
                         <a href="{% url 'welfare:detail' welfare.id %}"><img class="card_item_img" src="{{welfare.image.url}}"></a>
                         {% endif %}
                         <div class="card_item_content">
-                            <div class="card_item_content_name"><a href="{% url 'welfare:detail' welfare.id %}">{{welfare.title}}</a></div>
+                            <div class="card_item_content_name"><a href="{% url 'welfare:detail' welfare.id %}">{{welfare.title_summary}}...</a></div>
                             <div class="card_item_content_star">
                             </div>
                             <div class="card_item_content_star-count"></div>
@@ -96,7 +96,7 @@
                         <a href="{% url 'main:detail' mainpost.id %}"><img class="card_item_img" src="{{mainpost.image.url}}"></a>
                         {% endif %}
                         <div class="card_item_content">
-                            <div class="card_item_content_name"><a href="{% url 'main:detail' mainpost.id %}">{{mainpost.title}}</a></div>
+                            <div class="card_item_content_name"><a href="{% url 'main:detail' mainpost.id %}">{{mainpost.title_summary}}...</a></div>
                             <div class="card_item_content_star">
                                 <i class="far fa-star" style="color: #ffd66b;"></i>
                             </div>

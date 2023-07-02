@@ -20,7 +20,7 @@
                 <a href="{% url 'mypage:staff_benefit_detail' benefit.id %}">
                     <div class="post-card-text-title">제목: {{benefit.title}}</div>
                 </a>
-                <div class="post-card-text-content">내용: {{benefit.body}}</div>
+                <div class="post-card-text-content">내용: {{benefit.summary}}...</div>
                 <div class="post-card-text-date">작성일: {{benefit.pub_date|date:'Y/m/d H:i'}}</div>
             </div>
             <div class="post-card-image">
@@ -39,7 +39,7 @@
                 <a href="{% url 'mypage:staff_welfare_detail' welfare.id %}">
                 <div class="post-card-text-title">제목: {{welfare.title}}</div>
                 </a>
-                <div class="post-card-text-content">내용: {{welfare.body}}</div>
+                <div class="post-card-text-content">내용: {{welfare.summary}}...</div>
                 <div class="post-card-text-date">작성일: {{welfare.pub_date|date:'Y/m/d H:i'}}</div>
             </div>
             <div class="post-card-image">
@@ -57,7 +57,7 @@
                 <a href="{% url 'mypage:staff_main_detail' mainpost.id %}">
                     <div class="post-card-text-title">제목: {{mainpost.title}}</div>
                 </a>
-                <div class="post-card-text-content">내용: {{mainpost.body}}</div>
+                <div class="post-card-text-content">내용: {{mainpost.summary}}...</div>
                 <div class="post-card-text-date">작성일: {{mainpost.pub_date|date:'Y/m/d H:i'}}</div>
             </div>
             <div class="post-card-image">
@@ -65,7 +65,7 @@
                 <a href="{% url 'mypage:staff_main_detail' mainpost.id %}"><img class="post-card-image-img"
                         src="{{mainpost.image.url}}"></a>
                 {% endif %}
-                <div class="post-card-image-category">제휴혜택>{{mainpost.category_type}}</div>
+                <div class="post-card-image-category">동국대 전체 혜택>{{mainpost.category_type}}</div>
             </div>
         </div>
         {% endfor %}

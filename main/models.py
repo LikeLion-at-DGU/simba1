@@ -18,10 +18,13 @@ class MainPost(models.Model):
 
     
     def __str__(self):
+        return self.title
+    
+    def title_summary(self):
         return self.title[:3]
     
     def summary(self):
-        return self.body[:20]
+        return self.body[:15]
     
     
 class MainComment(models.Model):

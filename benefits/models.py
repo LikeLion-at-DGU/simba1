@@ -23,10 +23,13 @@ class Benefit(models.Model):
 
     
     def __str__(self):
-        return self.title[:3]
+        return self.title
     
     def summary(self):
-        return self.body[:20]
+        return self.body[:15]
+    
+    def title_summary(self):
+        return self.title[:3]
     
     
 class BComment(models.Model):

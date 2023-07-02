@@ -25,7 +25,10 @@ class Welfare(models.Model):
         return self.title
     
     def summary(self):
-        return self.body[:20]
+        return self.body[:15]
+    
+    def title_summary(self):
+        return self.title[:6]
     
 # 댓글 모델 작성
 class WComment(models.Model):
