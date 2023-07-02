@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{% static 'css/welfare/welfareWriting.css' %}">
 
 <div class="writing">
-    <div class="writing-image"><img src="{% static 'images/choose/Vector.png' %}"></div>
+    <div class="writing-image"><a href="{% url 'welfare:detail' welfare.id %}"><img src="{% static 'images/choose/Vector.png' %}"></a></div>
     <div class="writing-title">학생복지 글 쓰기</div>
 </div>
 
@@ -47,8 +47,8 @@
         <input class="reset" type="reset">
     </div>
     <div class="gps">
-        <div class="gps_address" type="text" name="address" value="{{welfare.address}}">위치: </div> 
-        <input class="address" type="text" name="address">
+        <div class="gps_address" type="text" name="address">위치: </div> 
+        <input class="address" type="text" name="address" value="{{welfare.address}}">
     </div>
     <div class="content">
         <div class="content-writing">복지 내용: </div> 

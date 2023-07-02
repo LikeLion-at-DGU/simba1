@@ -4,7 +4,7 @@
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/benefits/adminWriting.css' %}">
     <div class="writing">
-        <div class="writing-image"><img src="{% static 'images/choose/Vector.png' %}"></div>
+        <div class="writing-image"><a href="{% url 'benefits:detail' benefit.id %}"><img src="{% static 'images/choose/Vector.png' %}"></a></div>
         <div class="writing-title">제휴혜택 글 쓰기</div>
     </div>
     <!-- enctype="multipart/form-data"을 하는 이유는 이미지 파일만 받기 위함 -->

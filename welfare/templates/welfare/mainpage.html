@@ -84,7 +84,7 @@
                     <a href="{% url 'welfare:detail' first.id %}"><img class="card__item__img" src="{{first.image.url}}"></a>
                 {% endif %}
                     <div class="card__content">
-                        <div class="name">{{first.title}}</div>
+                        <div class="name">{{first.title_summary}}...</div>
                     </div>
                     <span href="#" class = "like" name="{{first.id}}" value="Like">
                     {% if user in first.welfare_like.all %}
@@ -111,6 +111,9 @@
                     {% if first.image %}
                         <a href="{% url 'welfare:detail' first.id %}"><img class="card__item__img" src={{first.image.url}}></a>
                     {% endif %}
+                    <div class="card__content">
+                        <div class="name">{{first.title_summary}}...</div>
+                    </div>
                     <span href="#" class = "like" name="{{first.id}}" value="Like">
                         {% if user in first.welfare_like.all %}
                         <div class="heart">
@@ -136,7 +139,7 @@
                     <a href="{% url 'welfare:detail' second.id %}"><img class="card__item__img" src="{{second.image.url}}"></a>
                 {% endif %}
                     <div class="card__content">
-                        <div class="name">{{second.title}}</div>
+                        <div class="name">{{second.title_summary}}...</div>
                     </div>
                     <span href="#" class = "like" name="{{second.id}}" value="Like">
                         {% if user in second.welfare_like.all %}
@@ -167,7 +170,7 @@
                     <a href="{% url 'welfare:detail' second.id %}"><img class="card__item__img" src="{{second.image.url}}"></a>
                     {% endif %}
                     <div class="card__content">
-                        <div class="name">{{second.title}}</div>
+                        <div class="name">{{second.title_summary}}...</div>
                     </div>
                     <span href="#" class = "like" name="{{second.id}}" value="Like">
                         {% if user in second.welfare_like.all %}
