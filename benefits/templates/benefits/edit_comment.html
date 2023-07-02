@@ -100,7 +100,6 @@
                             <div class="nickname">{{comment.writer.profile.nickname}}</div>
                             <img src="{% static 'images/card/star.png' %}" height="12px" width="11px">
                             <div class="grade">{{comment.benefit_rate}}</div>
-                            <a href="{% url 'benefits:delete_comment' comment.id %}">삭제하기</a>
                         </div>
                         <div class="likes">
                             <img src="{% static 'images/card/like.png' %}" height="13px" width="13px">
