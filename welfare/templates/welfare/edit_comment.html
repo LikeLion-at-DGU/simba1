@@ -63,10 +63,9 @@
                     <div class="comment">
                         <div class="users">
                             <img src="{% static 'images/card/user.png' %}" height="15px" width="15px">
-                            <div class="nickname">{{comment.writer}}</div>
+                            <div class="nickname">{{comment.writer.profile.nickname}}</div>
                             <img src="{% static 'images/card/star.png' %}" height="12px" width="11px">
                             <div class="grade">{{comment.welfare_rate}}</div>
-                            <a href="">삭제하기</a>
                         </div>
                         <div class="likes">
                             <img src="{% static 'images/card/like.png' %}" height="13px" width="13px">
